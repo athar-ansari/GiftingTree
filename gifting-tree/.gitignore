@@ -14,7 +14,7 @@
 # Logs
 /logs
 *.log
-
+.env
 # Coverage directory used by testing tools
 /coverage
 
