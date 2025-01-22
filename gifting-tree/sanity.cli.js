@@ -1,9 +1,8 @@
-import dotenv from 'dotenv'
-dotenv.config()
+import {defineCliConfig} from 'sanity/cli'
 
-export default {
-  projectId: process.env.VITE_SANITY_PROJECT_ID,
-  dataset: process.env.VITE_SANITY_DATASET,
-  useCdn: true,
-  apiVersion: process.env.VITE_SANITY_API_VERSION
-}
+export default defineCliConfig({
+  api: {
+    projectId: 'rv6k790j',
+    dataset: 'production',
+  },
+})
