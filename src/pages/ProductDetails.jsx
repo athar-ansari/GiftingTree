@@ -13,7 +13,7 @@ const categoryMapping = {
   'new-arrival': 'New Arrival',
   'limited-edition': 'Limited Edition',
   'key-chains': 'Key Chains',
-  'jewelry': 'Jewelry',
+  'jewellery': 'Jewellery',
   'birthday-frame': 'Birthday Frame',
   'couple-frame': 'Couple Frame',
   'religious-frame': 'Religious Frame',
@@ -30,10 +30,14 @@ const categoryMapping = {
   'register': 'Register',
   'thumb-frame': 'Thumb Frame',
   'nikah-frame': 'Nikah Frame',
-  'wedding-boards': 'Wedding Boards',
   'nikah-favours': 'Nikah Favours',
   'mehar-box': 'Mehar Box',
   'platter': 'Platter',
+  'varmala': 'Varmala',
+  'wedding-boards': 'Wedding Boards',
+  'others': 'Others',
+  'other-products': 'Other Products',
+
 };
 
 function ProductDetails() {
@@ -84,7 +88,7 @@ function ProductDetails() {
       `Product URL : ${window.location.href}`
     );
 
-    window.open(`https://wa.me/918900214739?text=${message}`, '_blank');
+    window.open(`https://wa.me/917001967279?text=${message}`, '_blank');
   };
 
   return (

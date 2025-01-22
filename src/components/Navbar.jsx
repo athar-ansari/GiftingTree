@@ -1,5 +1,9 @@
 import { Link } from 'react-router-dom';
-import { FiGift } from 'react-icons/fi';
+ 
+
+// Image
+import logo from "../assets/logo.jpg";
+
 
 function Navbar() {
   return (
@@ -8,7 +12,7 @@ function Navbar() {
         <div className="flex justify-between h-16">
           <div className="flex items-center">
             <Link to="/" className="flex items-center">
-              <FiGift className="h-8 w-8 text-indigo-600" />
+              <img src={logo} alt="Logo" className="h-12 w-12 rounded-full border-2 border-gray-900 " />
               <span className="ml-2 text-2xl font-bold text-gray-900 ">Gifting Tree</span>
             </Link>
           </div>

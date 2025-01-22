@@ -1,4 +1,4 @@
-import { FiInstagram, FiFacebook, FiMail, FiPhone, FiMapPin } from 'react-icons/fi';
+import { FiInstagram, FiMail, FiPhone, FiMapPin } from 'react-icons/fi';
 
 function Footer() {
   return (
@@ -20,11 +20,11 @@ function Footer() {
             <div className="space-y-2">
               <div className="flex items-center">
                 <FiPhone className="mr-2" />
-                <span className="text-gray-400">+91 1234567890</span>
+                <span className="text-gray-400">+917001967279</span>
               </div>
               <div className="flex items-center">
                 <FiMail className="mr-2" />
-                <span className="text-gray-400">contact@giftingtree.com</span>
+                <span className="text-gray-400">giftingtreebygz@gmail.com</span>
               </div>
               <div className="flex items-center">
                 <FiMapPin className="mr-2" />
@@ -39,9 +39,6 @@ function Footer() {
             <div className="flex space-x-4">
               <a href="https://www.instagram.com/_.gifting_tree_/" className="hover:text-indigo-400 transition-colors">
                 <FiInstagram className="h-6 w-6" />
-              </a>
-              <a href="#" className="hover:text-indigo-400 transition-colors">
-                <FiFacebook className="h-6 w-6" />
               </a>
             </div>
           </div>

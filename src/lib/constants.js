@@ -4,7 +4,7 @@ export const CATEGORIES = [
   { title: "New Arrival", value: "new-arrival" },
   { title: "Limited Edition", value: "limited-edition" },
   { title: "Key Chains", value: "key-chains" },
-  { title: "Jewelry", value: "jewelry" },
+  { title: "Jewellery", value: "jewellery" },
   { title: "Birthday Frame", value: "birthday-frame" },
   { title: "Couple Frame", value: "couple-frame" },
   { title: "Religious Frame", value: "religious-frame" },
@@ -21,10 +21,13 @@ export const CATEGORIES = [
   { title: "Register", value: "register" },
   { title: "Thumb Frame", value: "thumb-frame" },
   { title: "Nikah Frame", value: "nikah-frame" },
-  { title: "Wedding Boards", value: "wedding-boards" },
   { title: "Nikah Favours", value: "nikah-favours" },
   { title: "Mehar Box", value: "mehar-box" },
   { title: "Platter", value: "platter" },
+  { title: "Varmala", value: "varmala" },
+  { title: "Wedding Boards", value: "wedding-boards" },
+  { title: "Others", value: "others" },
+  {title: 'Other Products', value: 'other-products'},
 ];
 
 // Default product message
@@ -32,4 +35,4 @@ export const DEFAULT_PRODUCT_MESSAGE =
   "🚫 No cash on delivery 🚚 available. All sales are final - no returns or refunds.";
 
 // WhatsApp contact number
-export const WHATSAPP_NUMBER = "918900214739";
+export const WHATSAPP_NUMBER = "917001967279";

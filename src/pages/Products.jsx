@@ -14,7 +14,7 @@ const categories = [
   "New Arrival",
   "Limited Edition",
   "Key Chains",
-  "Jewelry",
+  "Jewellery",
   "Birthday Frame",
   "Couple Frame",
   "Religious Frame",
@@ -31,10 +31,13 @@ const categories = [
   "Register",
   "Thumb Frame",
   "Nikah Frame",
-  "Wedding Boards",
   "Nikah Favours",
   "Mehar Box",
-  "Platter"
+  "Platter",
+  "Varmala",
+  "Wedding Boards",
+  "Others",
+  "Other Products",
 ];
 
 function Products() {

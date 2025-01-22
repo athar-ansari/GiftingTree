@@ -4,7 +4,6 @@ import BestSellers from "../components/BestSellers.jsx";
 import Hero from "../components/Hero.jsx";
 import Info from "../components/Info.jsx";
 import CraftProcess from "../components/CraftProcess.jsx";
-import HandcraftedCollections from "../components/HandcraftedCollections.jsx";
 import ArtisanalCollections from "../components/ArtisanalCollections.jsx";
 
 function Home() {

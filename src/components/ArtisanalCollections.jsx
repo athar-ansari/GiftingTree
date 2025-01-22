@@ -15,9 +15,9 @@ const collections = [
     description: "Transform moments into timeless art pieces",
     image: Resin,
     categories: [
-      "Key chains", "Jewelry", "Birthday frame", "Couple frame", "Religious frame",
-      "Car accessories", "Clock", "Bookmarks", "Puja thali", "Wall art",
-      "Book holder", "Flower preservation"
+      "Key Chains", "Jewellery", "Birthday Frame", "Couple Frame", "Religious Frame",
+      "Car Accessories", "Clock", "Bookmarks", "Puja Thali", "Wall Art",
+      "Book Holder", "Flower Preservation", "Varmala", "Other Products"
     ]
   },
   {
@@ -26,8 +26,8 @@ const collections = [
     description: "Elevate your special day with handcrafted beauty",
     image: Wedding,
     categories: [
-      "Pen", "Mirror", "Dupatta", "Register", "Thumb frame", "Nikah frame",
-      "Wedding Boards", "Nikah favours", "Mehar box", "Platter"
+      "Pen", "Mirror", "Dupatta", "Register", "Thumb Frame", "Nikah Frame",
+      "Nikah Favours", "Mehar Box", "Platter", "Wedding Boards", "Others"
     ]
   }
 ];
