@@ -88,7 +88,7 @@ export default {
           {title: 'New Arrival', value: 'new-arrival'},
           {title: 'Limited Edition', value: 'limited-edition'},
           {title: 'Key Chains', value: 'key-chains'},
-          {title: 'Jewelry', value: 'jewelry'},
+          {title: 'Jewellery', value: 'jewellery'},
           {title: 'Birthday Frame', value: 'birthday-frame'},
           {title: 'Couple Frame', value: 'couple-frame'},
           {title: 'Religious Frame', value: 'religious-frame'},
