@@ -80,16 +80,34 @@ function ProductDetails() {
   }
 
   const handleCustomize = () => {
-    const message = encodeURIComponent(
-      `Hi, I'm interested in :\n\n` +
-      `Product Name : ${product.name}\n` +
-      `Price : ₹${selectedSize ? selectedSize.price : product.basePrice}\n` +
-      `${selectedSize ? `Size : ${selectedSize.size}\n` : ''}` +
-      `Product URL : ${window.location.href}`
-    );
-
-    window.open(`https://wa.me/917001967279?text=${message}`, '_blank');
+    const productName = encodeURIComponent(`Hi, I'm interested in:\n\nProduct Name: ${product.name}\n`);
+    const price = encodeURIComponent(`Price: ₹${selectedSize ? selectedSize.price : product.basePrice}\n`);
+    const size = selectedSize ? encodeURIComponent(`Size: ${selectedSize.size}\n`) : '';
+    const productUrl = encodeURIComponent(`Product URL: ${window.location.href}`);
+  
+    const message = `${productName}${price}${size}${productUrl}`;
+    const whatsappUrl = `https://wa.me/917001967279?text=${message}`;
+  
+    const openWhatsApp = (retryCount = 0) => {
+      try {
+        const newWindow = window.open(whatsappUrl, '_blank');
+        if (!newWindow || newWindow.closed || typeof newWindow.closed == 'undefined') {
+          if (retryCount < 3) {
+            // Retry opening the link after a short delay
+            setTimeout(() => openWhatsApp(retryCount + 1), 500);
+          } else {
+            throw new Error('Failed to open WhatsApp link after multiple attempts');
+          }
+        }
+      } catch (error) {
+        console.error("Failed to open WhatsApp link. Please check your browser settings.", error);
+        alert("Unable to open WhatsApp. Please check your browser settings and allow pop-ups.");
+      }
+    };
+  
+    openWhatsApp();
   };
+  
 
   return (
     <>
