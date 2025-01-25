@@ -5,14 +5,15 @@ import Hero from "../components/Hero.jsx";
 import Info from "../components/Info.jsx";
 import CraftProcess from "../components/CraftProcess.jsx";
 import ArtisanalCollections from "../components/ArtisanalCollections.jsx";
+import Heroo from "@/components/heroo.jsx";
 
 function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white font-notoSerif">
 
       {/* Hero Section */}
-      <Hero />
-
+      {/* <Hero /> */}
+<Heroo/>
       {/* ArtisanalCollections Section */}
       <ArtisanalCollections />
 
