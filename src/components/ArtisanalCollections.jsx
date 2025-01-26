@@ -62,10 +62,10 @@ export default function ArtisanalCollections() {
           transition={{ duration: 0.8 }}
           className="text-center mb-8 md:mb-16"
         >
-          <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6  text-indigo-700  text-center font-lora  ">
+          <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6  text-[#4B5945]  text-center font-lora  ">
             Our Artisanal Collections
           </h2>
-          <p className="text-gray-600 max-w-2xl mx-auto text-sm md:text-xl -mt-2">
+          <p className="text-[#66785F] max-w-2xl mx-auto text-sm md:text-xl -mt-2">
             Discover the perfect blend of tradition and modernity in our handcrafted masterpieces
           </p>
         </motion.div>
@@ -81,8 +81,8 @@ export default function ArtisanalCollections() {
                 key={collection.id}
                 variant={activeCollection === collection.id ? "default" : "outline"}
                 className={`text-sm md:text-lg px-4 md:px-8 py-2 md:py-4 rounded-full transition-all duration-300 ${activeCollection === collection.id
-                  ? 'bg-indigo-700 text-white hover:bg-indigo-700 shadow-lg scale-105'
-                  : 'text-indigo-700 hover:bg-white'
+                  ? 'bg-[#4B5945] text-[#FFFFFF] hover:bg-[#66785F] shadow-lg scale-105'
+                  : 'text-[#4B5945] hover:bg-[#FFFFFF]'
                   }`}
                 onClick={() => setActiveCollection(collection.id)}
               >
@@ -125,7 +125,7 @@ function CollectionShowcase({ collection }) {
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent" />
           <motion.div
-            className="absolute bottom-0 left-0 p-4 md:p-12 text-white w-full"
+            className="absolute bottom-0 left-0 p-4 md:p-12 text-[#FFFFFF] w-full"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
@@ -156,7 +156,7 @@ function CategoryButton({ category }) {
     <Link to={`/products?category=${encodeURIComponent(category.toLowerCase().replace(/ /g, '-'))}`}>
       <Button
         variant="outline"
-        className="w-full bg-white/10 backdrop-blur-md hover:bg-white/20 text-white border-white/20 rounded-xl py-2 md:py-4 text-xs md:text-sm lg:text-base transition-all duration-300 hover:shadow-lg group"
+        className="w-full bg-white/10 backdrop-blur-md hover:bg-white/20 text-[#FFFFFF] border-white/20 rounded-xl py-2 md:py-4 text-xs md:text-sm lg:text-base transition-all duration-300 hover:shadow-lg group"
       >
         <span className="flex items-center gap-1 md:gap-2 justify-between">
           {category}

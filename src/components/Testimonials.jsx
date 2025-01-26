@@ -63,7 +63,7 @@ export const Testimonials = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-3xl font-bold text-indigo-700 text-center mb-12"
+          className="text-3xl font-bold text-[#4B5945] text-center mb-12"
         >
           What Our Customers Say
         </motion.h2>
@@ -87,7 +87,7 @@ export const Testimonials = () => {
                   className="h-12 w-12 rounded-full object-cover"
                 />
                 <div className="ml-4">
-                  <h4 className="font-semibold text-gray-900">
+                  <h4 className="font-semibold text-[#4B5945]">
                     {testimonial.name}
                   </h4>
                   <div className="flex text-yellow-400">
@@ -97,7 +97,7 @@ export const Testimonials = () => {
                   </div>
                 </div>
               </div>
-              <p className="text-gray-600 font-lora">{testimonial.comment}</p>
+              <p className="text-[#66785F] font-lora">{testimonial.comment}</p>
             </motion.div>
           ))}
         </div>

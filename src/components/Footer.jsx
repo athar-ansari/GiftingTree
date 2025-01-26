@@ -2,7 +2,7 @@ import { FiInstagram, FiMail, FiPhone, FiMapPin } from 'react-icons/fi';
 
 function Footer() {
   return (
-    <footer className="bg-gray-900 text-white  font-notoSerif">
+    <footer className="bg-gray-900 text-[#FFFFFF]  font-notoSerif">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* About Section */}
@@ -37,7 +37,7 @@ function Footer() {
           <div>
             <h3 className="text-xl font-bold mb-4">Follow Us</h3>
             <div className="flex space-x-4">
-              <a href="https://www.instagram.com/_.gifting_tree_/" className="hover:text-indigo-400 transition-colors">
+              <a href="https://www.instagram.com/_.gifting_tree_/" className="hover:text-pink-700 transition-colors">
                 <FiInstagram className="h-6 w-6" />
               </a>
             </div>

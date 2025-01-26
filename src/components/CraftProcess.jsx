@@ -38,8 +38,8 @@ const CraftProcess = () => {
           viewport={{ once: true }}
           className="text-center mb-12"
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-indigo-700">Our Craft Process</h2>
-          <p className="text-gray-600 max-w-2xl mx-auto -mt-3">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-[#4B5945]">Our Craft Process</h2>
+          <p className="text-[#66785F] max-w-2xl mx-auto -mt-3">
             Every piece is created with meticulous attention to detail
           </p>
         </motion.div>
@@ -61,8 +61,8 @@ const CraftProcess = () => {
                   className="rounded-full object-cover w-full h-full"
                 />
               </div>
-              <h3 className="text-xl font-semibold text-center mb-2">{step.title}</h3>
-              <p className="text-gray-600 text-center ">{step.description}</p>
+              <h3 className="text-xl font-semibold text-center mb-2 text-[#4B5945]">{step.title}</h3>
+              <p className="text-[#66785F] text-center ">{step.description}</p>
             </motion.div>
           ))}
         </div>

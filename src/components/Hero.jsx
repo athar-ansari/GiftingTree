@@ -39,7 +39,7 @@ const Hero = () => {
                     }}
                 >
                     {/* Text Overlay */}
-                    <div className="absolute inset-0 flex flex-col items-center justify-center bg-black  bg-opacity-40  p-4">
+                    <div className="absolute inset-0 flex flex-col items-center justify-center bg-black  bg-opacity-40 text-[#FFFFFF] p-4">
                         <motion.h1
                             initial={{ y: 20, opacity: 0 }}
                             animate={{ y: 0, opacity: 1 }}
@@ -64,7 +64,7 @@ const Hero = () => {
                         >
                             <Link
                                 to="/products"
-                                className="inline-block bg-white text-indigo-600 px-8 py-3 rounded-full font-bold hover:bg-gray-100 transition-colors shadow-lg"
+                                className="inline-block bg-white text-[#4B5945] px-8 py-3 rounded-full font-bold hover:bg-gray-100 transition-colors shadow-lg"
                             >
                                 Explore Our Collection
                             </Link>

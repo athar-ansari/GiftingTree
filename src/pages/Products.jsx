@@ -117,7 +117,7 @@ function Products() {
                 placeholder="Search products..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                className="w-full pl-10 pr-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#66785F] focus:border-transparent"
               />
             </div>
             <div className="flex items-center gap-2">
@@ -125,7 +125,7 @@ function Products() {
               <select
                 value={selectedCategory}
                 onChange={(e) => setSelectedCategory(e.target.value)}
-                className="rounded-lg border border-gray-300 py-2 px-4 focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                className="rounded-lg border border-gray-300 py-2 px-4 focus:ring-2 focus:ring-[#66785F] focus:border-transparent"
               >
                 {categories.map(category => (
                   <option key={category} value={category}>{category}</option>
@@ -152,12 +152,12 @@ function Products() {
                   <div className="p-6">
                     <h3 className="text-xl font-bold text-gray-900">{product.name}</h3>
                     <div className="mt-4 flex justify-between items-center">
-                      <span className="text-2xl font-bold text-indigo-600">
+                      <span className="text-2xl font-bold text-[#4B5945]">
                         {product.sizes && product.sizes.length > 0 ? `₹${product.sizes[0].price}` : 'Price not available'}
                       </span>
                       <Link
                         to={`/product/${product.slug.current}`}
-                        className="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition-colors font-bold"
+                        className="bg-[#4B5945] text-[#FFFFFF] px-4 py-2 rounded-lg hover:bg-[#66785F] transition-colors font-bold"
                       >
                         View Details
                       </Link>
@@ -179,8 +179,8 @@ function Products() {
                 onClick={handlePreviousPage}
                 disabled={currentPage === 1}
               >
-                <MdChevronLeft className='text-indigo-700 ' />
-                <span className="font-bold text-indigo-700">Previous</span>
+                <MdChevronLeft className='text-[#4B5945] ' />
+                <span className="font-bold text-[#66785F]">Previous</span>
               </button>
               <div className="flex items-center gap-x-1">
                 {getPageNumbers().map((pageNumber) => (
@@ -204,8 +204,8 @@ function Products() {
                 onClick={handleNextPage}
                 disabled={currentPage === totalPages}
               >
-                <span className="font-bold text-indigo-700 ">Next</span>
-                <MdChevronRight className='text-indigo-700 ' />
+                <span className="font-bold text-[#4B5945]  ">Next</span>
+                <MdChevronRight className='text-[#66785F] ' />
               </button>
             </nav>
           )}

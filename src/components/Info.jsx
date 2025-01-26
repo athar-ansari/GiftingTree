@@ -15,9 +15,9 @@ const Info = () => {
                             viewport={{ once: true }}
                             className="text-center"
                         >
-                            <FiTruck className="w-12 h-12 mx-auto text-indigo-600" />
+                            <FiTruck className="w-12 h-12 mx-auto text-[#4B5945]" />
                             <h3 className="mt-4 text-xl font-semibold">All India Delivery</h3>
-                            <p className="mt-2 text-gray-600 font-lora">
+                            <p className="mt-2 text-[#66785F] font-lora">
                                 Fast and secure shipping across India
                             </p>
                         </motion.div>
@@ -27,9 +27,9 @@ const Info = () => {
                             viewport={{ once: true }}
                             className="text-center"
                         >
-                            <FiPackage className="w-12 h-12 mx-auto text-indigo-600" />
+                            <FiPackage className="w-12 h-12 mx-auto text-[#4B5945]" />
                             <h3 className="mt-4 text-xl font-semibold">Custom Orders</h3>
-                            <p className="mt-2 text-gray-600 font-lora">
+                            <p className="mt-2 text-[#66785F] font-lora">
                                 Personalized artwork just for you
                             </p>
                         </motion.div>
@@ -39,9 +39,9 @@ const Info = () => {
                             viewport={{ once: true }}
                             className="text-center"
                         >
-                            <FiMap className="w-12 h-12 mx-auto text-indigo-600" />
-                            <h3 className="mt-4 text-xl font-semibold">Premium Quality</h3>
-                            <p className="mt-2 text-gray-600 font-lora">
+                            <FiMap className="w-12 h-12 mx-auto text-[#4B5945]" />
+                            <h3 className="mt-4 text-xl font-semibold ">Premium Quality</h3>
+                            <p className="mt-2 text-[#66785F] font-lora">
                                 Handcrafted with love and care
                             </p>
                         </motion.div>

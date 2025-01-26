@@ -29,7 +29,7 @@ const BestSellers = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-3xl md:text-4xl font-extrabold text-indigo-700 text-center mb-4 font-lora"
+            className="text-3xl md:text-4xl font-extrabold text-[#4B5945] text-center mb-4 font-lora"
           >
             Best Seller Products
           </motion.h2>
@@ -37,7 +37,7 @@ const BestSellers = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-lg text-gray-600 text-center mb-12 -mt-2"
+            className="text-lg text-[#66785F] text-center mb-12 -mt-2"
           >
             Premium Handmade Masterpieces
           </motion.p>
@@ -65,12 +65,12 @@ const BestSellers = () => {
                   </h3>
 
                   <div className="mt-4 flex justify-between items-center">
-                    <span className="text-2xl font-bold text-indigo-600">
+                    <span className="text-2xl font-bold text-[#4B5945]">
                       {product.sizes && product.sizes.length > 0 ? `₹${product.sizes[0].price}` : 'Price not available'}
                     </span>
                     <Link
                       to={`/product/${product.slug.current}`}
-                      className="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition-colors font-bold"
+                      className="bg-[#4B5945] text-[#FFFFFF] px-4 py-2 rounded-lg hover:bg-[#66785F] transition-colors font-bold"
                     >
                       View Details
                     </Link>
@@ -83,7 +83,7 @@ const BestSellers = () => {
           <div className="flex justify-center mt-8">
             <Link
               to="/products?category=best-seller"
-              className="bg-indigo-600 text-white px-6 py-3 rounded-lg hover:bg-indigo-700 transition-colors font-bold"
+              className="bg-[#4B5945] text-[#FFFFFF] px-6 py-3 rounded-lg hover:bg-[#66785F] transition-colors font-bold"
             >
               Show More
             </Link>

@@ -13,14 +13,14 @@ function Navbar() {
           <div className="flex items-center">
             <Link to="/" className="flex items-center">
               <img src={logo} alt="Logo" className="lg:h-12 lg:w-12 h-11 w-11  rounded-full   shadow-2xl border-2 border-[#66785F]  " />
-              <span className="ml-2 text-xl lg:text-2xl font-bold text-gray-900 ">Gifting Tree</span>
+              <span className="ml-2 text-xl lg:text-2xl font-bold text-[#4B5945] ">Gifting Tree</span>
             </Link>
           </div>
 
           <div className="flex items-center">
             <Link
               to="/products"
-              className="bg-[#66785F] text-white px-4 py-2 rounded-lg hover:bg-[#4B5945] transition-colors font-bold"
+              className="bg-[#4B5945] text-[#FFFFFF] px-4 py-2 rounded-lg hover:bg-[#66785F] transition-colors font-bold"
             >
               Explore
 

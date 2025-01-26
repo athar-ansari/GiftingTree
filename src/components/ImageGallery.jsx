@@ -49,8 +49,8 @@ function ImageGallery({ images = [] }) {
                   key={pageIndex}
                   onClick={() => handlePageChange(pageIndex + 1)}
                   className={`w-8 h-8 rounded-full ${currentPage === pageIndex + 1
-                      ? 'bg-indigo-600 text-white'
-                      : 'bg-gray-200 hover:bg-gray-300 text-gray-800'
+                    ? 'bg-[#4B5945] text-[#FFFFFF]'
+                    : 'bg-gray-200 hover:bg-gray-300 text-gray-800'
                     }`}
                 >
                   {pageIndex + 1}

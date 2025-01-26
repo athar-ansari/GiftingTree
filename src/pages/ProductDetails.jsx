@@ -84,10 +84,10 @@ function ProductDetails() {
     const price = encodeURIComponent(`Price: ₹${selectedSize ? selectedSize.price : product.basePrice}\n`);
     const size = selectedSize ? encodeURIComponent(`Size: ${selectedSize.size}\n`) : '';
     const productUrl = encodeURIComponent(`Product URL: ${window.location.href}`);
-  
+
     const message = `${productName}${price}${size}${productUrl}`;
     const whatsappUrl = `https://wa.me/917001967279?text=${message}`;
-  
+
     const openWhatsApp = (retryCount = 0) => {
       try {
         const newWindow = window.open(whatsappUrl, '_blank');
@@ -104,10 +104,10 @@ function ProductDetails() {
         alert("Unable to open WhatsApp. Please check your browser settings and allow pop-ups.");
       }
     };
-  
+
     openWhatsApp();
   };
-  
+
 
   return (
     <>
@@ -123,7 +123,7 @@ function ProductDetails() {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={() => navigate(-1)}
-            className="mb-6 flex items-center  text-indigo-600 text-xl font-bold"
+            className="mb-6 flex items-center  text-[#66785F] text-xl font-bold"
           >
             <FiArrowLeft className="mr-2 " />
             Back
@@ -202,12 +202,12 @@ function ProductDetails() {
                         whileTap={{ scale: 0.95 }}
                         onClick={() => setSelectedSize(size)}
                         className={`p-3 rounded-lg border-2 transition-colors ${selectedSize?.size === size.size
-                          ? 'border-indigo-600 bg-indigo-50'
-                          : 'border-gray-200 hover:border-indigo-300'
+                          ? 'border-[#4B5945] bg-indigo-50'
+                          : 'border-gray-200 hover:border-[#4B5945]'
                           }`}
                       >
                         <div className="text-sm font-medium">{size.size}</div>
-                        <div className="text-lg font-bold text-indigo-600">₹{size.price}</div>
+                        <div className="text-lg font-bold text-[#4B5945]">₹{size.price}</div>
                       </motion.button>
                     ))}
                   </div>
@@ -219,7 +219,7 @@ function ProductDetails() {
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.4 }}
-                className="text-2xl font-bold text-indigo-600"
+                className="text-2xl font-bold text-[#4B5945]"
               >
                 {!product.sizes && `₹${product.basePrice}`}
               </motion.div>
@@ -242,7 +242,7 @@ function ProductDetails() {
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 onClick={handleCustomize}
-                className="w-full flex items-center justify-center font-bold bg-indigo-600 text-white px-6 py-3 rounded-lg hover:bg-indigo-700 transition-colors"
+                className="w-full flex items-center justify-center font-bold bg-[#4B5945] text-white px-6 py-3 rounded-lg hover:bg-[#66785F] transition-colors"
               >
                 <FiShoppingCart className="mr-2" />
                 Customize on WhatsApp
