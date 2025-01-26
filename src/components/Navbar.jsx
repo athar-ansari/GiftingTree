@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
- 
+
 
 // Image
 import logo from "../assets/logo.jpg";
@@ -7,13 +7,13 @@ import logo from "../assets/logo.jpg";
 
 function Navbar() {
   return (
-    <nav className="bg-white shadow-lg  font-notoSerif">
+    <nav className="bg-[#FFFFFF] shadow-lg  font-notoSerif">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           <div className="flex items-center">
             <Link to="/" className="flex items-center">
-              <img src={logo} alt="Logo" className="h-12 w-12 rounded-full border-2 border-gray-900 " />
-              <span className="ml-2 text-2xl font-bold text-gray-900 ">Gifting Tree</span>
+              <img src={logo} alt="Logo" className="lg:h-12 lg:w-12 h-11 w-11  rounded-full   shadow-2xl border-2 border-[#66785F]  " />
+              <span className="ml-2 text-xl lg:text-2xl font-bold text-gray-900 ">Gifting Tree</span>
             </Link>
           </div>
 
