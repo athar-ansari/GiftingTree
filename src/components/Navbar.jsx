@@ -20,7 +20,7 @@ function Navbar() {
           <div className="flex items-center">
             <Link
               to="/products"
-              className="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition-colors font-bold"
+              className="bg-[#66785F] text-white px-4 py-2 rounded-lg hover:bg-[#4B5945] transition-colors font-bold"
             >
               Explore
 
