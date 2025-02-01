@@ -231,7 +231,7 @@ function ProductDetails() {
                 transition={{ delay: 0.5 }}
                 className="bg-red-50 border border-red-200 rounded-lg p-4 text-red-700 font-bold"
               >
-                🚫 No COD 🚚 available. All sales are final ( no returns or refunds ).
+                NOTE: Customized items are made specifically for you and cannot be returned or exchanged. Make sure all details are correct before finalizing your order. Thank you! <br /> 🚫 No COD 🚚 available.
               </motion.div>
 
               {/* Customize Button */}

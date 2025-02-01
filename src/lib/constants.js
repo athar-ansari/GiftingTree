@@ -27,12 +27,12 @@ export const CATEGORIES = [
   { title: "Varmala", value: "varmala" },
   { title: "Wedding Cards", value: "wedding-cards" },
   { title: "Others", value: "others" },
-  {title: 'Other Products', value: 'other-products'},
+  { title: "Other Products", value: "other-products" },
 ];
 
 // Default product message
 export const DEFAULT_PRODUCT_MESSAGE =
-  "🚫 No cash on delivery 🚚 available. All sales are final - no returns or refunds.";
+  "NOTE: Customized items are made specifically for you and cannot be returned or exchanged. Make sure all details are correct before finalizing your order. Thank you!  🚫 No COD 🚚 available";
 
 // WhatsApp contact number
 export const WHATSAPP_NUMBER = "917001967279";
