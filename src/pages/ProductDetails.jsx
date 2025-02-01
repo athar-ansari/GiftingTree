@@ -231,7 +231,7 @@ function ProductDetails() {
                 transition={{ delay: 0.5 }}
                 className="bg-red-50 border border-red-200 rounded-lg p-4 text-red-700 font-bold"
               >
-                NOTE: Customized items are made specifically for you and cannot be returned or exchanged. Make sure all details are correct before finalizing your order. Thank You! <br /> <span className='mt-3'> 🚫 No COD 🚚 Available.</span>
+                NOTE: Customized items are made specifically for you and cannot be returned or exchanged. Make sure all details are correct before finalizing your order. Thank You! <br /> <span className='mt-4 block'> 🚫 No COD 🚚 Available.</span>
               </motion.div>
 
               {/* Customize Button */}
