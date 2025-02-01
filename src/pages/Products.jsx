@@ -35,7 +35,7 @@ const categories = [
   "Mehar Box",
   "Platter",
   "Varmala",
-  "Wedding Boards",
+  "Wedding Cards",
   "Others",
   "Other Products",
 ];

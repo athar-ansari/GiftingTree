@@ -27,7 +27,7 @@ const collections = [
     image: Wedding,
     categories: [
       "Pen", "Mirror", "Dupatta", "Register", "Thumb Frame", "Nikah Frame",
-      "Nikah Favours", "Mehar Box", "Platter", "Wedding Boards", "Others"
+      "Nikah Favours", "Mehar Box", "Platter", "Wedding Cards", "Others"
     ]
   }
 ];

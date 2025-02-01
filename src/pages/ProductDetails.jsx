@@ -34,7 +34,7 @@ const categoryMapping = {
   'mehar-box': 'Mehar Box',
   'platter': 'Platter',
   'varmala': 'Varmala',
-  'wedding-boards': 'Wedding Boards',
+  'wedding-cards': 'Wedding Cards',
   'others': 'Others',
   'other-products': 'Other Products',
 

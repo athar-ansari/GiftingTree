@@ -109,7 +109,7 @@ export default {
           {title: 'Mehar Box', value: 'mehar-box'},
           {title: 'Platter', value: 'platter'},
           {title: 'Varmala', value: 'varmala'},
-          {title: 'Wedding Boards', value: 'wedding-boards'},
+          {title: 'Wedding Cards', value: 'wedding-cards'},
           {title: 'Others', value: 'others'},
           {title: 'Other Products', value: 'other-products'},
         ],
