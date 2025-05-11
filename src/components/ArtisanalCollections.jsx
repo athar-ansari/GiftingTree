@@ -16,7 +16,7 @@ const collections = [
     image: Resin,
     categories: [
       "Key Chains", "Jewellery", "Birthday Frame", "Couple Frame", "Religious Frame",
-      "Car Accessories", "Clock", "Bookmarks", "Puja Thali", "Wall Art",
+      "Car Accessories", "Clock", "Resin Frame" ,"Bookmarks", "Puja Thali", "Wall Art",
       "Book Holder", "Flower Preservation", "Varmala", "Other Products"
     ]
   },

@@ -104,6 +104,7 @@ export default {
           {title: 'Dupatta', value: 'dupatta'},
           {title: 'Register', value: 'register'},
           {title: 'Thumb Frame', value: 'thumb-frame'},
+          {title: 'Resin Frame', value: 'resin-frame'},
           {title: 'Nikah Frame', value: 'nikah-frame'},
           {title: 'Nikah Favours', value: 'nikah-favours'},
           {title: 'Mehar Box', value: 'mehar-box'},

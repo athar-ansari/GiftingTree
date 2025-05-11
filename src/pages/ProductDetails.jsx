@@ -29,6 +29,7 @@ const categoryMapping = {
   'dupatta': 'Dupatta',
   'register': 'Register',
   'thumb-frame': 'Thumb Frame',
+  'resin-frame': 'Resin Frame',
   'nikah-frame': 'Nikah Frame',
   'nikah-favours': 'Nikah Favours',
   'mehar-box': 'Mehar Box',

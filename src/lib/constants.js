@@ -21,6 +21,7 @@ export const CATEGORIES = [
   { title: "Register", value: "register" },
   { title: "Thumb Frame", value: "thumb-frame" },
   { title: "Nikah Frame", value: "nikah-frame" },
+  { title: "Resin Frame", value: "resin-frame" },
   { title: "Nikah Favours", value: "nikah-favours" },
   { title: "Mehar Box", value: "mehar-box" },
   { title: "Platter", value: "platter" },
