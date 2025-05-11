@@ -15,8 +15,7 @@ const collections = [
     description: "Transform moments into timeless art pieces",
     image: Resin,
     categories: [
-      "Key Chains", "Jewellery", "Birthday Frame", "Couple Frame", "Religious Frame",
-      "Car Accessories", "Clock", "Resin Frame" ,"Bookmarks", "Puja Thali", "Wall Art",
+      "Key Chains", "Jewellery", "Car Accessories", "Clock", "Resin Frame", "Bookmarks", "Puja Thali", "Wall Art",
       "Book Holder", "Flower Preservation", "Varmala", "Other Products"
     ]
   },
