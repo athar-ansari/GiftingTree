@@ -74,6 +74,11 @@ function ResinProducts() {
         return matchesSearch && matchesCategory;
     });
 
+    // Reset to page 1 when category or search changes
+    useEffect(() => {
+        setCurrentPage(1);
+    }, [selectedCategory, searchTerm]);
+
     const indexOfLastItem = currentPage * itemsPerPage; const indexOfFirstItem = indexOfLastItem - itemsPerPage; const currentProducts = filteredProducts.slice(indexOfFirstItem, indexOfLastItem); const totalPages = Math.ceil(filteredProducts.length / itemsPerPage); const handlePreviousPage = () => { if (currentPage > 1) setCurrentPage(currentPage - 1); }; const handleNextPage = () => {
         if (currentPage < totalPages) setCurrentPage(currentPage + 1);
     };

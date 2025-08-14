@@ -63,7 +63,7 @@ const Hero = () => {
                             className="mt-10"
                         >
                             <Link
-                                to="/products"
+                                to="/resin-products"
                                 className="inline-block bg-white text-[#4B5945] px-8 py-3 rounded-full font-bold hover:bg-gray-100 transition-colors shadow-lg"
                             >
                                 Explore Our Collection

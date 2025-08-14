@@ -6,7 +6,6 @@ import { Card, CardContent } from "@/components/ui/card";
 
 // Images
 import Resin from "../assets/resin.jpg";
-import Wedding from "../assets/wedding.jpg";
 
 const collections = [
   {
@@ -18,16 +17,6 @@ const collections = [
       "Key Chains", "Jewellery", "Car Accessories", "Clock", "Resin Frame", "Bookmarks", "Puja Thali", "Wall Art",
       "Book Holder", "Flower Preservation", "Varmala", "Other Products"
     ]
-  },
-  {
-    id: "wedding-elegance",
-    title: "Wedding Elegance",
-    description: "Elevate your special day with handcrafted beauty",
-    image: Wedding,
-    categories: [
-      "Pen", "Mirror", "Dupatta", "Register", "Thumb Frame", "Nikah Frame",
-      "Nikah Favours", "Mehar Box", "Platter", "Wedding Cards", "Others"
-    ]
   }
 ];
 
@@ -37,17 +26,7 @@ export default function ArtisanalCollections() {
   const containerRef = useRef(null);
   const isInView = useInView(containerRef, { once: true, amount: 0.2 });
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      if (!isHovering) {
-        setActiveCollection(prev =>
-          prev === collections[0].id ? collections[1].id : collections[0].id
-        );
-      }
-    }, 9000);
-
-    return () => clearInterval(interval);
-  }, [isHovering]);
+  // Removed the useEffect since there's only one collection now
 
   return (
     <section
@@ -69,27 +48,7 @@ export default function ArtisanalCollections() {
           </p>
         </motion.div>
 
-        <div
-          className="relative"
-          onMouseEnter={() => setIsHovering(true)}
-          onMouseLeave={() => setIsHovering(false)}
-        >
-          <div className="flex justify-center space-x-4 mb-8">
-            {collections.map((collection) => (
-              <Button
-                key={collection.id}
-                variant={activeCollection === collection.id ? "default" : "outline"}
-                className={`text-sm md:text-lg px-4 md:px-8 py-2 md:py-4 rounded-full transition-all duration-300 ${activeCollection === collection.id
-                  ? 'bg-[#4B5945] text-[#FFFFFF] hover:bg-[#66785F] shadow-lg scale-105'
-                  : 'text-[#4B5945] hover:bg-[#FFFFFF]'
-                  }`}
-                onClick={() => setActiveCollection(collection.id)}
-              >
-                {collection.title}
-              </Button>
-            ))}
-          </div>
-
+        <div className="relative">
           <AnimatePresence mode="wait">
             {collections.map((collection) => (
               collection.id === activeCollection && (
@@ -152,7 +111,7 @@ function CollectionShowcase({ collection }) {
 
 function CategoryButton({ category }) {
   return (
-    <Link to={`/products?category=${encodeURIComponent(category.toLowerCase().replace(/ /g, '-'))}`}>
+    <Link to={`/resin-products?category=${encodeURIComponent(category.toLowerCase().replace(/ /g, '-'))}`}>
       <Button
         variant="outline"
         className="w-full bg-white/10 backdrop-blur-md hover:bg-white/20 text-[#FFFFFF] border-white/20 rounded-xl py-2 md:py-4 text-xs md:text-sm lg:text-base transition-all duration-300 hover:shadow-lg group"
