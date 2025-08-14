@@ -19,7 +19,7 @@ function Navbar() {
 
           <div className="flex items-center">
             <Link
-              to="/products"
+              to="/resin-products"
               className="bg-[#4B5945] text-[#FFFFFF] px-4 py-2 rounded-lg hover:bg-[#66785F] transition-colors font-bold"
             >
               Explore

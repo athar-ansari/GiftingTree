@@ -4,6 +4,7 @@ import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import Products from './pages/Products';
 import ProductDetails from './pages/ProductDetails';
+import ResinProducts from './pages/ResinProducts';
 import { Toaster } from 'react-hot-toast';
 
 function App() {
@@ -35,6 +36,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/products" element={<Products />} />
+        <Route path="/resin-products" element={<ResinProducts />} />
         <Route path="/product/:id" element={<ProductDetails />} />
       </Routes>
     </Router>
