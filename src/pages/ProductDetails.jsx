@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { FiShoppingCart, FiArrowLeft } from 'react-icons/fi';
+import { Helmet } from 'react-helmet-async';
 import ImageGallery from '../components/ImageGallery';
 import RelatedProducts from '../components/RelatedProducts';
 import { client, urlFor } from '../lib/sanityClient';
@@ -10,32 +11,20 @@ import Footer from '../components/Footer';
 
 const categoryMapping = {
   'best-seller': 'Best Seller',
+  'bookmarks': 'Bookmarks',
   'new-arrival': 'New Arrival',
   'limited-edition': 'Limited Edition',
   'key-chains': 'Key Chains',
-  'jewellery': 'Jewellery',
-  'car-accessories': 'Car Accessories',
-  'clock': 'Clock',
-  'bookmarks': 'Bookmarks',
   'puja-thali': 'Puja Thali',
   'wall-art': 'Wall Art',
   'book-holder': 'Book Holder',
+  'jewellery': 'Jewellery',
+  'car-accessories': 'Car Accessories',
   'flower-preservation': 'Flower Preservation',
-  'pen': 'Pen',
-  'mirror': 'Mirror',
-  'dupatta': 'Dupatta',
-  'register': 'Register',
-  'thumb-frame': 'Thumb Frame',
-  'resin-frame': 'Resin Frame',
-  'nikah-frame': 'Nikah Frame',
-  'nikah-favours': 'Nikah Favours',
-  'mehar-box': 'Mehar Box',
-  'platter': 'Platter',
   'varmala': 'Varmala',
-  'wedding-cards': 'Wedding Cards',
-  'others': 'Others',
+  'clock': 'Clock',
+  'resin-frame': 'Resin Frame',
   'other-products': 'Other Products',
-
 };
 
 function ProductDetails() {
@@ -44,6 +33,7 @@ function ProductDetails() {
   const [product, setProduct] = useState(null);
   const [selectedSize, setSelectedSize] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -59,9 +49,10 @@ function ProductDetails() {
         const product = await client.fetch(query, params);
         // console.log("Fetched Product:", product); // Check the fetched product
         setProduct(product);
-        setLoading(false); // End loading
       } catch (error) {
         console.error("Error fetching product:", error);
+        setError("Arre yaar, product ki details laane mein problem ho rahi hai. Internet check karo! 🥺");
+      } finally {
         setLoading(false); // End loading on error
       }
     };
@@ -73,8 +64,22 @@ function ProductDetails() {
     return <Loader />;
   }
 
+  if (error) {
+    return (
+      <div className="min-h-screen flex flex-col items-center justify-center bg-gray-50 text-center px-4">
+        <h2 className="text-2xl font-bold text-red-500 mb-4">{error}</h2>
+        <button onClick={() => window.location.reload()} className="px-6 py-2 bg-[#4B5945] text-white rounded-lg font-bold">Fir se try karein</button>
+      </div>
+    );
+  }
+
   if (!product) {
-    return <div className='  font-bold text-2xl'>Product not found</div>;
+    return (
+      <div className="min-h-screen flex flex-col items-center justify-center bg-gray-50 text-center px-4">
+        <h2 className="text-2xl font-bold text-gray-800 mb-4">Product nahi mila ya remove ho gaya hai 😔</h2>
+        <button onClick={() => navigate('/resin-products')} className="px-6 py-2 bg-[#4B5945] text-white rounded-lg font-bold">All Products Dekhein</button>
+      </div>
+    );
   }
 
   const handleCustomize = () => {
@@ -109,7 +114,13 @@ function ProductDetails() {
 
   return (
     <>
-
+      <Helmet>
+        <title>{product.name} | Gifting Tree</title>
+        <meta name="description" content={product.description || `Buy ${product.name} at Gifting Tree. Explore our handcrafted collection.`} />
+        <meta property="og:title" content={product.name} />
+        <meta property="og:description" content={product.description} />
+        <meta property="og:image" content={urlFor(product.frontImage).url()} />
+      </Helmet>
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}

@@ -22,7 +22,7 @@ function RelatedProducts({ currentProduct }) {
         // If no related products, fetch "best sellers"
         if (relatedProducts.length === 0) {
           const bestSellersQuery = `
-            *[_type == "product" && category == "best sellers"] | order(_updatedAt desc)[0...6] {
+            *[_type == "product" && "best-seller" in category] | order(_updatedAt desc)[0...6] {
               _id, name, slug, frontImage, category, basePrice, sizes
             }
           `;
@@ -82,7 +82,7 @@ function RelatedProducts({ currentProduct }) {
                   {product.sizes && product.sizes.length > 0 ? `₹${product.sizes[0].price}` : 'Price not available'}
                 </span>
                 <Link
-                  to={`/product/${product.slug.current}`}
+                  to={`/product/${product.slug?.current || product._id}`}
                   className="bg-[#4B5945] text-[#FFFFFF] px-4 py-2 rounded-lg hover:bg-[#66785F] transition-colors font-bold"
                 >
                   View Details
