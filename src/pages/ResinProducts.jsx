@@ -2,21 +2,31 @@ import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { FiSearch } from 'react-icons/fi';
+import { Helmet } from 'react-helmet-async';
 import { client, urlFor } from '../lib/sanityClient';
-import Preloader from '../components/Loader';
+import { CATEGORIES } from '../lib/constants';
+import SkeletonLoader from '../components/SkeletonLoader';
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
-
 
 //  categories list
 const categories = [
     "All",
     "Best Seller",
+    "Bookmarks",
     "New Arrival",
     "Limited Edition",
-    "Key Chains", "Jewellery", "Car Accessories", "Clock", "Resin Frame", "Bookmarks", "Puja Thali", "Wall Art",
-    "Book Holder", "Flower Preservation", "Varmala", "Other Products"
+    "Key Chains",
+    "Puja Thali",
+    "Wall Art",
+    "Book Holder",
+    "Jewellery",
+    "Car Accessories",
+    "Flower Preservation",
+    "Varmala",
+    "Clock",
+    "Resin Frame",
+    "Other Products",
 ];
-
 // Build allowed category slugs from the above list (excluding "All")
 const allowedCategorySlugs = categories
     .filter((c) => c !== "All")
@@ -39,15 +49,22 @@ function ResinProducts() {
     const [selectedCategory, setSelectedCategory] = useState("All");
     const [currentPage, setCurrentPage] = useState(1);
     const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
     const itemsPerPage = 15;
 
     useEffect(() => {
         const fetchProducts = async () => {
-            const query = '*[_type == "product" && count((category[])[@ in $allowed]) > 0] | order(_createdAt desc)'; // Only allowed categories
-            const params = { allowed: allowedCategorySlugs };
-            const products = await client.fetch(query, params);
-            setProducts(products);
-            setLoading(false);
+            try {
+                const query = '*[_type == "product" && count((category[])[@ in $allowed]) > 0] | order(_createdAt desc)'; // Only allowed categories
+                const params = { allowed: allowedCategorySlugs };
+                const products = await client.fetch(query, params);
+                setProducts(products);
+            } catch (err) {
+                console.error("Error fetching resin products:", err);
+                setError("Bhai, products load nahi ho paye, internet check karlo! 🥺");
+            } finally {
+                setLoading(false);
+            }
         };
 
         fetchProducts();
@@ -107,8 +124,16 @@ function ResinProducts() {
 
     return (
         <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 py-8">
-            {loading ? (
-                <Preloader />
+            <Helmet>
+                <title>Resin Products | Gifting Tree</title>
+                <meta name="description" content="Beautiful handcrafted resin masterpieces, including key chains, wall arts, frames, and more." />
+            </Helmet>
+
+            {error ? (
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-20 flex flex-col items-center justify-center">
+                    <p className="text-xl font-bold text-red-500">{error}</p>
+                    <button onClick={() => window.location.reload()} className="mt-4 px-6 py-2 bg-[#4B5945] text-white rounded-lg font-bold hover:bg-[#66785F]">Fir se try karein</button>
+                </div>
             ) : (
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     {/* Search Section */}
@@ -147,7 +172,9 @@ function ResinProducts() {
 
                     {/* Products Grid */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                        {currentProducts.length > 0 ? (
+                        {loading ? (
+                            <SkeletonLoader count={6} />
+                        ) : currentProducts.length > 0 ? (
                             currentProducts.map((product) => (
                                 <motion.div
                                     key={product._id}
@@ -178,9 +205,16 @@ function ResinProducts() {
                                 </motion.div>
                             ))
                         ) : (
-                            <div className="col-span-full text-center py-12">
-                                <p className="text-2xl font-bold text-gray-500">No products found.</p>
-                                <p className="text-gray-400 mt-2">Try adjusting your search or category filter</p>
+                            <div className="col-span-full flex flex-col items-center justify-center py-16 text-center">
+                                <FiSearch className="text-gray-300 w-16 h-16 mb-4" />
+                                <h3 className="text-xl font-bold text-gray-900 mb-2">Oops! Kuch nahi mila 🤷‍♂️</h3>
+                                <p className="text-gray-500 mb-6">Aapki search "{searchTerm}" dhoondne pe koi result nahi mila. Koi aur filter lagake dekhiye!</p>
+                                <button
+                                    onClick={() => { setSearchTerm(''); setSelectedCategory('All'); }}
+                                    className="bg-[#4B5945] text-white px-6 py-2 rounded-lg font-bold hover:bg-[#66785F] transition-colors"
+                                >
+                                    Clear Filters
+                                </button>
                             </div>
                         )}
                     </div>
