@@ -41,25 +41,25 @@ const Hero = () => {
                     {/* Text Overlay */}
                     <div className="absolute inset-0 flex flex-col items-center justify-center bg-black  bg-opacity-40 text-[#FFFFFF] p-4">
                         <motion.h1
-                            initial={{ y: 20, opacity: 0 }}
-                            animate={{ y: 0, opacity: 1 }}
-                            transition={{ delay: 0.2 }}
+                            initial={{ y: 40, opacity: 0, scale: 0.95 }}
+                            animate={{ y: 0, opacity: 1, scale: 1 }}
+                            transition={{ delay: 0.2, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
                             className="text-4xl lg:text-6xl font-extrabold tracking-tight text-center "
                         >
                             WELCOME TO GIFTING TREE
                         </motion.h1>
                         <motion.p
-                            initial={{ y: 20, opacity: 0 }}
+                            initial={{ y: 30, opacity: 0 }}
                             animate={{ y: 0, opacity: 1 }}
-                            transition={{ delay: 0.4 }}
+                            transition={{ delay: 0.4, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
                             className="mt-4 text-lg lg:text-xl max-w-3xl mx-auto text-center font-semibold"
                         >
                             Explore Endless Gifting & Wedding Accessories Options
                         </motion.p>
                         <motion.div
-                            initial={{ y: 20, opacity: 0 }}
+                            initial={{ y: 30, opacity: 0 }}
                             animate={{ y: 0, opacity: 1 }}
-                            transition={{ delay: 0.6 }}
+                            transition={{ delay: 0.6, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
                             className="mt-10"
                         >
                             <Link

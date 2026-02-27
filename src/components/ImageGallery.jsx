@@ -1,63 +1,95 @@
-import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useState, useRef } from 'react';
 
 function ImageGallery({ images = [] }) {
-  const [mainImage, setMainImage] = useState(images[0] || '');
   const [selectedIndex, setSelectedIndex] = useState(0);
-  const itemsPerPage = 1; // Number of thumbnails per page
-  const [currentPage, setCurrentPage] = useState(1);
+  const scrollRef = useRef(null);
 
   if (!images.length) return null;
 
-  const totalPages = Math.ceil(images.length / itemsPerPage);
+  // Track the active image based on scroll position (for mobile swiping)
+  const handleScroll = () => {
+    if (scrollRef.current) {
+      const scrollPosition = scrollRef.current.scrollLeft;
+      const width = scrollRef.current.clientWidth;
+      const index = Math.round(scrollPosition / width);
+      if (index !== selectedIndex) {
+        setSelectedIndex(index);
+      }
+    }
+  };
 
-  const handlePageChange = (newPage) => {
-    setCurrentPage(newPage);
-    const firstImageOnNewPage = images[(newPage - 1) * itemsPerPage];
-    setMainImage(firstImageOnNewPage);
-    setSelectedIndex((newPage - 1) * itemsPerPage);
+  // Scroll to a specific image when a thumbnail is clicked
+  const scrollToImage = (index) => {
+    if (scrollRef.current) {
+      const width = scrollRef.current.clientWidth;
+      scrollRef.current.scrollTo({
+        left: width * index,
+        behavior: 'smooth'
+      });
+      setSelectedIndex(index);
+    }
   };
 
   return (
-    <div className="grid gap-4 font-notoSerif">
-      {/* Main Image */}
-      <div className="relative w-full h-[400px] max-w-md mx-auto overflow-hidden rounded-2xl shadow-xl bg-gray-100 mt-3">
-        <AnimatePresence mode="wait">
-          <motion.img
-            key={mainImage}
-            src={mainImage}
-            alt="Product"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="w-full h-full object-cover"
-          />
-        </AnimatePresence>
+    <div className="grid gap-4 font-notoSerif w-full">
+      {/* Main Image Viewport Wrapper */}
+      <div className="relative w-full aspect-[4/5] sm:h-[500px] max-w-lg mx-auto mt-2">
+        {/* Swipeable Main Carousel */}
+        <div
+          ref={scrollRef}
+          onScroll={handleScroll}
+          className="flex w-full h-full overflow-x-auto overflow-y-hidden snap-x snap-mandatory rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.08)] bg-white border border-gray-100"
+          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none', WebkitOverflowScrolling: 'touch' }}
+        >
+          <style>{`
+            /* Hide scrollbar for Chrome, Safari and Opera */
+            .flex::-webkit-scrollbar {
+              display: none;
+            }
+          `}</style>
+          {images.map((img, index) => (
+            <div key={index} className="w-full h-full flex-shrink-0 snap-center relative">
+              <img
+                src={img}
+                alt={`Product view ${index + 1}`}
+                className="w-full h-full object-cover rounded-3xl"
+              />
+            </div>
+          ))}
+        </div>
+
+        {/* Fixed Pagination Dots */}
+        {images.length > 1 && (
+          <div className="absolute bottom-5 left-0 right-0 flex justify-center gap-2 z-10 pointer-events-none">
+            {images.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => scrollToImage(index)}
+                className={`h-2 rounded-full transition-all duration-300 pointer-events-auto ${selectedIndex === index ? 'w-8 bg-white shadow-md' : 'w-2 bg-white/60 backdrop-blur-md shadow-sm hover:w-4 hover:bg-white'}`}
+                aria-label={`Go to slide ${index + 1}`}
+              />
+            ))}
+          </div>
+        )}
       </div>
 
-      {/* Heading and Pagination */}
+      {/* Interactive Thumbnails Row */}
       {images.length > 1 && (
-        <div className="relative">
-          {/* "Related Images" Heading */}
-          <h2 className="text-center text-4xl font-semibold mt-4 font-lora ">Related Images</h2>
-
-          {/* Pagination */}
-          {images.length > itemsPerPage && (
-            <div className="flex justify-center items-center mt-4 gap-2">
-              {Array.from({ length: totalPages }).map((_, pageIndex) => (
-                <button
-                  key={pageIndex}
-                  onClick={() => handlePageChange(pageIndex + 1)}
-                  className={`w-8 h-8 rounded-full ${currentPage === pageIndex + 1
-                    ? 'bg-[#4B5945] text-[#FFFFFF]'
-                    : 'bg-gray-200 hover:bg-gray-300 text-gray-800'
-                    }`}
-                >
-                  {pageIndex + 1}
-                </button>
-              ))}
-            </div>
-          )}
+        <div className="relative w-full mx-auto px-1 mt-1">
+          <div className="flex gap-3 overflow-x-auto snap-x py-3 justify-start lg:justify-center" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+            {images.map((img, index) => (
+              <button
+                key={index}
+                onClick={() => scrollToImage(index)}
+                className={`relative flex-shrink-0 w-16 h-16 sm:w-20 sm:h-20 rounded-xl overflow-hidden snap-center transition-all duration-300 shadow-sm ${selectedIndex === index
+                  ? 'ring-2 ring-offset-2 ring-[#4B5945] opacity-100 scale-105 shadow-md'
+                  : 'opacity-60 hover:opacity-100 border border-gray-200'
+                  }`}
+              >
+                <img src={img} alt={`Thumbnail ${index + 1}`} className="w-full h-full object-cover" />
+              </button>
+            ))}
+          </div>
         </div>
       )}
     </div>

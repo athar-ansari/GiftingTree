@@ -145,7 +145,7 @@ function ResinProducts() {
                                 placeholder="Search for your perfect gift..."
                                 value={searchTerm}
                                 onChange={(e) => setSearchTerm(e.target.value)}
-                                className="w-full pl-12 pr-6 py-4 rounded-2xl border-2 border-gray-200 bg-white/80 backdrop-blur-sm shadow-lg focus:ring-4 focus:ring-[#66785F]/20 focus:border-[#66785F] focus:outline-none transition-all duration-300 text-gray-700 placeholder-gray-500"
+                                className="w-full pl-12 pr-6 py-4 rounded-2xl border border-gray-200/60 bg-white/70 backdrop-blur-md shadow-[0_8px_30px_rgb(0,0,0,0.06)] focus:ring-4 focus:ring-[#66785F]/20 focus:border-[#66785F] focus:outline-none transition-all duration-300 text-gray-700 placeholder-gray-400"
                             />
                         </div>
                     </div>
@@ -159,9 +159,9 @@ function ResinProducts() {
                                     onClick={() => setSelectedCategory(category)}
                                     whileHover={{ scale: 1.05 }}
                                     whileTap={{ scale: 0.95 }}
-                                    className={`px-3 py-2 sm:px-6 sm:py-3 text-xs sm:text-sm font-semibold rounded-xl transition-all duration-300 shadow-lg ${selectedCategory === category
-                                        ? 'bg-gradient-to-r from-[#4B5945] to-[#66785F] text-white shadow-xl transform scale-105'
-                                        : 'bg-white/90 backdrop-blur-sm text-gray-600 border-2 border-gray-200 hover:bg-white hover:border-[#66785F]/50 hover:text-[#4B5945] hover:shadow-xl'
+                                    className={`px-4 py-2.5 sm:px-6 sm:py-3 text-xs sm:text-sm font-semibold rounded-2xl transition-all duration-300 ${selectedCategory === category
+                                        ? 'bg-[#4B5945] text-white shadow-[0_8px_20px_rgb(75,89,69,0.25)] transform scale-105 border-transparent'
+                                        : 'bg-white/60 backdrop-blur-md text-gray-600 border border-gray-200/60 hover:bg-white hover:border-[#66785F]/30 hover:text-[#4B5945] hover:shadow-[0_8px_20px_rgb(0,0,0,0.06)]'
                                         }`}
                                 >
                                     {category}
@@ -171,17 +171,27 @@ function ResinProducts() {
                     </div>
 
                     {/* Products Grid */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <motion.div
+                        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
+                        initial="hidden"
+                        animate="show"
+                        variants={{
+                            hidden: { opacity: 0 },
+                            show: { opacity: 1, transition: { staggerChildren: 0.1 } }
+                        }}
+                    >
                         {loading ? (
                             <SkeletonLoader count={6} />
                         ) : currentProducts.length > 0 ? (
                             currentProducts.map((product) => (
                                 <motion.div
                                     key={product._id}
-                                    initial={{ opacity: 0, y: 20 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    whileHover={{ scale: 1.02, y: -5 }}
-                                    className="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-2xl transition-all duration-300"
+                                    variants={{
+                                        hidden: { opacity: 0, y: 30 },
+                                        show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 100, damping: 20 } }
+                                    }}
+                                    whileHover={{ scale: 1.02, y: -5, transition: { duration: 0.2 } }}
+                                    className="bg-white/95 backdrop-blur-sm rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.06)] overflow-hidden border border-gray-100/50 hover:shadow-[0_15px_40px_rgb(75,89,69,0.12)] transition-all duration-300 transform-gpu"
                                 >
                                     <img
                                         src={urlFor(product.frontImage).url()}
@@ -196,7 +206,7 @@ function ResinProducts() {
                                             </span>
                                             <Link
                                                 to={`/product/${product.slug?.current || product._id}`}
-                                                className="bg-gradient-to-r from-[#4B5945] to-[#66785F] text-white px-6 py-3 rounded-xl hover:from-[#66785F] hover:to-[#4B5945] transition-all duration-300 font-semibold shadow-lg hover:shadow-xl transform hover:scale-105"
+                                                className="bg-[#4B5945] text-white px-5 py-2.5 rounded-xl hover:bg-[#3A4535] transition-all duration-300 font-semibold shadow-[0_4px_14px_rgb(75,89,69,0.3)] hover:shadow-[0_6px_20px_rgb(75,89,69,0.4)] transform hover:-translate-y-0.5"
                                             >
                                                 View Details
                                             </Link>
@@ -217,7 +227,7 @@ function ResinProducts() {
                                 </button>
                             </div>
                         )}
-                    </div>
+                    </motion.div>
                     {/* Pagination */}
                     {filteredProducts.length > itemsPerPage && (
                         <nav className="mt-12 flex justify-center items-center gap-x-2" aria-label="Pagination">

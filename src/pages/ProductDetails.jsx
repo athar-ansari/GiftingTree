@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import { FiShoppingCart, FiArrowLeft } from 'react-icons/fi';
+import { motion, AnimatePresence } from 'framer-motion';
+import { FiShoppingCart, FiArrowLeft, FiChevronDown, FiChevronUp } from 'react-icons/fi';
+import { FaWhatsapp } from 'react-icons/fa';
 import { Helmet } from 'react-helmet-async';
+import toast from 'react-hot-toast';
 import ImageGallery from '../components/ImageGallery';
 import RelatedProducts from '../components/RelatedProducts';
 import { client, urlFor } from '../lib/sanityClient';
@@ -25,6 +27,31 @@ const categoryMapping = {
   'clock': 'Clock',
   'resin-frame': 'Resin Frame',
   'other-products': 'Other Products',
+};
+
+const faqs = [
+  { q: "How many days does it take to make?", a: "Customized items usually take 5-7 working days to craft with care before dispatch." },
+  { q: "What are the shipping charges?", a: "Shipping is calculated at checkout based on your location. Standard delivery usually takes 3-5 days." },
+  { q: "Can I return a customized product?", a: "Since customized products are made specifically for you, they cannot be returned or exchanged. Please ensure all details are correct before ordering." }
+];
+
+const FaqItem = ({ q, a }) => {
+  const [isOpen, setIsOpen] = useState(false);
+  return (
+    <div className="border-b border-gray-200 py-4">
+      <button onClick={() => setIsOpen(!isOpen)} className="w-full flex justify-between items-center text-left focus:outline-none group">
+        <span className="font-semibold text-gray-800 transition-colors group-hover:text-[#4B5945]">{q}</span>
+        <span className="text-gray-500 transition-transform duration-300">{isOpen ? <FiChevronUp /> : <FiChevronDown />}</span>
+      </button>
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="overflow-hidden">
+            <p className="pt-3 text-gray-600 text-sm font-lora leading-relaxed">{a}</p>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
 };
 
 function ProductDetails() {
@@ -83,6 +110,24 @@ function ProductDetails() {
   }
 
   const handleCustomize = () => {
+    // Validation: Require size selection if sizes exist
+    if (product?.sizes && product.sizes.length > 0 && !selectedSize) {
+      toast.error('Please select a size first! 📏', {
+        style: {
+          border: '1px solid #EF4444',
+          padding: '16px',
+          color: '#7F1D1D',
+          fontWeight: 'bold',
+          borderRadius: '12px'
+        },
+        iconTheme: {
+          primary: '#EF4444',
+          secondary: '#FFFAEE',
+        },
+      });
+      return;
+    }
+
     const productName = encodeURIComponent(`Hi, I'm interested in:\n\nProduct Name: ${product.name}\n`);
     const price = encodeURIComponent(`Price: ₹${selectedSize ? selectedSize.price : product.basePrice}\n`);
     const size = selectedSize ? encodeURIComponent(`Size: ${selectedSize.size}\n`) : '';
@@ -138,14 +183,16 @@ function ProductDetails() {
             Back
           </motion.button>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {/* Image Gallery */}
-            <ImageGallery
-              images={[urlFor(product.frontImage).url(), ...(product.additionalImages || []).map(img => urlFor(img).url())]}
-            />
+          <div className="flex flex-col lg:flex-row gap-8 lg:gap-16">
+            {/* Image Gallery - Sticky on Desktop */}
+            <div className="w-full lg:w-5/12 lg:sticky lg:top-28 h-max z-10">
+              <ImageGallery
+                images={[urlFor(product.frontImage).url(), ...(product.additionalImages || []).map(img => urlFor(img).url())]}
+              />
+            </div>
 
             {/* Product Details */}
-            <div className="space-y-6">
+            <div className="w-full lg:w-7/12 space-y-6">
               <motion.h1
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
@@ -243,18 +290,73 @@ function ProductDetails() {
                 NOTE: Customized items are made specifically for you and cannot be returned or exchanged. Make sure all details are correct before finalizing your order. Thank You! <br /> <span className='mt-4 block'> 🚫 No Cash On Delivery 🚚.</span>
               </motion.div>
 
-              {/* Customize Button */}
-              <motion.button
+              {/* Customize Button (Desktop/Tablet) */}
+              <motion.div
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.6 }}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                onClick={handleCustomize}
-                className="w-full flex items-center justify-center font-bold bg-[#4B5945] text-white px-6 py-3 rounded-lg hover:bg-[#66785F] transition-colors"
+                className="hidden sm:block mt-8"
               >
-                <FiShoppingCart className="mr-2" />
-                Customize on WhatsApp
+                <motion.button
+                  whileHover={product?.sizes && product.sizes.length > 0 && !selectedSize ? {} : { scale: 1.02 }}
+                  whileTap={product?.sizes && product.sizes.length > 0 && !selectedSize ? {} : { scale: 0.98 }}
+                  onClick={handleCustomize}
+                  className={`w-full flex items-center justify-center font-bold px-6 py-4 rounded-xl transition-all shadow-lg
+                    ${product?.sizes && product.sizes.length > 0 && !selectedSize
+                      ? 'bg-gray-200 text-gray-500 cursor-not-allowed shadow-none'
+                      : 'bg-gradient-to-r from-[#25D366] to-[#128C7E] text-white hover:shadow-[#25D366]/40 hover:shadow-xl'
+                    }`}
+                >
+                  <FaWhatsapp className="mr-2 text-xl" />
+                  {product?.sizes && product.sizes.length > 0 && !selectedSize
+                    ? 'Select a Size First'
+                    : 'Customize on WhatsApp'}
+                </motion.button>
+              </motion.div>
+
+              {/* FAQ Section */}
+              <motion.div
+                initial={{ y: 20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ delay: 0.7 }}
+                className="mt-8 pt-6 border-t border-gray-100"
+              >
+                <h3 className="text-xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h3>
+                <div className="bg-white rounded-2xl p-5 shadow-sm border border-gray-100">
+                  {faqs.map((faq, idx) => (
+                    <FaqItem key={idx} q={faq.q} a={faq.a} />
+                  ))}
+                </div>
+              </motion.div>
+            </div>
+          </div>
+
+          {/* Sticky Mobile Action Bar */}
+          <div className="sm:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-t border-gray-200 p-4 pb-6 shadow-[0_-10px_20px_-5px_rgba(0,0,0,0.1)] transition-transform duration-300 transform translate-y-0">
+            <div className="flex items-center justify-between xl:max-w-7xl mx-auto gap-4">
+              <div className="flex flex-col">
+                <span className="text-xs font-semibold text-gray-500 uppercase tracking-wider">Total</span>
+                <span className={selectedSize || !product.sizes || product.sizes.length === 0 ? "text-xl font-bold text-[#4B5945]" : "text-sm font-medium text-red-500"}>
+                  {selectedSize
+                    ? `₹${selectedSize.price}`
+                    : (!product.sizes || product.sizes.length === 0) && product.basePrice
+                      ? `₹${product.basePrice}`
+                      : 'Select Size'}
+                </span>
+              </div>
+              <motion.button
+                whileTap={product?.sizes && product.sizes.length > 0 && !selectedSize ? {} : { scale: 0.95 }}
+                onClick={handleCustomize}
+                className={`flex-1 flex items-center justify-center font-bold px-6 py-3.5 rounded-xl transition-all shadow-lg
+                  ${product?.sizes && product.sizes.length > 0 && !selectedSize
+                    ? 'bg-gray-200 text-gray-500 cursor-not-allowed shadow-none'
+                    : 'bg-gradient-to-r from-[#25D366] to-[#128C7E] text-white hover:shadow-[#25D366]/40 hover:shadow-xl'
+                  }`}
+              >
+                <FaWhatsapp className="mr-2 text-lg" />
+                {product?.sizes && product.sizes.length > 0 && !selectedSize
+                  ? 'Select Size'
+                  : 'Customize'}
               </motion.button>
             </div>
           </div>

@@ -57,17 +57,30 @@ const BestSellers = () => {
             </button>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <motion.div
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "-50px" }}
+            variants={{
+              hidden: { opacity: 0 },
+              show: {
+                opacity: 1,
+                transition: { staggerChildren: 0.15 }
+              }
+            }}
+          >
             {loading ? (
               <SkeletonLoader count={3} />
             ) : (
               bestSellers.map((product) => (
                 <motion.div
                   key={product._id}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  whileHover={{ scale: 1.03 }}
+                  variants={{
+                    hidden: { opacity: 0, y: 40 },
+                    show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 80, damping: 15 } }
+                  }}
+                  whileHover={{ scale: 1.03, y: -5, transition: { duration: 0.2 } }}
                   className="bg-white rounded-2xl shadow-xl overflow-hidden"
                 >
                   <div className="relative">
@@ -97,7 +110,7 @@ const BestSellers = () => {
                 </motion.div>
               ))
             )}
-          </div>
+          </motion.div>
         )}
 
         <div className="flex justify-center mt-8">
