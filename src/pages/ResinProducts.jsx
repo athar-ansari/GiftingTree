@@ -125,8 +125,18 @@ function ResinProducts() {
     return (
         <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 py-8">
             <Helmet>
-                <title>Resin Products | Gifting Tree</title>
-                <meta name="description" content="Beautiful handcrafted resin masterpieces, including key chains, wall arts, frames, and more." />
+                <title>Premium Resin Products & Customized Gifts | Gifting Tree</title>
+                <meta name="description" content="Shop beautiful handcrafted resin masterpieces at Gifting Tree. Explore our collection of custom keychains, preserved varmala frames, bookmarks, and personalized wedding gifts." />
+                <meta name="keywords" content="resin products, customized gifts, varmala preservation, resin keychains, custom bookmarks, wedding gifts, handmade art" />
+                <meta property="og:type" content="website" />
+                <meta property="og:title" content="Premium Resin Products & Customized Gifts | Gifting Tree" />
+                <meta property="og:description" content="Shop beautiful handcrafted resin masterpieces at Gifting Tree. Explore our collection of custom keychains, preserved varmala frames, bookmarks, and personalized wedding gifts." />
+                <meta property="og:url" content="https://gifting-tree.vercel.app/resin-products" />
+                <meta property="og:image" content="https://gifting-tree.vercel.app/android-chrome-512x512.png" />
+                <meta name="twitter:card" content="summary_large_image" />
+                <meta name="twitter:title" content="Premium Resin Products & Customized Gifts | Gifting Tree" />
+                <meta name="twitter:description" content="Shop beautiful handcrafted resin masterpieces at Gifting Tree. Explore our collection of custom keychains, preserved varmala frames, bookmarks, and personalized wedding gifts." />
+                <meta name="twitter:image" content="https://gifting-tree.vercel.app/android-chrome-512x512.png" />
             </Helmet>
 
             {error ? (
