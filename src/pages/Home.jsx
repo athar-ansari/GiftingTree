@@ -13,6 +13,34 @@ function Home() {
       <Helmet>
         <title>Gifting Tree | Premium Handmade Masterpieces</title>
         <meta name="description" content="Discover premium handcrafted resin products, customized gifts, and beautiful art pieces at Gifting Tree." />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Gifting Tree | Premium Handmade Masterpieces" />
+        <meta property="og:description" content="Discover premium handcrafted resin products, customized gifts, and beautiful art pieces at Gifting Tree." />
+        <meta property="og:url" content="https://gifting-tree.vercel.app/" />
+        <meta property="og:image" content="https://gifting-tree.vercel.app/android-chrome-512x512.png" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Gifting Tree | Premium Handmade Masterpieces" />
+        <meta name="twitter:description" content="Discover premium handcrafted resin products, customized gifts, and beautiful art pieces at Gifting Tree." />
+        <meta name="twitter:image" content="https://gifting-tree.vercel.app/android-chrome-512x512.png" />
+        <script type="application/ld+json">
+          {`
+            {
+              "@context": "https://schema.org",
+              "@type": "LocalBusiness",
+              "name": "Gifting Tree",
+              "image": "https://gifting-tree.vercel.app/android-chrome-512x512.png",
+              "@id": "https://gifting-tree.vercel.app/",
+              "url": "https://gifting-tree.vercel.app/",
+              "telephone": "+917001967279",
+              "priceRange": "₹₹",
+              "address": {
+                "@type": "PostalAddress",
+                "addressCountry": "IN"
+              },
+              "description": "Premium handcrafted resin products and customized gifts."
+            }
+          `}
+        </script>
       </Helmet>
 
       {/* Hero Section */}

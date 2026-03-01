@@ -165,6 +165,37 @@ function ProductDetails() {
         <meta property="og:title" content={product.name} />
         <meta property="og:description" content={product.description} />
         <meta property="og:image" content={urlFor(product.frontImage).url()} />
+        <meta property="og:url" content={`https://gifting-tree.vercel.app/product/${product.slug?.current || product._id}`} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={product.name} />
+        <meta name="twitter:description" content={product.description} />
+        <meta name="twitter:image" content={urlFor(product.frontImage).url()} />
+        <script type="application/ld+json">
+          {`
+            {
+              "@context": "https://schema.org/",
+              "@type": "Product",
+              "name": "${product.name}",
+              "image": "${urlFor(product.frontImage).url()}",
+              "description": "${product.description ? product.description.replace(/"/g, '&quot;') : `Buy ${product.name} at Gifting Tree.`}",
+              "brand": {
+                "@type": "Brand",
+                "name": "Gifting Tree"
+              },
+              "offers": {
+                "@type": "Offer",
+                "url": "https://gifting-tree.vercel.app/product/${product.slug?.current || product._id}",
+                "priceCurrency": "INR",
+                "price": "${product.basePrice || (product.sizes && product.sizes[0]?.price) || "0"}",
+                "availability": "https://schema.org/InStock",
+                "seller": {
+                  "@type": "Organization",
+                  "name": "Gifting Tree"
+                }
+              }
+            }
+          `}
+        </script>
       </Helmet>
       <motion.div
         initial={{ opacity: 0 }}

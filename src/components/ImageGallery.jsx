@@ -75,14 +75,14 @@ function ImageGallery({ images = [] }) {
 
       {/* Interactive Thumbnails Row */}
       {images.length > 1 && (
-        <div className="relative w-full mx-auto px-1 mt-1">
-          <div className="flex gap-3 overflow-x-auto snap-x py-3 justify-start lg:justify-center" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+        <div className="relative w-full mx-auto px-2 mt-2">
+          <div className="flex gap-4 overflow-x-auto snap-x py-4 px-2 justify-start lg:justify-center" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
             {images.map((img, index) => (
               <button
                 key={index}
                 onClick={() => scrollToImage(index)}
                 className={`relative flex-shrink-0 w-16 h-16 sm:w-20 sm:h-20 rounded-xl overflow-hidden snap-center transition-all duration-300 shadow-sm ${selectedIndex === index
-                  ? 'ring-2 ring-offset-2 ring-[#4B5945] opacity-100 scale-105 shadow-md'
+                  ? 'ring-2 ring-offset-2 ring-[#4B5945] opacity-100 scale-110 shadow-md'
                   : 'opacity-60 hover:opacity-100 border border-gray-200'
                   }`}
               >
