@@ -164,12 +164,14 @@ function ProductDetails() {
         <meta name="description" content={product.description || `Buy ${product.name} at Gifting Tree. Explore our handcrafted collection.`} />
         <meta property="og:title" content={product.name} />
         <meta property="og:description" content={product.description} />
-        <meta property="og:image" content={urlFor(product.frontImage).url()} />
+        <meta property="og:image" content={urlFor(product.frontImage).width(800).height(800).url()} />
+        <meta property="og:image:width" content="800" />
+        <meta property="og:image:height" content="800" />
         <meta property="og:url" content={`https://gifting-tree.vercel.app/product/${product.slug?.current || product._id}`} />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={product.name} />
         <meta name="twitter:description" content={product.description} />
-        <meta name="twitter:image" content={urlFor(product.frontImage).url()} />
+        <meta name="twitter:image" content={urlFor(product.frontImage).width(800).height(800).url()} />
         <script type="application/ld+json">
           {`
             {

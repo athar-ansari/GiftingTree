@@ -18,6 +18,9 @@ function Home() {
         <meta property="og:description" content="Discover premium handcrafted resin products, customized gifts, and beautiful art pieces at Gifting Tree." />
         <meta property="og:url" content="https://gifting-tree.vercel.app/" />
         <meta property="og:image" content="https://gifting-tree.vercel.app/android-chrome-512x512.png" />
+        <meta property="og:image:width" content="512" />
+        <meta property="og:image:height" content="512" />
+        <meta property="og:image:type" content="image/png" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Gifting Tree | Premium Handmade Masterpieces" />
         <meta name="twitter:description" content="Discover premium handcrafted resin products, customized gifts, and beautiful art pieces at Gifting Tree." />
