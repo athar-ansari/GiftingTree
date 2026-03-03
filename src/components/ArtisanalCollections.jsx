@@ -4,7 +4,7 @@ import { motion, AnimatePresence, useInView, useScroll, useTransform } from 'fra
 import { FiArrowRight } from "react-icons/fi";
 
 // Exchanging the basic resin image for an ultra-premium dark macro photograph
-import LuxuryResin from "../assets/premium_resin_bg_1772373976901.png";
+import LuxuryResin from "../assets/ArtisanalGallery.png";
 
 const collections = [
   {
@@ -163,9 +163,9 @@ function CategoryButton({ category }) {
     >
       <div
         className="
-                relative overflow-hidden w-full h-full text-left py-3 px-4 md:py-4 md:px-5 rounded-xl
+                relative overflow-hidden w-full h-full text-left py-3 px-4 md:py-4 md:px-5 lg:px-3 rounded-xl
                 bg-white/10 backdrop-blur-md border border-white/20
-                text-white text-xs sm:text-sm md:text-base font-medium tracking-wide
+                text-white text-xs sm:text-sm md:text-base lg:text-[13px] xl:text-[15px] font-medium tracking-wide
                 transition-all duration-300 ease-out cursor-pointer
                 hover:bg-white/20 hover:-translate-y-1 hover:shadow-[0_8px_20px_-6px_rgba(0,0,0,0.5)]
                 hover:border-white/40

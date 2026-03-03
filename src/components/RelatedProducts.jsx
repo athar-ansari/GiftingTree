@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { FiArrowRight } from "react-icons/fi";
 import { client, urlFor } from '../lib/sanityClient';
 
 function RelatedProducts({ currentProduct }) {
@@ -55,40 +56,83 @@ function RelatedProducts({ currentProduct }) {
       <h2 className="text-3xl font-bold text-[#4B5945] text-center py-14">
         You May Also Like
       </h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {products.map((product) => (
           <motion.div
             key={product._id}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            whileHover={{ scale: 1.03 }}
-            className="bg-white rounded-2xl shadow-xl overflow-hidden"
+            variants={{
+              hidden: { opacity: 0, y: 30 },
+              show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
+            }}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "-50px" }}
+            className="group flex flex-col cursor-pointer"
           >
-            <div className="relative">
-              <img
-                src={urlFor(product.frontImage).url()}
-                alt={product.name}
-                className="w-full h-64 object-cover"
-              />
-            </div>
-            <div className="p-6">
-              <h3 className="text-xl font-bold text-gray-900">
-                {product.name}
-              </h3>
+            <Link to={`/product/${product.slug?.current || product._id}`} className="flex flex-col h-full w-full">
 
-              <div className="mt-4 flex justify-between items-center">
-                <span className="text-2xl font-bold text-[#4B5945]">
-                  {product.sizes && product.sizes.length > 0 ? `₹${product.sizes[0].price}` : 'Price not available'}
-                </span>
-                <Link
-                  to={`/product/${product.slug?.current || product._id}`}
-                  className="bg-[#4B5945] text-[#FFFFFF] px-4 py-2 rounded-lg hover:bg-[#66785F] transition-colors font-bold"
-                >
-                  View Details
-                </Link>
+              {/* Gallery Image Container */}
+              <div className="w-full aspect-[4/5] overflow-hidden bg-white rounded-[2rem] mb-6 shadow-sm group-hover:shadow-[0_20px_40px_rgba(26,46,26,0.08)] transition-all duration-700 relative">
+                <img
+                  src={urlFor(product.frontImage).url()}
+                  alt={product.name}
+                  className="w-full h-full object-cover transition-transform duration-[1.5s] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105"
+                  loading="lazy"
+                />
+                {/* Minimalist Top Badge */}
+                <div className="absolute top-5 left-5 z-10 transition-opacity duration-300 group-hover:opacity-0">
+                  <span className="bg-white/95 backdrop-blur-md text-[#1A2E1A] text-[9px] uppercase tracking-[0.2em] font-bold px-4 py-2 rounded-full shadow-sm">
+                    {product.category?.[0] || 'Resin'}
+                  </span>
+                </div>
               </div>
-            </div>
+
+              {/* Floating Metadata */}
+              <div className="flex flex-col px-2">
+                <h3 className="text-xl md:text-2xl font-bold font-notoSerif text-[#1A2E1A] leading-tight mb-2 group-hover:text-[#4B5945] transition-colors line-clamp-1">
+                  {product.name}
+                </h3>
+
+                <div className="flex justify-between items-end mt-2 border-t border-[#1A2E1A]/10 pt-4">
+                  <div className="flex flex-col">
+                    <span className="text-[10px] text-[#1A2E1A]/40 uppercase font-black tracking-[0.2em] mb-1">Starting From</span>
+                    <span className="text-xl md:text-2xl font-bold text-[#4B5945] tracking-tight">
+                      {product.sizes && product.sizes.length > 0
+                        ? `₹${Math.min(...product.sizes.map(size => size.price))}`
+                        : 'Sold Out'}
+                    </span>
+                  </div>
+
+                  {/* Premium Call To Action Bottom - Matched to BestSellers */}
+                  <div className="w-full flex justify-end mt-4">
+                    <div className="group/btn relative focus:outline-none rounded-full inline-block transform-gpu transition-transform duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] hover:-translate-y-1">
+                      {/* Base Shadow Layer */}
+                      <div className="absolute inset-0 rounded-full bg-[#1A2E1A] shadow-[0_4px_15px_rgba(26,46,26,0.15)] transition-opacity duration-500 ease-in-out group-hover/btn:opacity-0 pointer-events-none"></div>
+
+                      {/* Hover Shadow Layer */}
+                      <div className="absolute inset-0 rounded-full bg-[#1A2E1A] shadow-[0_8px_25px_rgba(26,46,26,0.25)] ring-1 ring-[#1A2E1A]/30 opacity-0 transition-opacity duration-500 ease-in-out group-hover/btn:opacity-100 pointer-events-none"></div>
+
+                      {/* Inner Content Layer with Overflow Hidden */}
+                      <div className="relative flex items-center overflow-hidden rounded-full w-full h-full p-1.5 transform-gpu">
+
+                        {/* Subtle Ambient Glow */}
+                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#4B5945]/60 to-transparent translate-x-[-150%] group-hover/btn:translate-x-[150%] transition-transform duration-[1.2s] ease-in-out pointer-events-none z-0"></div>
+
+                        {/* Text Content */}
+                        <span className="relative z-10 px-4 sm:px-5 text-white font-semibold text-[10px] sm:text-xs tracking-wide whitespace-nowrap drop-shadow-sm font-sans uppercase">
+                          View Details
+                        </span>
+
+                        {/* Elegant Glass Icon Container */}
+                        <div className="relative z-10 w-8 h-8 sm:w-9 sm:h-9 bg-white rounded-full flex items-center justify-center border border-white/20 group-hover/btn:bg-white transition-colors duration-500 ease-[cubic-bezier(0.87,0,0.13,1)] shadow-sm shrink-0">
+                          <FiArrowRight className="text-[#1A2E1A] group-hover/btn:-rotate-45 transition-transform duration-500 ease-[cubic-bezier(0.87,0,0.13,1)] w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </Link>
           </motion.div>
         ))}
       </div>

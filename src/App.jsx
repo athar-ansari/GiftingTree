@@ -6,6 +6,7 @@ import ProductDetails from './pages/ProductDetails';
 import ResinProducts from './pages/ResinProducts';
 import FloatingWhatsApp from './components/FloatingWhatsApp';
 import { Toaster } from 'react-hot-toast';
+import ScrollToTop from './components/ScrollToTop';
 
 function App() {
 
@@ -31,6 +32,7 @@ function App() {
 
   return (
     <Router>
+      <ScrollToTop />
       <Toaster position="top-center" />
       <Navbar />
       <FloatingWhatsApp />
