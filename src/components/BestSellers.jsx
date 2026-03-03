@@ -28,7 +28,7 @@ const BestSellers = () => {
   }, []);
 
   return (
-    <div className="w-full bg-[#FAFAF8] py-20 lg:py-32 overflow-hidden border-t border-[#E8EFE5]/50">
+    <div className="w-full bg-[#F4F5F0] py-20 lg:py-32 overflow-hidden border-t border-[#E8EFE5]/50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Section Header */}
@@ -166,7 +166,7 @@ const BestSellers = () => {
               </span>
 
               {/* Elegant Glass Icon Container */}
-              <div className="relative z-10 w-10 h-10 sm:w-12 sm:h-12 bg-[#FAFAF8] rounded-full flex items-center justify-center border border-white/20 group-hover:bg-white transition-colors duration-500 ease-[cubic-bezier(0.87,0,0.13,1)] shadow-sm shrink-0">
+              <div className="relative z-10 w-10 h-10 sm:w-12 sm:h-12 bg-[#F4F5F0] rounded-full flex items-center justify-center border border-white/20 group-hover:bg-white transition-colors duration-500 ease-[cubic-bezier(0.87,0,0.13,1)] shadow-sm shrink-0">
                 <FiArrowRight className="text-[#1A2E1A] group-hover:-rotate-45 transition-transform duration-500 ease-[cubic-bezier(0.87,0,0.13,1)] w-4 h-4 sm:w-5 sm:h-5" />
               </div>
             </div>

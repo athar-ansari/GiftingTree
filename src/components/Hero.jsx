@@ -1,11 +1,11 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { FiArrowRight } from "react-icons/fi";
-import collageImg from "../assets/collage_polaroid_scatter_1772369884468.png";
+import collageImg from "../assets/Hero.png";
 
 const Hero = () => {
     return (
-        <section className="relative w-full bg-[#FAFAF8] overflow-hidden pt-6 pb-16 lg:pt-12 lg:pb-16">
+        <section className="relative w-full bg-[#F4F5F0] overflow-hidden pt-36 pb-16 lg:pt-36 lg:pb-24">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-12">
 
@@ -59,7 +59,7 @@ const Hero = () => {
                                     </span>
 
                                     {/* Elegant Icon Container */}
-                                    <div className="relative w-10 h-10 sm:w-12 sm:h-12 bg-[#FAFAF8] rounded-full flex items-center justify-center shrink-0 z-10 shadow-inner">
+                                    <div className="relative w-10 h-10 sm:w-12 sm:h-12 bg-[#F4F5F0] rounded-full flex items-center justify-center shrink-0 z-10 shadow-inner">
                                         <FiArrowRight className="text-[#1A2E1A] w-4 h-4 sm:w-5 sm:h-5 transition-transform duration-500 ease-[cubic-bezier(0.87,0,0.13,1)] group-hover:-rotate-45" />
                                     </div>
 
@@ -71,7 +71,7 @@ const Hero = () => {
                         <div className="mt-6 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3">
                             <div className="flex -space-x-3">
                                 {[1, 2, 3, 4].map((i) => (
-                                    <div key={i} className="w-10 h-10 rounded-full border-2 border-[#FAFAF8] bg-gray-200 overflow-hidden">
+                                    <div key={i} className="w-10 h-10 rounded-full border-2 border-[#F4F5F0] bg-gray-200 overflow-hidden">
                                         <img src={`https://i.pravatar.cc/100?img=${i + 20}`} alt="Customer" className="w-full h-full object-cover" />
                                     </div>
                                 ))}
@@ -81,7 +81,7 @@ const Hero = () => {
                     </motion.div>
 
                     {/* Image Column - Single Collage Card */}
-                    <div className="w-full lg:w-1/2 h-[35vh] sm:h-[45vh] lg:h-[68vh] max-w-[400px] lg:max-w-none mx-auto mt-6 lg:mt-0">
+                    <div className="w-full lg:w-1/2 h-[35vh] sm:h-[45vh] md:h-[55vh] lg:h-[68vh] max-w-[400px] sm:max-w-[500px] md:max-w-[650px] lg:max-w-none mx-auto mt-8 md:mt-12 lg:mt-0">
                         <motion.div
                             initial={{ opacity: 0, scale: 0.95 }}
                             animate={{ opacity: 1, scale: 1 }}
@@ -113,9 +113,9 @@ const Hero = () => {
                                 <div className="absolute inset-3 sm:inset-3.5 animate-[spin_25s_linear_infinite] group-hover/seal:animate-[spin_10s_linear_infinite]">
                                     <svg viewBox="0 0 100 100" className="w-full h-full overflow-visible">
                                         <defs>
-                                            <path id="ultraSealPath" d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" />
+                                            <path id="ultraSealPath" d="M 50, 50 m -42, 0 a 42,42 0 1,1 84,0 a 42,42 0 1,1 -84,0" />
                                         </defs>
-                                        <text className="text-[10px] sm:text-[11.5px] font-bold uppercase tracking-[0.3em] fill-[#F5F5F0]">
+                                        <text className="text-[9px] sm:text-[10.5px] font-bold uppercase tracking-[0.25em] fill-[#F5F5F0]">
                                             <textPath href="#ultraSealPath" startOffset="0%">
                                                 100% HANDCRAFTED • ARTISANAL GALLERY •
                                             </textPath>
@@ -125,7 +125,7 @@ const Hero = () => {
 
                                 {/* The Core: A pristine white center with a sleek bespoke star */}
                                 <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                                    <div className="w-[42px] h-[42px] sm:w-[50px] sm:h-[50px] rounded-full flex items-center justify-center bg-[#FAFAF8] shadow-[0_4px_10px_rgba(0,0,0,0.1)] relative z-10">
+                                    <div className="w-[42px] h-[42px] sm:w-[50px] sm:h-[50px] rounded-full flex items-center justify-center bg-[#F4F5F0] shadow-[0_4px_10px_rgba(0,0,0,0.1)] relative z-10">
                                         {/* Elegant 4-Point Star (Sparkle) that elegantly rotates on hover */}
                                         <svg className="w-5 h-5 sm:w-6 sm:h-6 text-[#1A2E1A] group-hover/seal:rotate-[135deg] transition-transform duration-[600ms] ease-[cubic-bezier(0.87,0,0.13,1)]" viewBox="0 0 24 24" fill="currentColor">
                                             <path d="M12 2C12.3333 7 17 11.6667 22 12C17 12.3333 12.3333 17 12 22C11.6667 17 7 12.3333 2 12C7 11.6667 11.6667 7 12 2Z" />
