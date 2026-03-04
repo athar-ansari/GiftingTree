@@ -1,5 +1,4 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 
 const SkeletonLoader = ({ count = 6 }) => {
     return (

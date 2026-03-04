@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { FiSearch, FiArrowRight } from 'react-icons/fi';
 import { Helmet } from 'react-helmet-async';
 import { client, urlFor } from '../lib/sanityClient';
-import { CATEGORIES } from '../lib/constants';
 import SkeletonLoader from '../components/SkeletonLoader';
+import Loader from '../components/Loader';
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 
 // Categories list
@@ -50,7 +50,17 @@ function ResinProducts() {
     const [currentPage, setCurrentPage] = useState(1);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [minTimePassed, setMinTimePassed] = useState(false);
     const itemsPerPage = 15;
+
+    useEffect(() => {
+        // Start minimum time timer for the cinematic loader
+        const timer = setTimeout(() => {
+            setMinTimePassed(true);
+        }, 2200);
+
+        return () => clearTimeout(timer);
+    }, []);
 
     useEffect(() => {
         const fetchProducts = async () => {
@@ -145,12 +155,16 @@ function ResinProducts() {
                 <meta name="twitter:image" content="https://gifting-tree.vercel.app/android-chrome-512x512.png" />
             </Helmet>
 
-            {error ? (
+            <AnimatePresence>
+                {!minTimePassed && <Loader key="loader" />}
+            </AnimatePresence>
+
+            {error && minTimePassed ? (
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-20 flex flex-col items-center justify-center">
                     <p className="text-xl font-bold text-red-500">{error}</p>
                     <button onClick={() => window.location.reload()} className="mt-6 px-8 py-3 bg-[#1A2E1A] text-white rounded-full font-bold hover:bg-[#4B5945] transition-colors duration-300">Try Again</button>
                 </div>
-            ) : (
+            ) : minTimePassed && (
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
                     {/* Premium Header */}
