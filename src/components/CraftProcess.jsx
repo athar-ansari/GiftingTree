@@ -33,7 +33,7 @@ const steps = [
 
 const CraftProcess = () => {
   return (
-    <div className="w-full bg-[#F4F5F0] py-24 lg:py-32 border-t border-[#E8EFE5]/50 flex justify-center items-center">
+    <div className="relative z-30 w-full bg-[#F4F5F0] py-24 lg:py-32 border-t border-[#E8EFE5]/50 flex justify-center items-center">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
 
         {/* Minimalist Section Header */}
@@ -81,7 +81,7 @@ const CraftProcess = () => {
               </div>
 
               {/* Delicate Image Circle */}
-              <div className="relative w-28 h-28 lg:w-32 lg:h-32 rounded-full mb-8 transform group-hover:-translate-y-2 transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)]">
+              <div className="relative w-28 h-28 lg:w-32 lg:h-32 rounded-full mb-8 transform group-hover:-translate-y-2 transition-transform duration-700 [transition-timing-function:]">
                 {/* Outer Ring */}
                 <div className="absolute inset-0 rounded-full border border-[#D4E0CE] group-hover:border-[#8A9A83] transition-colors duration-700 scale-[1.12] opacity-50"></div>
 
@@ -91,7 +91,7 @@ const CraftProcess = () => {
                     src={step.image}
                     alt={`Resin Art Crafting Process Step ${step.num}: ${step.title} - ${step.description}`}
                     loading="lazy"
-                    className="object-cover w-full h-full transform group-hover:scale-105 transition-transform duration-[1s] ease-[cubic-bezier(0.25,1,0.5,1)]"
+                    className="object-cover w-full h-full transform group-hover:scale-105 transition-transform [transition-duration:] [transition-timing-function:]"
                   />
 
                   {/* Subtle Image Wash Overlay */}

@@ -8,6 +8,7 @@ import CraftProcess from "../components/CraftProcess.jsx";
 import ArtisanalCollections from "../components/ArtisanalCollections.jsx";
 
 // Phase 4: New Premium Sections
+import FestiveCollection from "../components/FestiveCollection.jsx";
 import GiftingGuide from "../components/GiftingGuide.jsx";
 import BespokeCommission from "../components/BespokeCommission.jsx";
 import BehindTheArt from "../components/BehindTheArt.jsx";
@@ -71,6 +72,9 @@ function Home() {
 
         {/* Hero Section */}
         <Hero />
+
+        {/* Dynamic Festive Collection */}
+        <FestiveCollection />
 
         {/* Gifting Concierge Section */}
         <GiftingGuide />

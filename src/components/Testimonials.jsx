@@ -107,7 +107,7 @@ export const Testimonials = () => {
                 {/* Minimalist Star Rating */}
                 <div className="flex gap-1.5 mb-6 opacity-60 group-hover:opacity-100 transition-opacity duration-500">
                   {[...Array(testimonial.rating)].map((_, i) => (
-                    <svg key={i} className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#D4E0CE] group-hover:scale-110 transition-transform duration-500 ease-[cubic-bezier(0.25,1,0.5,1)]" fill="currentColor" viewBox="0 0 24 24" style={{ transitionDelay: `${i * 100}ms` }}>
+                    <svg key={i} className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#D4E0CE] group-hover:scale-110 transition-transform duration-500 [transition-timing-function:]" fill="currentColor" viewBox="0 0 24 24" style={{ transitionDelay: `${i * 100}ms` }}>
                       <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
                     </svg>
                   ))}
@@ -133,7 +133,7 @@ export const Testimonials = () => {
                         }).toString()
                       )}`}
                       alt={testimonial.name}
-                      className="w-full h-full object-cover scale-[1.2] transform translate-y-0.5 group-hover:scale-[1.3] transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] opacity-90 group-hover:opacity-100"
+                      className="w-full h-full object-cover scale-[1.2] transform translate-y-0.5 group-hover:scale-[1.3] transition-transform duration-700 [transition-timing-function:] opacity-90 group-hover:opacity-100"
                     />
                   </div>
                 </div>

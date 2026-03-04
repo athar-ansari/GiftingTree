@@ -104,7 +104,7 @@ function CollectionShowcase({ collection }) {
       </motion.div>
 
       {/* Ambient Floating Light Orbs for depth */}
-      <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-[#D4E0CE]/10 rounded-full blur-[120px] pointer-events-none mix-blend-screen opacity-50 group-hover:opacity-100 transition-opacity duration-[3000ms]"></div>
+      <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-[#D4E0CE]/10 rounded-full blur-[120px] pointer-events-none mix-blend-screen opacity-50 group-hover:opacity-100 transition-opacity [transition-duration:]"></div>
       <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-[#8A9A83]/10 rounded-full blur-[100px] pointer-events-none mix-blend-screen opacity-40"></div>
 
       {/* Foreground Content Stack */}

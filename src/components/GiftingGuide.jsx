@@ -83,7 +83,7 @@ export default function GiftingGuide() {
                                         src={category.image}
                                         alt={`Premium Resin ${category.title} Gift - ${category.subtitle}`}
                                         loading="lazy"
-                                        className="w-full h-full object-cover transition-transform duration-[1.5s] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105"
+                                        className="w-full h-full object-cover transition-transform [transition-duration:] [transition-timing-function:] group-hover:scale-105"
                                     />
                                     {/* Deep luxury gradient overlay for text legibility */}
                                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none transition-opacity duration-700 group-hover:opacity-90"></div>
