@@ -28,7 +28,7 @@ const BestSellers = () => {
   }, []);
 
   return (
-    <div className="w-full bg-[#F4F5F0] py-20 lg:py-32 overflow-hidden border-t border-[#E8EFE5]/50">
+    <div className="relative z-10 w-full bg-[#F4F5F0] py-20 lg:py-32 overflow-hidden border-t border-[#E8EFE5]/50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Section Header */}
@@ -106,7 +106,7 @@ const BestSellers = () => {
                   <Link
                     to={`/product/${product.slug?.current || product._id}`}
                     aria-label={`View details for our best-selling ${product.name} resin art`}
-                    className="block relative w-full aspect-[3/4] sm:aspect-[4/5] overflow-hidden rounded-[2.5rem] bg-[#E8EFE5]/30 mb-8 border border-white/40 shadow-sm transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:-translate-y-4 group-hover:shadow-[0_30px_60px_-15px_rgba(44,62,32,0.15)] cursor-pointer"
+                    className="block relative w-full aspect-[3/4] sm:aspect-[4/5] overflow-hidden rounded-[2.5rem] bg-[#E8EFE5]/30 mb-8 border border-white/40 shadow-sm transition-all duration-700 [transition-timing-function:] group-hover:-translate-y-4 group-hover:shadow-[0_30px_60px_-15px_rgba(44,62,32,0.15)] cursor-pointer"
                   >
 
                     {/* Inner Image Mask (creates the floating glass rim effect) */}
@@ -115,7 +115,7 @@ const BestSellers = () => {
                         src={urlFor(product.frontImage).url()}
                         alt={`Premium Handcrafted Resin Art: ${product.name} - Best Seller`}
                         loading="lazy"
-                        className="absolute inset-0 w-full h-full object-cover transition-transform duration-[2s] ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:scale-110"
+                        className="absolute inset-0 w-full h-full object-cover transition-transform [transition-duration:] [transition-timing-function:] group-hover:scale-110"
                       />
                     </div>
 
@@ -123,7 +123,7 @@ const BestSellers = () => {
                     <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none rounded-[2.5rem]"></div>
 
                     {/* Minimalist Reveal Quick View Button */}
-                    <div className="absolute bottom-8 left-0 right-0 flex justify-center translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-[600ms] ease-[cubic-bezier(0.25,1,0.5,1)] z-10">
+                    <div className="absolute bottom-8 left-0 right-0 flex justify-center translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all [transition-duration:] [transition-timing-function:] z-10">
                       <div className="bg-[#2C3E20]/90 backdrop-blur-md text-white py-3 px-8 rounded-full font-sans font-semibold text-xs tracking-widest uppercase shadow-2xl flex items-center justify-center gap-2 border border-white/10 hover:bg-[#1A2E1A] transition-colors duration-300">
                         View Details
                       </div>
@@ -131,7 +131,7 @@ const BestSellers = () => {
                   </Link>
 
                   {/* Refined Text Container */}
-                  <div className="px-4 text-center w-full max-w-[90%] transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:-translate-y-2">
+                  <div className="px-4 text-center w-full max-w-[90%] transition-transform duration-700 [transition-timing-function:] group-hover:-translate-y-2">
                     <h3 className="text-xl lg:text-2xl font-bold text-[#1A2E1A] font-notoSerif mb-2 tracking-tight line-clamp-1 group-hover:text-[#4B5945] transition-colors duration-300">
                       <Link to={`/product/${product.slug?.current || product._id}`}>
                         {product.name}
@@ -151,7 +151,7 @@ const BestSellers = () => {
         <div className="flex justify-center mt-20 lg:mt-32">
           <Link
             to="/resin-products?category=best-seller"
-            className="group relative focus:outline-none focus:ring-4 focus:ring-[#D4E0CE] rounded-full inline-block transform-gpu transition-transform duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] hover:-translate-y-1.5"
+            className="group relative focus:outline-none focus:ring-4 focus:ring-[#D4E0CE] rounded-full inline-block transform-gpu transition-transform duration-500 [transition-timing-function:] hover:-translate-y-1.5"
           >
             {/* Base Shadow Layer */}
             <div className="absolute inset-0 rounded-full bg-[#2C3E20] shadow-[0_8px_20px_rgba(44,62,32,0.3)] transition-opacity duration-500 ease-in-out group-hover:opacity-0 pointer-events-none"></div>
@@ -163,7 +163,7 @@ const BestSellers = () => {
             <div className="relative flex items-center overflow-hidden rounded-full w-full h-full px-2 py-2 transform-gpu">
 
               {/* Subtle Ambient Glow */}
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#4B5945]/60 to-transparent translate-x-[-150%] group-hover:translate-x-[150%] transition-transform duration-[1.2s] ease-in-out pointer-events-none z-0"></div>
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#4B5945]/60 to-transparent translate-x-[-150%] group-hover:translate-x-[150%] transition-transform [transition-duration:] ease-in-out pointer-events-none z-0"></div>
 
               {/* Text Content */}
               <span className="relative z-10 px-8 sm:px-12 text-white font-semibold text-sm sm:text-base tracking-wide whitespace-nowrap drop-shadow-sm font-sans">
@@ -171,8 +171,8 @@ const BestSellers = () => {
               </span>
 
               {/* Elegant Glass Icon Container */}
-              <div className="relative z-10 w-10 h-10 sm:w-12 sm:h-12 bg-[#F4F5F0] rounded-full flex items-center justify-center border border-white/20 group-hover:bg-white transition-colors duration-500 ease-[cubic-bezier(0.87,0,0.13,1)] shadow-sm shrink-0">
-                <FiArrowRight className="text-[#1A2E1A] group-hover:-rotate-45 transition-transform duration-500 ease-[cubic-bezier(0.87,0,0.13,1)] w-4 h-4 sm:w-5 sm:h-5" />
+              <div className="relative z-10 w-10 h-10 sm:w-12 sm:h-12 bg-[#F4F5F0] rounded-full flex items-center justify-center border border-white/20 group-hover:bg-white transition-colors duration-500 [transition-timing-function:] shadow-sm shrink-0">
+                <FiArrowRight className="text-[#1A2E1A] group-hover:-rotate-45 transition-transform duration-500 [transition-timing-function:] w-4 h-4 sm:w-5 sm:h-5" />
               </div>
             </div>
           </Link>

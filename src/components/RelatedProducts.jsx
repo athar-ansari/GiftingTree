@@ -76,7 +76,7 @@ function RelatedProducts({ currentProduct }) {
                 <img
                   src={urlFor(product.frontImage).url()}
                   alt={product.name}
-                  className="w-full h-full object-cover transition-transform duration-[1.5s] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105"
+                  className="w-full h-full object-cover transition-transform [transition-duration:] [transition-timing-function:] group-hover:scale-105"
                   loading="lazy"
                 />
                 {/* Minimalist Top Badge */}
@@ -105,7 +105,7 @@ function RelatedProducts({ currentProduct }) {
 
                   {/* Premium Call To Action Bottom - Matched to BestSellers */}
                   <div className="w-full flex justify-end mt-4">
-                    <div className="group/btn relative focus:outline-none rounded-full inline-block transform-gpu transition-transform duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] hover:-translate-y-1">
+                    <div className="group/btn relative focus:outline-none rounded-full inline-block transform-gpu transition-transform duration-500 [transition-timing-function:] hover:-translate-y-1">
                       {/* Base Shadow Layer */}
                       <div className="absolute inset-0 rounded-full bg-[#1A2E1A] shadow-[0_4px_15px_rgba(26,46,26,0.15)] transition-opacity duration-500 ease-in-out group-hover/btn:opacity-0 pointer-events-none"></div>
 
@@ -116,7 +116,7 @@ function RelatedProducts({ currentProduct }) {
                       <div className="relative flex items-center overflow-hidden rounded-full w-full h-full p-1.5 transform-gpu">
 
                         {/* Subtle Ambient Glow */}
-                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#4B5945]/60 to-transparent translate-x-[-150%] group-hover/btn:translate-x-[150%] transition-transform duration-[1.2s] ease-in-out pointer-events-none z-0"></div>
+                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#4B5945]/60 to-transparent translate-x-[-150%] group-hover/btn:translate-x-[150%] transition-transform [transition-duration:] ease-in-out pointer-events-none z-0"></div>
 
                         {/* Text Content */}
                         <span className="relative z-10 px-4 sm:px-5 text-white font-semibold text-[10px] sm:text-xs tracking-wide whitespace-nowrap drop-shadow-sm font-sans uppercase">
@@ -124,8 +124,8 @@ function RelatedProducts({ currentProduct }) {
                         </span>
 
                         {/* Elegant Glass Icon Container */}
-                        <div className="relative z-10 w-8 h-8 sm:w-9 sm:h-9 bg-white rounded-full flex items-center justify-center border border-white/20 group-hover/btn:bg-white transition-colors duration-500 ease-[cubic-bezier(0.87,0,0.13,1)] shadow-sm shrink-0">
-                          <FiArrowRight className="text-[#1A2E1A] group-hover/btn:-rotate-45 transition-transform duration-500 ease-[cubic-bezier(0.87,0,0.13,1)] w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                        <div className="relative z-10 w-8 h-8 sm:w-9 sm:h-9 bg-white rounded-full flex items-center justify-center border border-white/20 group-hover/btn:bg-white transition-colors duration-500 [transition-timing-function:] shadow-sm shrink-0">
+                          <FiArrowRight className="text-[#1A2E1A] group-hover/btn:-rotate-45 transition-transform duration-500 [transition-timing-function:] w-3.5 h-3.5 sm:w-4 sm:h-4" />
                         </div>
                       </div>
                     </div>

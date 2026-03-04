@@ -28,7 +28,7 @@ export default function BespokeCommission() {
                 src={bespokeImg}
                 alt="Bespoke Varmala Preservation in Premium Resin Art - Custom Wedding Keepsake Table"
                 loading="lazy"
-                className="w-full h-full object-cover transition-transform duration-[2s] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105"
+                className="w-full h-full object-cover transition-transform [transition-duration:] [transition-timing-function:] group-hover:scale-105"
               />
 
               {/* Glassmorphic overlay badge */}
@@ -93,8 +93,8 @@ export default function BespokeCommission() {
               </div>
 
               {/* Cirular Arrow Icon */}
-              <div className="relative w-12 h-12 md:w-14 md:h-14 rounded-full border border-[#4B5945] flex items-center justify-center bg-transparent group-hover:bg-[#F4F5F0] transition-colors duration-500 ease-[cubic-bezier(0.87,0,0.13,1)]">
-                <FiArrowRight className="text-[#D4E0CE] group-hover:text-[#1A2E1A] w-5 h-5 group-hover:-rotate-45 transition-all duration-500 ease-[cubic-bezier(0.87,0,0.13,1)] transform-gpu" />
+              <div className="relative w-12 h-12 md:w-14 md:h-14 rounded-full border border-[#4B5945] flex items-center justify-center bg-transparent group-hover:bg-[#F4F5F0] transition-colors duration-500 [transition-timing-function:]">
+                <FiArrowRight className="text-[#D4E0CE] group-hover:text-[#1A2E1A] w-5 h-5 group-hover:-rotate-45 transition-all duration-500 [transition-timing-function:] transform-gpu" />
               </div>
             </button>
 

@@ -391,7 +391,7 @@ function ProductDetails() {
                   >
                     {/* Subtle Glow Layer */}
                     {!(product?.sizes && product.sizes.length > 0 && !selectedSize) && (
-                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#25D366]/20 to-transparent translate-x-[-150%] group-hover:translate-x-[150%] transition-transform duration-[1.2s] ease-in-out pointer-events-none z-0"></div>
+                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#25D366]/20 to-transparent translate-x-[-150%] group-hover:translate-x-[150%] transition-transform [transition-duration:] ease-in-out pointer-events-none z-0"></div>
                     )}
 
                     <span className={`relative z-10 flex items-center text-sm tracking-[0.2em] uppercase font-bold drop-shadow-sm font-sans shrink-0 ${product?.sizes && product.sizes.length > 0 && !selectedSize ? 'text-[#1A2E1A]/40' : 'text-white'}`}>
