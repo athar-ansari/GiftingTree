@@ -19,7 +19,7 @@ function Footer() {
           {/* Brand Col */}
           <div className="md:col-span-5 flex flex-col justify-between">
             <div>
-              <h3 className="text-3xl font-bold mb-6 tracking-tight text-white drop-shadow-md">Gifting Tree.</h3>
+              <h2 className="text-3xl font-bold mb-6 tracking-tight text-white drop-shadow-md">Gifting Tree.</h2>
               <p className="text-white/60 text-[15px] leading-relaxed max-w-sm font-sans font-light">
                 Transforming your precious memories into timeless, handcrafted masterpieces. Custom-made heirloom art for every special occasion.
               </p>
@@ -30,13 +30,13 @@ function Footer() {
 
           {/* Contact Col */}
           <div className="md:col-span-4">
-            <h3 className="text-xs uppercase tracking-[0.3em] font-sans font-bold text-white/40 mb-8 border-b border-white/10 pb-4 inline-block">Direct Inquiries</h3>
+            <h2 className="text-xs uppercase tracking-[0.3em] font-sans font-bold text-white/40 mb-8 border-b border-white/10 pb-4 inline-block">Direct Inquiries</h2>
             <div className="flex flex-col space-y-5">
-              <a href="tel:+917001967279" className="group flex flex-col hover:text-white transition-colors">
+              <a href="tel:+917001967279" aria-label="Call Gifting Tree at +91 7001967279" className="group flex flex-col hover:text-white transition-colors">
                 <span className="text-white/40 text-xs font-sans uppercase tracking-wider mb-1">Phone</span>
                 <span className="text-lg text-[#D4E0CE] group-hover:text-white transition-colors">+91 7001967279</span>
               </a>
-              <a href="mailto:giftingtreebygz@gmail.com" className="group flex flex-col hover:text-white transition-colors">
+              <a href="mailto:giftingtreebygz@gmail.com" aria-label="Email Gifting Tree at giftingtreebygz@gmail.com" className="group flex flex-col hover:text-white transition-colors">
                 <span className="text-white/40 text-xs font-sans uppercase tracking-wider mb-1">Email</span>
                 <span className="text-lg text-[#D4E0CE] group-hover:text-white transition-colors">giftingtreebygz@gmail.com</span>
               </a>
@@ -49,12 +49,13 @@ function Footer() {
 
           {/* Socials Col */}
           <div className="md:col-span-3">
-            <h3 className="text-xs uppercase tracking-[0.3em] font-sans font-bold text-white/40 mb-8 border-b border-white/10 pb-4 inline-block">Social Gallery</h3>
+            <h2 className="text-xs uppercase tracking-[0.3em] font-sans font-bold text-white/40 mb-8 border-b border-white/10 pb-4 inline-block">Social Gallery</h2>
             <div className="flex flex-col space-y-4">
               <a
                 href="https://www.instagram.com/_.gifting_tree_/"
                 target="_blank"
                 rel="noreferrer"
+                aria-label="Follow Gifting Tree on Instagram"
                 className="group flex items-center gap-4 text-[#D4E0CE] hover:text-white transition-colors"
               >
                 <div className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center group-hover:bg-white/10 transition-colors">

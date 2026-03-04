@@ -89,7 +89,8 @@ const CraftProcess = () => {
                 <div className="w-full h-full rounded-full overflow-hidden bg-white shadow-sm ring-4 ring-[#F4F5F0] relative z-10">
                   <img
                     src={step.image}
-                    alt={step.title}
+                    alt={`Resin Art Crafting Process Step ${step.num}: ${step.title} - ${step.description}`}
+                    loading="lazy"
                     className="object-cover w-full h-full transform group-hover:scale-105 transition-transform duration-[1s] ease-[cubic-bezier(0.25,1,0.5,1)]"
                   />
 

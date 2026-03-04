@@ -93,23 +93,28 @@ const BestSellers = () => {
             {loading ? (
               <SkeletonLoader count={3} />
             ) : (
-              bestSellers.map((product) => (
+              bestSellers.map((product, index) => (
                 <motion.div
                   key={product._id}
-                  variants={{
-                    hidden: { opacity: 0, y: 50 },
-                    show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 50, damping: 20 } }
-                  }}
+                  initial={{ opacity: 0, y: 50 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ type: "spring", stiffness: 50, damping: 20, delay: index * 0.15 }}
                   className="group flex flex-col items-center"
                 >
                   {/* Floating Glass Image Container */}
-                  <Link to={`/product/${product.slug?.current || product._id}`} className="block relative w-full aspect-[3/4] sm:aspect-[4/5] overflow-hidden rounded-[2.5rem] bg-[#E8EFE5]/30 mb-8 border border-white/40 shadow-sm transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:-translate-y-4 group-hover:shadow-[0_30px_60px_-15px_rgba(44,62,32,0.15)] cursor-pointer">
+                  <Link
+                    to={`/product/${product.slug?.current || product._id}`}
+                    aria-label={`View details for our best-selling ${product.name} resin art`}
+                    className="block relative w-full aspect-[3/4] sm:aspect-[4/5] overflow-hidden rounded-[2.5rem] bg-[#E8EFE5]/30 mb-8 border border-white/40 shadow-sm transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:-translate-y-4 group-hover:shadow-[0_30px_60px_-15px_rgba(44,62,32,0.15)] cursor-pointer"
+                  >
 
                     {/* Inner Image Mask (creates the floating glass rim effect) */}
                     <div className="absolute inset-2 sm:inset-3 rounded-[2rem] overflow-hidden bg-white/50">
                       <img
                         src={urlFor(product.frontImage).url()}
-                        alt={product.name}
+                        alt={`Premium Handcrafted Resin Art: ${product.name} - Best Seller`}
+                        loading="lazy"
                         className="absolute inset-0 w-full h-full object-cover transition-transform duration-[2s] ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:scale-110"
                       />
                     </div>

@@ -94,7 +94,7 @@ function CollectionShowcase({ collection }) {
         {/* Subtle continuous ambient movement instead of interactive card zoom */}
         <img
           src={collection.image}
-          alt={collection.title}
+          alt={`Exclusive Handcrafted ${collection.title} - Premium Resin Art`}
           className="w-full h-full object-cover opacity-70 animate-[pulse_10s_ease-in-out_infinite] scale-105"
         />
 
@@ -159,6 +159,7 @@ function CategoryButton({ category }) {
   return (
     <Link
       to={`/resin-products?category=${encodeURIComponent(category.toLowerCase().replace(/ /g, '-'))}`}
+      aria-label={`Shop premium resin ${category}`}
       className="block focus:outline-none focus:ring-2 focus:ring-[#D4E0CE] rounded-xl h-full"
     >
       <div

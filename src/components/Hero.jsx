@@ -39,6 +39,7 @@ const Hero = () => {
                         <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start mt-6">
                             <Link
                                 to="/resin-products"
+                                aria-label="Explore our full collection of premium handcrafted resin gifts"
                                 className="group relative focus:outline-none focus:ring-4 focus:ring-[#D4E0CE] rounded-full inline-block transform-gpu transition-transform duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] hover:-translate-y-1.5"
                             >
                                 {/* Base Shadow Layer (Active when NOT hovered) */}
@@ -91,7 +92,9 @@ const Hero = () => {
                             <div className="w-full h-full rounded-[1.75rem] overflow-hidden relative">
                                 <img
                                     src={collageImg}
-                                    alt="Premium Resin Art Collage"
+                                    alt="Luxury Handcrafted Resin Art and Varmala Preservation Masterpieces"
+                                    loading="eager"
+                                    fetchpriority="high"
                                     className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                                 />
                             </div>
