@@ -30,7 +30,7 @@ function Home() {
 
   return (
     <>
-      <AnimatePresence>
+      <AnimatePresence onExitComplete={() => { document.body.style.overflow = "unset"; }}>
         {!minTimePassed && <Loader key="loader" />}
       </AnimatePresence>
       <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white font-notoSerif">

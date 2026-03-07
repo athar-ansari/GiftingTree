@@ -7,10 +7,8 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function BehindTheArt() {
     const sectionRef = useRef(null);
-    const containerRef = useRef(null);
-    const textWrapperRef = useRef(null);
+    const containerRef = useRef(null); // ← this gets pinned (same as FestiveCollection)
 
-    // Elements to animate
     const maskRef = useRef(null);
     const imageRef = useRef(null);
     const topTextRef = useRef(null);
@@ -27,33 +25,38 @@ export default function BehindTheArt() {
     useLayoutEffect(() => {
         const ctx = gsap.context(() => {
 
-            // The single continuous pinned timeline
-            // GSAP ScrollTrigger will automatically add padding (a pin-spacer) to push the rest of the page down.
+            // ─── KEY FIX (adopted from FestiveCollection) ────────────────────────
+            //  BEFORE: pin: true on sectionRef
+            //    → GSAP injects a pin-spacer div into the DOM at scroll time
+            //    → Adjacent pinned section causes layout recalc → JUMP
+            //
+            //  AFTER:  pin: containerRef.current (the inner 100vh div)
+            //    + section has explicit h-[350vh] in JSX
+            //    → Layout is fully known at paint time, no spacer injection needed
+            //    → Zero jump on entry, exact same as FestiveCollection
+            // ─────────────────────────────────────────────────────────────────────
             const tl = gsap.timeline({
                 scrollTrigger: {
-                    trigger: containerRef.current,
+                    trigger: sectionRef.current,
                     start: "top top",
-                    end: "+=250%",
-                    scrub: 1.2,
-                    pin: true,
+                    end: "+=250%",          // EXACT match: h-[350vh] - 100vh pinned = 250vh scroll space
+                    scrub: 1.5,             // same smoothness as FestiveCollection
+                    pin: containerRef.current, // ← pin INNER container, NOT section
                     anticipatePin: 1,
                 }
             });
 
-            // PHASE 1: A tiny pause so the user sees the text right when it hits the top before it starts splitting
-            tl.to({}, { duration: 0.1 });
+            // PHASE 1: User lands — sees "Behind The / Artisan" text fully
+            tl.to({}, { duration: 0.3 });
 
-            // PHASE 2: The glowing center line expands horizontally
+            // PHASE 2: Glowing horizontal slit emerges from center
             tl.to(maskRef.current, {
                 width: "90vw",
                 duration: 0.8,
                 ease: "power2.inOut"
             });
 
-            // PHASE 3: The Vertical Slit Opens & Typography Parts
-            // We use the "open" label so they happen simultaneously
-
-            // The mask opens up
+            // PHASE 3: Slit tears open vertically + text splits away + image blooms
             tl.to(maskRef.current, {
                 height: "85vh",
                 borderRadius: "24px",
@@ -61,7 +64,6 @@ export default function BehindTheArt() {
                 ease: "power3.inOut"
             }, "open");
 
-            // Text pushes away and fades BEFORE reaching the container edges
             tl.to(topTextRef.current, {
                 y: "-25vh",
                 opacity: 0,
@@ -76,7 +78,6 @@ export default function BehindTheArt() {
                 ease: "power2.inOut"
             }, "open");
 
-            // Counter-Parallax: the image inside the slit starts huge and scales down
             tl.fromTo(imageRef.current, {
                 scale: 1.8,
                 filter: "brightness(0.2) grayscale(100%)"
@@ -87,7 +88,7 @@ export default function BehindTheArt() {
                 ease: "power2.inOut"
             }, "open");
 
-            // PHASE 4: The Details Reveal
+            // PHASE 4: Industrial crosshairs + subtitle card reveal
             tl.fromTo(crosshairsRef.current, {
                 opacity: 0,
                 scale: 0
@@ -113,12 +114,21 @@ export default function BehindTheArt() {
                 ease: "power3.out"
             }, "<");
 
-            // Final ambient zoom to keep it feeling alive before scrolling out
+            // PHASE 5: Hold — user admires the artwork
+            // Pin releases after this → next section scrolls in
+            tl.to({}, { duration: 1.5 });
+
+            // Slow ambient zoom for the remainder (same as FestiveCollection step 6)
             tl.to(imageRef.current, {
-                scale: 1.20,
-                duration: 0.5,
-                ease: "none"
+                scale: 1.15,
+                ease: "none",
+                duration: 1
             });
+
+            // ── SCROLL UP = automatic reverse ─────────────────────────────────────
+            // scrub: 1.5 reverses timeline on scroll-up:
+            //   subtitle hides → crosshairs vanish → slit closes → text reappears
+            // ─────────────────────────────────────────────────────────────────────
 
         }, sectionRef);
 
@@ -126,55 +136,64 @@ export default function BehindTheArt() {
     }, []);
 
     return (
+        // ← Explicit 350vh height (same pattern as FestiveCollection)
+        //   This tells the browser the layout upfront — no GSAP pin-spacer injection needed
         <section
             ref={sectionRef}
-            className="relative w-full z-20 bg-[#030303] overflow-clip"
+            className="relative w-full h-[350vh] bg-[#030303] overflow-clip"
         >
-            {/* The 100vh container that gets pinned */}
-            < div
+            {/* Pinned inner container — only this div gets pinned by GSAP */}
+            <div
                 ref={containerRef}
                 className="w-full h-screen relative flex items-center justify-center bg-[#030303] overflow-hidden"
             >
                 {/* Background ambient lighting */}
-                < div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.03)_0%,transparent_70%)] pointer-events-none" />
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.03)_0%,transparent_70%)] pointer-events-none" />
 
-                {/* THE TYPOGRAPHY 
-                    (Moved OUTSIDE the mask so it is fully visible right away as the section rises up) 
-                */}
-                < div ref={topTextRef} className="absolute top-0 w-full h-1/2 flex justify-center items-end pb-1 md:pb-4 z-10" >
+                {/* TOP TEXT */}
+                <div
+                    ref={topTextRef}
+                    className="absolute top-0 w-full h-1/2 flex justify-center items-end pb-1 md:pb-4 z-10"
+                >
                     <h2 className="text-[12vw] leading-none tracking-[0.05em] uppercase font-light text-white/80 m-0">
                         Behind The
                     </h2>
-                </div >
-                <div ref={bottomTextRef} className="absolute bottom-0 w-full h-1/2 flex justify-center items-start pt-1 md:pt-4 z-10">
+                </div>
+
+                {/* BOTTOM TEXT */}
+                <div
+                    ref={bottomTextRef}
+                    className="absolute bottom-0 w-full h-1/2 flex justify-center items-start pt-1 md:pt-4 z-10"
+                >
                     <h2 className="text-[14vw] leading-none tracking-tight uppercase font-serif italic text-white/90 m-0 drop-shadow-2xl">
                         Artisan
                     </h2>
                 </div>
 
-                {/* THE MAGIC MASK (The Slit) */}
+                {/* THE MAGIC MASK — starts as a thin horizontal slit */}
                 <div
                     ref={maskRef}
-                    className="absolute z-20 top-1/2 left-1/2 w-0 h-[2px] -translate-x-1/2 -translate-y-1/2 bg-white/40 overflow-hidden shadow-[0_0_50px_rgba(255,255,255,0.1)] flex items-center justify-center rounded-[2px]"
+                    className="absolute z-20 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 overflow-hidden shadow-[0_0_50px_rgba(255,255,255,0.1)] flex items-center justify-center"
+                    style={{ width: 0, height: '2px', borderRadius: '2px' }}
                 >
-                    {/* The Image inside the mask */}
+                    {/* Image inside mask */}
                     <div
                         ref={imageRef}
                         className="absolute w-[100vw] h-[100vh] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-cover bg-[center_10%] origin-center -z-10"
                         style={{ backgroundImage: `url(${pouringImg})` }}
                     />
 
-                    {/* Internal mask overlay (Darkens the image before it brightens up) */}
+                    {/* Dark overlay */}
                     <div className="absolute inset-0 bg-black/20 -z-10" />
 
-                    {/* Industrial Crosshairs */}
+                    {/* Crosshairs — top-left */}
                     <div ref={addToCrosshairs} className="absolute top-4 left-4 md:top-8 md:left-8 w-6 h-[1px] bg-white/50" />
                     <div ref={addToCrosshairs} className="absolute top-4 left-4 md:top-8 md:left-8 w-[1px] h-6 bg-white/50" />
-
+                    {/* Crosshairs — bottom-right */}
                     <div ref={addToCrosshairs} className="absolute bottom-4 right-4 md:bottom-8 md:right-8 w-6 h-[1px] bg-white/50 origin-right" />
                     <div ref={addToCrosshairs} className="absolute bottom-4 right-4 md:bottom-8 md:right-8 w-[1px] h-6 bg-white/50 origin-bottom" />
 
-                    {/* THE SUBTITLE REVEAL */}
+                    {/* Subtitle card */}
                     <div
                         ref={subtitleRef}
                         className="absolute bottom-6 right-6 md:bottom-16 md:right-16 bg-black/60 backdrop-blur-xl p-6 md:p-12 border border-white/10 rounded-2xl max-w-xs sm:max-w-sm text-center shadow-2xl z-30"
@@ -188,12 +207,14 @@ export default function BehindTheArt() {
                         </div>
                         <h3 className="text-xl md:text-2xl font-light text-white leading-relaxed">
                             Every Pour is a Promise.<br />
-                            <span className="italic font-serif text-[#D4E0CE] mt-2 block">Every Piece a Memory.</span>
+                            <span className="italic font-serif text-[#D4E0CE] mt-2 block">
+                                Every Piece a Memory.
+                            </span>
                         </h3>
                     </div>
                 </div>
 
-            </div >
-        </section >
+            </div>
+        </section>
     );
 }
