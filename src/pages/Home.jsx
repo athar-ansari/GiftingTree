@@ -37,6 +37,8 @@ function Home() {
         <Helmet>
           <title>Gifting Tree | Premium Handmade Masterpieces</title>
           <meta name="description" content="Discover premium handcrafted resin products, customized gifts, and beautiful art pieces at Gifting Tree." />
+          <link rel="canonical" href="https://gifting-tree.vercel.app/" />
+          <meta name="keywords" content="resin art, customized gifts, handmade products, wedding accessories, varmala preservation, resin frame, epoxy resin, custom keychain, gifting tree, India" />
           <meta property="og:type" content="website" />
           <meta property="og:title" content="Gifting Tree | Premium Handmade Masterpieces" />
           <meta property="og:description" content="Discover premium handcrafted resin products, customized gifts, and beautiful art pieces at Gifting Tree." />
@@ -45,13 +47,25 @@ function Home() {
           <meta property="og:image:width" content="512" />
           <meta property="og:image:height" content="512" />
           <meta property="og:image:type" content="image/png" />
+          <meta property="og:locale" content="en_IN" />
+          <meta property="og:site_name" content="Gifting Tree" />
           <meta name="twitter:card" content="summary_large_image" />
           <meta name="twitter:title" content="Gifting Tree | Premium Handmade Masterpieces" />
           <meta name="twitter:description" content="Discover premium handcrafted resin products, customized gifts, and beautiful art pieces at Gifting Tree." />
           <meta name="twitter:image" content="https://gifting-tree.vercel.app/android-chrome-512x512.png" />
           <script type="application/ld+json">
+            {JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              "name": "Gifting Tree",
+              "url": "https://gifting-tree.vercel.app/",
+              "description": "Premium handcrafted resin products, customized gifts, wedding accessories, varmala preservation, and personalized art pieces.",
+              "publisher": { "@type": "Organization", "name": "Gifting Tree" }
+            })}
+          </script>
+          <script type="application/ld+json">
             {`
-            {
+        {
               "@context": "https://schema.org",
               "@type": "LocalBusiness",
               "name": "Gifting Tree",
@@ -64,7 +78,13 @@ function Home() {
                 "@type": "PostalAddress",
                 "addressCountry": "IN"
               },
-              "description": "Premium handcrafted resin products and customized gifts."
+              "description": "Premium handcrafted resin products, customized gifts, wedding accessories, varmala preservation, and personalized art pieces at Gifting Tree.",
+              "openingHoursSpecification": {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+                "opens": "09:00",
+                "closes": "21:00"
+              }
             }
           `}
           </script>

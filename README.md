@@ -1,19 +1,52 @@
-# GIFTING TREE E-COMMERCE PROJECT
+# 🌳 Gifting Tree
 
-Full Stack Developer | React, Sanity CMS | 2024
+## A Premium E-Commerce Platform for Customized Gifts
 
-• Developed a responsive e-commerce platform for customized gift products using React.js and Tailwind CSS, improving user engagement by implementing an intuitive product browsing experience
-• Architected and implemented a headless CMS solution using Sanity.io, enabling dynamic content management for 10+ product categories and real-time updates
-• Built a robust product filtering system with search functionality and category-based filtering, enhancing user experience and product discoverability
-• Integrated WhatsApp Business API for direct customer communication, streamlining the order process and increasing conversion rates
-• Implemented dynamic image galleries with Framer Motion animations, reducing bounce rate by providing an engaging product viewing experience
-• Developed reusable React components for product cards, galleries, and category filters, reducing code redundancy by 40%
-• Created a responsive product management system allowing administrators to manage product details, images, specifications, and pricing through Sanity Studio
+Gifting Tree is a modern, responsive web application designed for a bespoke gifting business. Built with React.js, Tailwind CSS, and a headless Sanity CMS, it offers an elegant browsing experience with seamless WhatsApp Business integration for streamlined customer orders.
 
-Technical Skills:
+## ✨ Key Features
 
-- Frontend: React.js, Tailwind CSS,Shad Cn, Framer Motion
-- Backend: Sanity.io (Headless CMS)
-- Tools: Git, npm
-- Integration: WhatsApp Business API
-- Performance: Lazy loading, Image optimization
+- **Dynamic Product Catalog**: Powered by Sanity.io CMS for real-time content management across 10+ custom product categories.
+- **Advanced Filtering**: Intuitive search and category-based filtering for effortless product discoverability.
+- **Direct Order Process**: Seamless integration with WhatsApp Business API to facilitate direct customer communication and boost conversions.
+- **Premium User Interface**: Features dynamic image galleries and smooth animations using Framer Motion and Shadcn UI.
+- **Admin Dashboard**: Custom Sanity Studio setup allowing administrators to easily manage products, specifications, and pricing.
+
+## 🛠️ Tech Stack
+
+- **Frontend**: React.js, Tailwind CSS, Shadcn UI, Framer Motion
+- **Backend / CMS**: Sanity.io (Headless CMS)
+- **Integrations**: WhatsApp Business API
+- **Optimization**: Lazy loading, Image optimization
+- **Version Control & Tools**: Git, npm
+
+## 🚀 Getting Started
+
+To get a local copy up and running, follow these steps.
+
+### Prerequisites
+
+- Node.js (v16 or higher)
+- npm or yarn
+
+### Installation
+
+1. Clone the repository
+
+2. Install NPM packages
+
+   ```sh
+   npm install
+   ```
+
+3. Start the development server
+
+   ```sh
+   npm run dev
+   ```
+
+4. Setup your Sanity environment variables and start the Studio (in your sanity folder)
+
+   ```sh
+   npm run dev
+   ```

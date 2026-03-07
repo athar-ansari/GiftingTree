@@ -140,6 +140,7 @@ function ResinProducts() {
             <Helmet>
                 <title>Premium Resin Products & Customized Gifts | Gifting Tree</title>
                 <meta name="description" content="Shop beautiful handcrafted resin masterpieces at Gifting Tree. Explore our collection of custom keychains, preserved varmala frames, bookmarks, and personalized wedding gifts." />
+                <link rel="canonical" href="https://gifting-tree.vercel.app/resin-products" />
                 <meta name="keywords" content="resin products, customized gifts, varmala preservation, resin keychains, custom bookmarks, wedding gifts, handmade art" />
                 <meta property="og:type" content="website" />
                 <meta property="og:title" content="Premium Resin Products & Customized Gifts | Gifting Tree" />
@@ -149,6 +150,8 @@ function ResinProducts() {
                 <meta property="og:image:width" content="512" />
                 <meta property="og:image:height" content="512" />
                 <meta property="og:image:type" content="image/png" />
+                <meta property="og:locale" content="en_IN" />
+                <meta property="og:site_name" content="Gifting Tree" />
                 <meta name="twitter:card" content="summary_large_image" />
                 <meta name="twitter:title" content="Premium Resin Products & Customized Gifts | Gifting Tree" />
                 <meta name="twitter:description" content="Shop beautiful handcrafted resin masterpieces at Gifting Tree. Explore our collection of custom keychains, preserved varmala frames, bookmarks, and personalized wedding gifts." />
