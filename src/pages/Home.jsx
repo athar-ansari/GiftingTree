@@ -12,6 +12,7 @@ import FestiveCollection from "../components/FestiveCollection.jsx";
 import GiftingGuide from "../components/GiftingGuide.jsx";
 import BespokeCommission from "../components/BespokeCommission.jsx";
 import BehindTheArt from "../components/BehindTheArt.jsx";
+import BehindTheArtbyC from "../components/BehindTheArtbyC.jsx";
 import Loader from "../components/Loader.jsx";
 import { useState, useEffect } from "react";
 import { AnimatePresence } from "framer-motion";
@@ -119,7 +120,7 @@ function Home() {
 
         {/* Info Section */}
         <Info />
-
+        <BehindTheArtbyC />
         {/* Footer Section */}
         <Footer />
 
