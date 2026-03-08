@@ -106,11 +106,11 @@ const BestSellers = () => {
                   <Link
                     to={`/product/${product.slug?.current || product._id}`}
                     aria-label={`View details for our best-selling ${product.name} resin art`}
-                    className="block relative w-full aspect-[3/4] sm:aspect-[4/5] overflow-hidden rounded-[2.5rem] bg-[#E8EFE5]/30 mb-8 border border-white/40 shadow-sm transition-all duration-700 [transition-timing-function:] group-hover:-translate-y-4 group-hover:shadow-[0_30px_60px_-15px_rgba(44,62,32,0.15)] cursor-pointer"
+                    className="block relative w-full aspect-[3/4] sm:aspect-[4/5] overflow-hidden rounded-[2.5rem] bg-[#1A2E1A] mb-8 border   shadow-[0_20px_50px_rgba(0,0,0,0.5)]  border-white/5 transition-all duration-700 [transition-timing-function:] group-hover:-translate-y-4 group-hover:shadow-[0_30px_60px_-15px_rgba(44,62,32,0.15)] cursor-pointer"
                   >
 
                     {/* Inner Image Mask (creates the floating glass rim effect) */}
-                    <div className="absolute inset-2 sm:inset-3 rounded-[2rem] overflow-hidden bg-white/50">
+                    <div className="absolute inset-1.5 sm:inset-[0.45rem] rounded-[2.2rem] overflow-hidden bg-[#F4F5F0]/50">
                       <img
                         src={urlFor(product.frontImage).url()}
                         alt={`Premium Handcrafted Resin Art: ${product.name} - Best Seller`}
