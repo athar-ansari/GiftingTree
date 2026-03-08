@@ -120,7 +120,7 @@ function Home() {
 
         {/* Info Section */}
         <Info />
-        <BehindTheArtbyC />
+
         {/* Footer Section */}
         <Footer />
 

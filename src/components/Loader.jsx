@@ -24,9 +24,9 @@ const Loader = () => {
       }
     }, intervalTime);
 
-    // Keep it slightly bouncy initially, then smooth out
     return () => {
       clearInterval(interval);
+      document.body.style.overflow = "auto";
     };
   }, []);
 
