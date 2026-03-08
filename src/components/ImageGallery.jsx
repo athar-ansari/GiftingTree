@@ -33,29 +33,33 @@ function ImageGallery({ images = [] }) {
   return (
     <div className="grid gap-4 font-notoSerif w-full">
       {/* Main Image Viewport Wrapper */}
-      <div className="relative w-full aspect-[4/5] sm:h-[500px] max-w-lg mx-auto mt-2">
-        {/* Swipeable Main Carousel */}
-        <div
-          ref={scrollRef}
-          onScroll={handleScroll}
-          className="flex w-full h-full overflow-x-auto overflow-y-hidden snap-x snap-mandatory rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.08)] bg-white border border-gray-100"
-          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none', WebkitOverflowScrolling: 'touch' }}
-        >
-          <style>{`
-            /* Hide scrollbar for Chrome, Safari and Opera */
-            .flex::-webkit-scrollbar {
-              display: none;
-            }
-          `}</style>
-          {images.map((img, index) => (
-            <div key={index} className="w-full h-full flex-shrink-0 snap-center relative">
-              <img
-                src={img}
-                alt={`Product view ${index + 1}`}
-                className="w-full h-full object-cover rounded-3xl"
-              />
-            </div>
-          ))}
+      <div className="relative w-full aspect-[4/5] sm:h-[500px] max-w-lg mx-auto mt-2 bg-[#1A2E1A] rounded-[2.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.5)] border border-white/5">
+
+        {/* Inner Image Mask Container for the dark border effect */}
+        <div className="absolute inset-1.5 sm:inset-[0.45rem] rounded-[2.2rem] overflow-hidden bg-[#F4F5F0]/50 z-0">
+          {/* Swipeable Main Carousel */}
+          <div
+            ref={scrollRef}
+            onScroll={handleScroll}
+            className="flex w-full h-full overflow-x-auto overflow-y-hidden snap-x snap-mandatory"
+            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none', WebkitOverflowScrolling: 'touch' }}
+          >
+            <style>{`
+              /* Hide scrollbar for Chrome, Safari and Opera */
+              .flex::-webkit-scrollbar {
+                display: none;
+              }
+            `}</style>
+            {images.map((img, index) => (
+              <div key={index} className="w-full h-full flex-shrink-0 snap-center relative">
+                <img
+                  src={img}
+                  alt={`Product view ${index + 1}`}
+                  className="w-full h-full object-cover rounded-[2.2rem]"
+                />
+              </div>
+            ))}
+          </div>
         </div>
 
         {/* Fixed Pagination Dots */}

@@ -110,8 +110,13 @@ function ResinProducts() {
     const currentProducts = filteredProducts.slice(indexOfFirstItem, indexOfLastItem);
     const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
 
-    const handlePreviousPage = () => { if (currentPage > 1) setCurrentPage(currentPage - 1); };
-    const handleNextPage = () => { if (currentPage < totalPages) setCurrentPage(currentPage + 1); };
+    const handlePageChange = (page) => {
+        setCurrentPage(page);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
+    const handlePreviousPage = () => { if (currentPage > 1) handlePageChange(currentPage - 1); };
+    const handleNextPage = () => { if (currentPage < totalPages) handlePageChange(currentPage + 1); };
 
     const maxPagesToShow = 4;
 
@@ -240,15 +245,18 @@ function ResinProducts() {
                                     <Link to={`/product/${product.slug?.current || product._id}`} className="flex flex-col h-full w-full">
 
                                         {/* Gallery Image Container */}
-                                        <div className="w-full aspect-[4/5] overflow-hidden bg-white rounded-[2rem] mb-6 shadow-sm group-hover:shadow-[0_20px_40px_rgba(26,46,26,0.08)] transition-all duration-700 relative">
-                                            <img
-                                                src={urlFor(product.frontImage).url()}
-                                                alt={product.name}
-                                                className="w-full h-full object-cover transition-transform [transition-duration:] [transition-timing-function:] group-hover:scale-105"
-                                            />
+                                        <div className="w-full aspect-[4/5] overflow-hidden bg-[#1A2E1A] rounded-[2.5rem] mb-6 shadow-[0_20px_50px_rgba(0,0,0,0.5)] border border-white/5 transition-all duration-700 relative group-hover:shadow-[0_30px_60px_-15px_rgba(44,62,32,0.15)] group-hover:-translate-y-4">
+                                            {/* Inner Image Mask */}
+                                            <div className="absolute inset-1.5 sm:inset-[0.45rem] rounded-[2.2rem] overflow-hidden bg-[#F4F5F0]/50 z-0">
+                                                <img
+                                                    src={urlFor(product.frontImage).url()}
+                                                    alt={product.name}
+                                                    className="w-full h-full object-cover transition-transform [transition-duration:] [transition-timing-function:] group-hover:scale-105"
+                                                />
+                                            </div>
                                             {/* Minimalist Top Badge */}
                                             <div className="absolute top-5 left-5 z-10 transition-opacity duration-300 group-hover:opacity-0">
-                                                <span className="bg-white/95 backdrop-blur-md text-[#1A2E1A] text-[9px] uppercase tracking-[0.2em] font-bold px-4 py-2 rounded-full shadow-sm">
+                                                <span className="bg-[#2C3E20]/90 backdrop-blur-md text-white text-[9px] uppercase tracking-[0.2em] font-bold px-4 py-2 rounded-full shadow-md border border-white/10">
                                                     {product.category?.[0] || 'Resin'}
                                                 </span>
                                             </div>
@@ -344,7 +352,7 @@ function ResinProducts() {
                                                 ? 'bg-[#1A2E1A] text-white shadow-md'
                                                 : 'bg-white border border-[#1A2E1A]/10 text-[#1A2E1A]/60 hover:text-[#1A2E1A] hover:bg-gray-50 shadow-sm'
                                                 }`}
-                                            onClick={() => setCurrentPage(pageNumber)}
+                                            onClick={() => handlePageChange(pageNumber)}
                                         >
                                             {pageNumber}
                                         </button>
