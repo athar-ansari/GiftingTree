@@ -27,10 +27,10 @@ function Navbar() {
     >
       <div
         className={`
-          flex items-center justify-between px-4 sm:px-6 py-2.5 sm:py-3 mx-4 md:mx-auto w-full transition-all duration-500
+          flex items-center justify-between px-4 sm:px-6 py-2.5 sm:py-3 mx-4 md:mx-10 lg:mx-16 xl:mx-20 2xl:mx-auto w-full transition-all duration-500
           rounded-full border shadow-lg backdrop-blur-2xl
           ${isScrolled
-            ? 'max-w-4xl bg-white/75 border-[#1A2E1A]/10 shadow-[0_8px_30px_rgb(0,0,0,0.06)]'
+            ? 'max-w-4xl lg:max-w-4xl md:max-w-3xl bg-white/75 border-[#1A2E1A]/10 shadow-[0_8px_30px_rgb(0,0,0,0.06)]'
             : 'max-w-7xl bg-white/90 border-white shadow-[0_4px_20px_rgb(0,0,0,0.04)]'}
         `}
       >

@@ -1,12 +1,31 @@
 export const festiveConfig = {
-  // NOTE: Change this activeFestival to 'ramzan', 'eid', 'valentine', 'rakhi', 'diwali' or 'holi' to automatically update the website section.
-  activeFestival: "ramzan",
+  // NOTE: The active festival is now managed via the Sanity Dashboard.
+  // This 'activeFestival' value now only serves as a fallback/default.
+  activeFestival: "standard",
 
   festivals: {
+    standard: {
+      id: "standard",
+      name: "Signature",
+      title: "The Signature Selection",
+      subtitle:
+        "Everyday elegance handcrafted just for you. Discover our signature pieces that add beauty to your home and life, all year round.",
+      heroImage: "/assets/festivals/standard-banner.png",
+      accentStyle: {
+        textHighlight: "text-stone-300",
+        bg: "bg-stone-900/40",
+        buttonGradient: "from-stone-700 to-stone-900",
+        buttonHover: "hover:from-stone-600 hover:to-stone-800",
+        border: "border-stone-800",
+      },
+      accentIcon: "✨",
+      collectionLink: "/resin-products",
+      buttonText: "Browse Full Collection",
+    },
     ramzan: {
       id: "ramzan",
       name: "Ramzan",
-      title: "Ramzan Kareem: Gifting with Grace",
+      title: "Ramzan Kareem Gifting with Grace",
       subtitle:
         "Thoughtful and elegant handcrafted gifts to celebrate the spirit of Ramzan. Perfect for sharing joy and blessings.",
       heroImage: "/assets/festivals/ramzan_banner.png",
@@ -42,7 +61,7 @@ export const festiveConfig = {
     valentine: {
       id: "valentine",
       name: "Valentine",
-      title: "Crafted with Love for Your Special One",
+      title: "Valentine Gift Crafted with Love",
       subtitle:
         "Express your love with our bespoke handcrafted collection. Timeless gifts for the moments that matter most.",
       heroImage: "/assets/festivals/valentine_banner.png",
@@ -60,7 +79,7 @@ export const festiveConfig = {
     rakhi: {
       id: "rakhi",
       name: "Rakhi",
-      title: "Celebrate the Bond of Protection",
+      title: "The Royal Rakhi Edit",
       subtitle:
         "Exquisite handcrafted gifts to cherish the beautiful bond between brothers and sisters. Luxury gifting for Raksha Bandhan.",
       heroImage: "/assets/festivals/rakhi_banner.png",
@@ -75,24 +94,7 @@ export const festiveConfig = {
       collectionLink: "/resin-products",
       buttonText: "Explore Rakhi Gifting",
     },
-    holi: {
-      id: "holi",
-      name: "Holi",
-      title: "Vibrant Gifts for a Colorful Holi",
-      subtitle:
-        "Add a touch of joy and bespoke color to your celebrations with our vibrant handcrafted masterpieces.",
-      heroImage: "/assets/festivals/holi-banner.png",
-      accentStyle: {
-        textHighlight: "text-fuchsia-300",
-        bg: "bg-fuchsia-950/40",
-        buttonGradient: "from-fuchsia-600 to-fuchsia-800",
-        buttonHover: "hover:from-fuchsia-500 hover:to-fuchsia-700",
-        border: "border-fuchsia-800",
-      },
-      accentIcon: "✨",
-      collectionLink: "/resin-products",
-      buttonText: "Discover Vibrant Pieces",
-    },
+
     diwali: {
       id: "diwali",
       name: "Diwali",

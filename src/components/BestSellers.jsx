@@ -111,12 +111,18 @@ const BestSellers = () => {
 
                     {/* Inner Image Mask (creates the floating glass rim effect) */}
                     <div className="absolute inset-1.5 sm:inset-[0.45rem] rounded-[2.2rem] overflow-hidden bg-[#F4F5F0]/50">
-                      <img
-                        src={urlFor(product.frontImage).url()}
-                        alt={`Premium Handcrafted Resin Art: ${product.name} - Best Seller`}
-                        loading="lazy"
-                        className="absolute inset-0 w-full h-full object-cover transition-transform [transition-duration:] [transition-timing-function:] group-hover:scale-110"
-                      />
+                      {product.frontImage ? (
+                        <img
+                          src={urlFor(product.frontImage).url()}
+                          alt={`Premium Handcrafted Resin Art: ${product.name} - Best Seller`}
+                          loading="lazy"
+                          className="absolute inset-0 w-full h-full object-cover transition-transform [transition-duration:] [transition-timing-function:] group-hover:scale-110"
+                        />
+                      ) : (
+                        <div className="absolute inset-0 flex items-center justify-center bg-gray-200 text-gray-400">
+                          No Image
+                        </div>
+                      )}
                     </div>
 
                     {/* Hover Overlay Ambient Flare */}
