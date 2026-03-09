@@ -1,3 +1,4 @@
-import product from './product';
+import product from './product'
+import festivalSettings from './festivalSettings'
 
-export const schemaTypes = [product];
+export const schemaTypes = [product, festivalSettings]

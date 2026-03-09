@@ -1,8 +1,9 @@
-import React, { useRef, useLayoutEffect } from 'react';
+import React, { useRef, useLayoutEffect, useState, useEffect } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { festiveConfig } from '../lib/festivals';
 import { Link } from 'react-router-dom';
+import { client } from '../lib/sanityClient';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -14,9 +15,23 @@ const FestiveCollection = () => {
     const imageRef = useRef(null);
     const contentOverlayRef = useRef(null);
     const textContentRefs = useRef([]);
+    const [activeId, setActiveId] = useState(festiveConfig.activeFestival);
 
-    const activeFestivalId = festiveConfig.activeFestival;
-    const festivalData = festiveConfig.festivals[activeFestivalId];
+    useEffect(() => {
+        const fetchActiveFestival = async () => {
+            try {
+                const settings = await client.fetch('*[_type == "festivalSettings"][0]');
+                if (settings?.activeFestival) {
+                    setActiveId(settings.activeFestival);
+                }
+            } catch (err) {
+                console.error("Error fetching active festival:", err);
+            }
+        };
+        fetchActiveFestival();
+    }, []);
+
+    const festivalData = festiveConfig.festivals[activeId];
 
     // Store refs to the text elements for staggered animation
     const addToRefs = (el) => {
@@ -180,7 +195,7 @@ const FestiveCollection = () => {
                         {/* Premium Button */}
                         <div ref={addToRefs}>
                             <Link
-                                to={festivalData.collectionLink}
+                                to="/festival"
                                 className="group relative inline-flex items-center justify-center"
                             >
                                 {/* Back Glowing Blur */}
