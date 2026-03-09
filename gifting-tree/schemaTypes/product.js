@@ -103,9 +103,25 @@ export default {
 
         // { title: ' ', value: ' ' },
         // { title: ' ', value: ' ' },
-
-         
       },
+    },
+    {
+      name: 'festivals',
+      title: 'Festivals',
+      type: 'array',
+      of: [{type: 'string'}],
+      options: {
+        layout: 'tags',
+        list: [
+          {title: 'Ramzan', value: 'ramzan'},
+          {title: 'Eid', value: 'eid'},
+          {title: 'Valentine', value: 'valentine'},
+          {title: 'Rakhi', value: 'rakhi'},
+          {title: 'Diwali', value: 'diwali'},
+          {title: 'Holi', value: 'holi'},
+        ],
+      },
+      description: 'Select which festivals this product belongs to (can select multiple).',
     },
   ],
 }

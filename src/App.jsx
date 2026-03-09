@@ -4,6 +4,7 @@ import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import ProductDetails from './pages/ProductDetails';
 import ResinProducts from './pages/ResinProducts';
+import FestivalProducts from './pages/FestivalProducts';
 import FloatingWhatsApp from './components/FloatingWhatsApp';
 import { Toaster } from 'react-hot-toast';
 import ScrollToTop from './components/ScrollToTop';
@@ -39,6 +40,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/resin-products" element={<ResinProducts />} />
+        <Route path="/festival" element={<FestivalProducts />} />
         <Route path="/product/:id" element={<ProductDetails />} />
       </Routes>
     </Router>
