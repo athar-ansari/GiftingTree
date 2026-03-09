@@ -20,7 +20,7 @@ const FestiveCollection = () => {
     useEffect(() => {
         const fetchActiveFestival = async () => {
             try {
-                const settings = await client.fetch('*[_type == "festivalSettings"][0]');
+                const settings = await client.fetch('*[_id == "festivalSettings"][0]');
                 if (settings?.activeFestival) {
                     setActiveId(settings.activeFestival);
                 }
@@ -168,8 +168,8 @@ const FestiveCollection = () => {
                         className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/50 to-[#050505]/95 opacity-0"
                     />
 
-                    {/* Foreground Text Container (Centered at the bottom) */}
-                    <div className="relative z-20 w-full max-w-5xl mx-auto px-6 h-full flex flex-col justify-end pb-[10vh] text-center items-center">
+                    {/* Foreground Text Container (Centered in the screen) */}
+                    <div className="relative z-20 w-full max-w-5xl mx-auto px-6 h-full flex flex-col justify-center text-center items-center">
 
                         {/* Eyebrow Label */}
                         <div ref={addToRefs} className="flex items-center gap-4 text-[10px] sm:text-xs tracking-[0.5em] uppercase font-sans font-bold text-white/60 mb-8">
@@ -179,7 +179,7 @@ const FestiveCollection = () => {
                         </div>
 
                         {/* Festival Title */}
-                        <h3 ref={addToRefs} className="text-5xl sm:text-7xl lg:text-[7.5rem] font-light leading-[1.05] tracking-tight text-white mb-8 pb-2">
+                        <h3 ref={addToRefs} className="text-4xl sm:text-6xl lg:text-[6.5rem] font-light leading-[1.15] tracking-tight text-white mb-8 pb-2">
                             {festivalData.title.split(festivalData.name)[0]}
                             <span className="italic font-serif font-thin text-transparent bg-clip-text bg-gradient-to-b from-white via-white/80 to-white/30 px-2 lg:px-4">
                                 {festivalData.name}

@@ -82,7 +82,6 @@ export default {
         },
       ],
       options: {
-        layout: 'dropdown',
         list: [
           {title: 'Best Seller', value: 'best-seller'},
           {title: 'Bookmarks', value: 'bookmarks'},
@@ -100,9 +99,6 @@ export default {
           {title: 'Resin Frame', value: 'resin-frame'},
           {title: 'Other Products', value: 'other-products'},
         ],
-
-        // { title: ' ', value: ' ' },
-        // { title: ' ', value: ' ' },
       },
     },
     {
@@ -111,14 +107,13 @@ export default {
       type: 'array',
       of: [{type: 'string'}],
       options: {
-        layout: 'tags',
         list: [
           {title: 'Ramzan', value: 'ramzan'},
           {title: 'Eid', value: 'eid'},
           {title: 'Valentine', value: 'valentine'},
           {title: 'Rakhi', value: 'rakhi'},
           {title: 'Diwali', value: 'diwali'},
-          {title: 'Holi', value: 'holi'},
+          {title: 'Standard', value: 'standard'},
         ],
       },
       description: 'Select which festivals this product belongs to (can select multiple).',

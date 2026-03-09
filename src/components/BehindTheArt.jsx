@@ -1,7 +1,7 @@
 import React, { useRef, useLayoutEffect, useEffect, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import pouringImg from '../assets/pouringImg.png';
+import pouringImg from '../assets/pouring.png';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -14,7 +14,6 @@ export default function BehindTheArt() {
     const topTextRef = useRef(null);
     const bottomTextRef = useRef(null);
     const subtitleRef = useRef(null);
-    const scanLineRef = useRef(null);
 
     // 4 corner crosshairs
     const tlH = useRef(null); const tlV = useRef(null);
@@ -78,6 +77,9 @@ export default function BehindTheArt() {
                 ease: "power3.out"
             });
 
+            // Initial setup for centering to avoid CSS conflict
+            gsap.set(imageRef.current, { xPercent: -50, yPercent: -50 });
+
             const tl = gsap.timeline({
                 scrollTrigger: {
                     trigger: sectionRef.current,
@@ -115,9 +117,13 @@ export default function BehindTheArt() {
             });
 
             // PHASE 3: Vertical expansion + text split
+            const isMobile = window.innerWidth < 768;
+            const isTablet = window.innerWidth >= 768 && window.innerWidth < 1024;
+
             tl.to(maskRef.current, {
-                height: "85vh",
-                borderRadius: "24px",
+                height: isMobile ? "65vh" : isTablet ? "75vh" : "82vh",
+                width: isMobile ? "94vw" : isTablet ? "90vw" : "80vw",
+                borderRadius: isMobile ? "16px" : "24px",
                 duration: 1.5,
                 ease: "power3.inOut"
             }, "open");
@@ -137,20 +143,16 @@ export default function BehindTheArt() {
             }, "open");
 
             tl.fromTo(imageRef.current, {
-                scale: 1.8,
+                scale: isMobile ? 1.5 : 1.3,
                 filter: "brightness(0.2) grayscale(100%)"
             }, {
-                scale: 1.25,
-                filter: "brightness(0.9) grayscale(20%)",
+                scale: 1,
+                filter: "brightness(0.9) grayscale(10%)",
                 duration: 2.2,
                 ease: "power2.inOut"
             }, "open");
 
-            // Scan line
-            tl.fromTo(scanLineRef.current,
-                { y: "-50vh", opacity: 1 },
-                { y: "50vh", opacity: 0, duration: 1.2, ease: "power1.inOut" },
-                "open+=0.1");
+
 
             // Crosshairs
             tl.fromTo(
@@ -255,23 +257,13 @@ export default function BehindTheArt() {
                     {/* Image */}
                     <div
                         ref={imageRef}
-                        className="absolute w-[100vw] h-[100vh] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-cover bg-[center_10%] origin-center -z-10"
+                        className="absolute w-[110%] h-[110%] top-1/2 left-1/2 bg-cover bg-center origin-center -z-10"
                         style={{ backgroundImage: `url(${pouringImg})` }}
                     />
 
                     <div className="absolute inset-0 bg-black/20 -z-10" />
 
-                    {/* SCAN LINE */}
-                    <div
-                        ref={scanLineRef}
-                        className="absolute left-0 w-full pointer-events-none z-20"
-                        style={{
-                            height: '2px',
-                            opacity: 0,
-                            background: 'linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.85) 20%, rgba(255,255,255,1) 50%, rgba(255,255,255,0.85) 80%, transparent 100%)',
-                            boxShadow: '0 0 16px 4px rgba(255,255,255,0.55), 0 0 40px 8px rgba(255,255,255,0.18)',
-                        }}
-                    />
+
 
                     {/* CROSSHAIRS */}
                     <div ref={tlH} className="absolute top-4 left-4 md:top-8 md:left-8 w-6 h-[1px] bg-white/60 origin-left" style={{ scaleX: 0, opacity: 0 }} />

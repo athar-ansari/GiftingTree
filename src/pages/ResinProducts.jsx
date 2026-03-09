@@ -248,11 +248,17 @@ function ResinProducts() {
                                         <div className="w-full aspect-[4/5] overflow-hidden bg-[#1A2E1A] rounded-[2.5rem] mb-6 shadow-[0_20px_50px_rgba(0,0,0,0.5)] border border-white/5 transition-all duration-700 relative group-hover:shadow-[0_30px_60px_-15px_rgba(44,62,32,0.15)] group-hover:-translate-y-4">
                                             {/* Inner Image Mask */}
                                             <div className="absolute inset-1.5 sm:inset-[0.45rem] rounded-[2.2rem] overflow-hidden bg-[#F4F5F0]/50 z-0">
-                                                <img
-                                                    src={urlFor(product.frontImage).url()}
-                                                    alt={product.name}
-                                                    className="w-full h-full object-cover transition-transform [transition-duration:] [transition-timing-function:] group-hover:scale-105"
-                                                />
+                                                {product.frontImage ? (
+                                                    <img
+                                                        src={urlFor(product.frontImage).url()}
+                                                        alt={product.name}
+                                                        className="w-full h-full object-cover transition-transform [transition-duration:] [transition-timing-function:] group-hover:scale-105"
+                                                    />
+                                                ) : (
+                                                    <div className="w-full h-full flex items-center justify-center bg-gray-200 text-[#1A2E1A]/40">
+                                                        No Image
+                                                    </div>
+                                                )}
                                             </div>
                                             {/* Minimalist Top Badge */}
                                             <div className="absolute top-5 left-5 z-10 transition-opacity duration-300 group-hover:opacity-0">

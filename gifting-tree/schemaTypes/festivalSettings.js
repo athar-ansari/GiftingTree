@@ -1,8 +1,16 @@
 export default {
   name: 'festivalSettings',
-  title: 'Festival Settings',
+  title: 'Global Festival Settings',
   type: 'document',
   fields: [
+    {
+      name: 'title',
+      title: 'Settings Title',
+      type: 'string',
+      initialValue: 'Website Festival Configuration',
+      readOnly: true,
+      hidden: true,
+    },
     {
       name: 'activeFestival',
       title: 'Active Festival',
@@ -15,11 +23,18 @@ export default {
           {title: 'Valentine', value: 'valentine'},
           {title: 'Rakhi', value: 'rakhi'},
           {title: 'Diwali', value: 'diwali'},
-          {title: 'Holi', value: 'holi'},
+          {title: 'Standard (No Festival)', value: 'standard'},
         ],
         layout: 'radio',
       },
       validation: (Rule) => Rule.required(),
     },
   ],
+  preview: {
+    prepare() {
+      return {
+        title: 'Festival Settings',
+      }
+    },
+  },
 }

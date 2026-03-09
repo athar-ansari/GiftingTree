@@ -25,8 +25,8 @@ function FestivalProducts() {
     useEffect(() => {
         const fetchFestivalAndProducts = async () => {
             try {
-                // 1. Fetch active festival from Sanity
-                const settings = await client.fetch('*[_type == "festivalSettings"][0]');
+                // 1. Fetch active festival from Sanity using singleton ID
+                const settings = await client.fetch('*[_id == "festivalSettings"][0]');
                 const activeId = settings?.activeFestival || festiveConfig.activeFestival;
 
                 const festivalData = festiveConfig.festivals[activeId];
@@ -122,11 +122,17 @@ function FestivalProducts() {
                                 >
                                     <Link to={`/product/${product.slug?.current || product._id}`} className="block">
                                         <div className="relative aspect-[4/5] rounded-[2rem] overflow-hidden bg-white/5 mb-8 border border-white/5 group-hover:border-white/20 transition-all duration-700 shadow-2xl">
-                                            <img
-                                                src={urlFor(product.frontImage).url()}
-                                                alt={product.name}
-                                                className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
-                                            />
+                                            {product.frontImage ? (
+                                                <img
+                                                    src={urlFor(product.frontImage).url()}
+                                                    alt={product.name}
+                                                    className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
+                                                />
+                                            ) : (
+                                                <div className="w-full h-full flex items-center justify-center bg-white/10 text-white/40">
+                                                    No Image
+                                                </div>
+                                            )}
                                             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-700" />
 
                                             {/* Quick view button overlay */}
