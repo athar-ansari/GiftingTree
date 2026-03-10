@@ -4,7 +4,7 @@ import { FiTruck, FiPackage, FiMap } from "react-icons/fi";
 
 const Info = () => {
     return (
-        <section className="w-full bg-[#F4F5F0] py-16 lg:py-24 border-t border-[#E8EFE5]/50 overflow-hidden">
+        <section className="w-full bg-[#EAE9E0] py-16 lg:py-24 border-t border-[#E8EFE5]/50 overflow-hidden">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex flex-col md:flex-row justify-between items-center gap-10 md:gap-6 divide-y md:divide-y-0 md:divide-x divide-[#1A2E1A]/10">
 

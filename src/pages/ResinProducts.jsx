@@ -141,7 +141,7 @@ function ResinProducts() {
     };
 
     return (
-        <div className="min-h-screen bg-[#F4F5F0] text-[#1A2E1A] font-sans selection:bg-[#1A2E1A] selection:text-[#F4F5F0] pt-32 pb-24">
+        <div className="min-h-screen bg-[#EAE9E0] text-[#1A2E1A] font-sans selection:bg-[#1A2E1A] selection:text-[#F4F5F0] pt-32 pb-24">
             <Helmet>
                 <title>Premium Resin Products & Customized Gifts | Gifting Tree</title>
                 <meta name="description" content="Shop beautiful handcrafted resin masterpieces at Gifting Tree. Explore our collection of custom keychains, preserved varmala frames, bookmarks, and personalized wedding gifts." />
@@ -247,7 +247,7 @@ function ResinProducts() {
                                         {/* Gallery Image Container */}
                                         <div className="w-full aspect-[4/5] overflow-hidden bg-[#1A2E1A] rounded-[2.5rem] mb-6 shadow-[0_20px_50px_rgba(0,0,0,0.5)] border border-white/5 transition-all duration-700 relative group-hover:shadow-[0_30px_60px_-15px_rgba(44,62,32,0.15)] group-hover:-translate-y-4">
                                             {/* Inner Image Mask */}
-                                            <div className="absolute inset-1.5 sm:inset-[0.45rem] rounded-[2.2rem] overflow-hidden bg-[#F4F5F0]/50 z-0">
+                                            <div className="absolute inset-1.5 sm:inset-[0.45rem] rounded-[2.2rem] overflow-hidden bg-[#EAE9E0]/50 z-0">
                                                 {product.frontImage ? (
                                                     <img
                                                         src={urlFor(product.frontImage).url()}

@@ -55,7 +55,7 @@ function FestivalProducts() {
 
     if (error && minTimePassed) {
         return (
-            <div className="min-h-screen bg-[#F4F5F0] text-[#1A2E1A] flex flex-col items-center justify-center p-4">
+            <div className="min-h-screen bg-[#EAE9E0] text-[#1A2E1A] flex flex-col items-center justify-center p-4">
                 <p className="text-xl font-bold text-red-500">{error}</p>
                 <button onClick={() => window.location.reload()} className="mt-6 px-8 py-3 bg-[#1A2E1A] text-white rounded-full font-bold hover:bg-[#4B5945] transition-colors shadow-xl">Try Again</button>
             </div>
@@ -112,7 +112,7 @@ function FestivalProducts() {
 
     return (
         <>
-            <div className="min-h-screen bg-[#F4F5F0] text-[#1A2E1A] font-sans pt-12 pb-24 selection:bg-[#1A2E1A] selection:text-[#F4F5F0] relative overflow-hidden w-full flex flex-col items-center justify-start z-0">
+            <div className="min-h-screen bg-[#EAE9E0] text-[#1A2E1A] font-sans pt-12 pb-24 selection:bg-[#1A2E1A] selection:text-[#F4F5F0] relative overflow-hidden w-full flex flex-col items-center justify-start z-0">
                 {/* Soft Ambient Background Elements */}
                 <div className="absolute top-0 right-0 w-[50vw] h-[50vw] bg-[#4B5945]/5 rounded-full blur-[120px] -z-10 translate-x-1/3 -translate-y-1/3 pointer-events-none"></div>
                 <div className="absolute bottom-0 left-0 w-[50vw] h-[50vw] bg-[#1A2E1A]/5 rounded-full blur-[120px] -z-10 -translate-x-1/3 translate-y-1/3 pointer-events-none"></div>
@@ -136,7 +136,7 @@ function FestivalProducts() {
                                 onClick={() => navigate('/')}
                                 className="inline-flex items-center text-[#1A2E1A]/70 bg-transparent hover:bg-white border border-transparent hover:border-[#1A2E1A]/10 px-3 md:px-4 py-2 md:py-2.5 rounded-full hover:shadow-[0_4px_20px_rgba(26,46,26,0.05)] text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] transition-all duration-300 group"
                             >
-                                <div className="bg-white group-hover:bg-[#F4F5F0] border border-[#1A2E1A]/10 shadow-sm rounded-full p-2 mr-3 transition-colors duration-300">
+                                <div className="bg-white group-hover:bg-[#EAE9E0] border border-[#1A2E1A]/10 shadow-sm rounded-full p-2 mr-3 transition-colors duration-300">
                                     <FiArrowLeft className="text-sm text-[#1A2E1A] group-hover:-translate-x-0.5 transition-transform" />
                                 </div>
                                 Back to Home
@@ -205,7 +205,7 @@ function FestivalProducts() {
                                             {/* Gallery Image Container */}
                                             <div className="w-full aspect-[4/5] overflow-hidden bg-[#1A2E1A] rounded-[2.5rem] mb-6 shadow-[0_20px_50px_rgba(0,0,0,0.5)] border border-white/5 transition-all duration-700 relative group-hover:shadow-[0_30px_60px_-15px_rgba(44,62,32,0.15)] group-hover:-translate-y-4">
                                                 {/* Inner Image Mask */}
-                                                <div className="absolute inset-1.5 sm:inset-[0.45rem] rounded-[2.2rem] overflow-hidden bg-[#F4F5F0]/50 z-0">
+                                                <div className="absolute inset-1.5 sm:inset-[0.45rem] rounded-[2.2rem] overflow-hidden bg-[#EAE9E0]/50 z-0">
                                                     {product.frontImage ? (
                                                         <img
                                                             src={urlFor(product.frontImage).url()}
@@ -281,7 +281,7 @@ function FestivalProducts() {
                                 animate={{ opacity: 1, y: 0 }}
                                 className="flex flex-col items-center justify-center text-center py-32 px-4 border border-dashed border-[#1A2E1A]/10 bg-white/50 rounded-[3rem] shadow-sm max-w-3xl mx-auto"
                             >
-                                <div className="w-20 h-20 rounded-full bg-[#F4F5F0] flex items-center justify-center mb-6 shadow-sm border border-[#1A2E1A]/5">
+                                <div className="w-20 h-20 rounded-full bg-[#EAE9E0] flex items-center justify-center mb-6 shadow-sm border border-[#1A2E1A]/5">
                                     <FiShoppingBag className="w-8 h-8 text-[#1A2E1A]/30" />
                                 </div>
                                 <h2 className="text-3xl font-bold mb-3 font-notoSerif tracking-tight text-[#1A2E1A]">Collection Coming Soon</h2>

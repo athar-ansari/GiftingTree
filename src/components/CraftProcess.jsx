@@ -33,7 +33,7 @@ const steps = [
 
 const CraftProcess = () => {
   return (
-    <div className="relative z-30 w-full bg-[#F4F5F0] py-24 lg:py-32 border-t border-[#E8EFE5]/50 flex justify-center items-center">
+    <div className="relative z-30 w-full bg-[#EAE9E0] py-24 lg:py-32 border-t border-[#E8EFE5]/50 flex justify-center items-center">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
 
         {/* Minimalist Section Header */}

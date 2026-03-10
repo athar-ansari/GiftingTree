@@ -27,7 +27,7 @@ export default function ArtisanalCollections() {
   return (
     <section
       ref={containerRef}
-      className="py-16 md:py-32 bg-[#FCFBF8] relative overflow-hidden"
+      className="py-16 md:py-32 bg-[#EAE9E0] relative overflow-hidden"
     >
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 

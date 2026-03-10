@@ -42,7 +42,7 @@ const FaqItem = ({ q, a }) => {
         <span className={`font-bold transition-colors duration-400 font-sans text-sm md:text-base tracking-wide ${isOpen ? 'text-[#4B5945]' : 'text-[#1A2E1A] group-hover:text-[#4B5945]'}`}>
           {q}
         </span>
-        <span className={`flex items-center justify-center w-8 h-8 rounded-full transition-all duration-400 shrink-0 ${isOpen ? 'bg-[#1A2E1A] text-white rotate-180' : 'bg-transparent text-[#1A2E1A]/40 group-hover:bg-[#F4F5F0] group-hover:text-[#1A2E1A]'}`}>
+        <span className={`flex items-center justify-center w-8 h-8 rounded-full transition-all duration-400 shrink-0 ${isOpen ? 'bg-[#1A2E1A] text-white rotate-180' : 'bg-transparent text-[#1A2E1A]/40 group-hover:bg-[#EAE9E0] group-hover:text-[#1A2E1A]'}`}>
           <FiChevronDown className="text-lg" />
         </span>
       </button>
@@ -156,6 +156,16 @@ function ProductDetails() {
     openWhatsApp();
   };
 
+  const handleBack = () => {
+    // If user arrived directly (e.g. via shared link), history stack is small.
+    // We send them to homepage instead of trying to go back to an external app/empty tab.
+    if (window.history.length <= 2) {
+      navigate('/');
+    } else {
+      navigate(-1);
+    }
+  };
+
   const handleShare = async () => {
     // Both Desktop & Mobile: Copy link to clipboard and show toast
     try {
@@ -264,7 +274,7 @@ function ProductDetails() {
       )}
 
       {loading && (
-        <div className="min-h-screen bg-[#F4F5F0] py-12 md:py-20 font-sans">
+        <div className="min-h-screen bg-[#EAE9E0] py-12 md:py-20 font-sans">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             {/* Back Button Skeleton */}
             <div className="mb-8 md:mb-12 w-32 h-10 bg-[#1A2E1A]/10 rounded-full animate-pulse"></div>
@@ -298,17 +308,17 @@ function ProductDetails() {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          className="min-h-screen bg-[#F4F5F0] py-12 md:py-20 font-sans selection:bg-[#1A2E1A] selection:text-[#F4F5F0]"
+          className="min-h-screen bg-[#EAE9E0] py-12 md:py-20 font-sans selection:bg-[#1A2E1A] selection:text-[#F4F5F0]"
         >
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex justify-between items-center mb-8 md:mb-10 relative z-20">
               <motion.button
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                onClick={() => navigate(-1)}
+                onClick={handleBack}
                 className="inline-flex items-center text-[#1A2E1A]/70 bg-transparent hover:bg-white border border-transparent hover:border-[#1A2E1A]/10 px-3 md:px-4 py-2 md:py-2.5 rounded-full hover:shadow-[0_4px_20px_rgba(26,46,26,0.05)] text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] transition-all duration-300 group"
               >
-                <div className="bg-white group-hover:bg-[#F4F5F0] border border-[#1A2E1A]/10 shadow-sm rounded-full p-2 mr-3 transition-colors duration-300">
+                <div className="bg-white group-hover:bg-[#EAE9E0] border border-[#1A2E1A]/10 shadow-sm rounded-full p-2 mr-3 transition-colors duration-300">
                   <FiArrowLeft className="text-sm text-[#1A2E1A] group-hover:-translate-x-0.5 transition-transform" />
                 </div>
                 Back to Gallery
@@ -416,7 +426,7 @@ function ProductDetails() {
                           onClick={() => setSelectedSize(size)}
                           className={`relative overflow-hidden p-5 rounded-3xl border transition-all duration-400 flex flex-col items-center justify-center gap-2 group ${selectedSize?.size === size.size
                             ? 'border-[#1A2E1A] bg-[#1A2E1A] text-white shadow-[0_12px_24px_rgba(26,46,26,0.2)] transform scale-[1.02]'
-                            : 'border-[#1A2E1A]/10 bg-white hover:border-[#1A2E1A]/30 text-[#1A2E1A] hover:bg-[#F4F5F0] hover:shadow-[0_8px_20px_rgba(26,46,26,0.06)]'
+                            : 'border-[#1A2E1A]/10 bg-white hover:border-[#1A2E1A]/30 text-[#1A2E1A] hover:bg-[#EAE9E0] hover:shadow-[0_8px_20px_rgba(26,46,26,0.06)]'
                             }`}
                         >
                           {selectedSize?.size === size.size && (
@@ -476,7 +486,7 @@ function ProductDetails() {
                     onClick={handleCustomize}
                     className={`relative group overflow-hidden w-full flex items-center justify-center font-bold px-8 py-5 md:py-6 rounded-3xl transition-all duration-500
                     ${product?.sizes && product.sizes.length > 0 && !selectedSize
-                        ? 'bg-[#F4F5F0] text-gray-400 cursor-not-allowed border border-[#1A2E1A]/10'
+                        ? 'bg-[#EAE9E0] text-gray-400 cursor-not-allowed border border-[#1A2E1A]/10'
                         : 'bg-[#1A2E1A] border border-[#1A2E1A]/20 text-white shadow-[0_10px_35px_rgba(26,46,26,0.2)] hover:shadow-[0_20px_50px_rgba(26,46,26,0.3)] hover:-translate-y-1'
                       }`}
                   >
@@ -508,7 +518,7 @@ function ProductDetails() {
 
                   <div className="bg-white rounded-[2rem] p-6 sm:p-8 border border-[#1A2E1A]/5 shadow-[0_4px_20px_rgba(26,46,26,0.03)] relative overflow-hidden">
                     {/* Decorative faint background element */}
-                    <div className="absolute -top-20 -right-20 w-64 h-64 bg-[#F4F5F0] rounded-full blur-3xl opacity-50 z-0"></div>
+                    <div className="absolute -top-20 -right-20 w-64 h-64 bg-[#EAE9E0] rounded-full blur-3xl opacity-50 z-0"></div>
                     <div className="relative z-10">
                       {faqs.map((faq, idx) => (
                         <FaqItem key={idx} q={faq.q} a={faq.a} />
@@ -526,7 +536,7 @@ function ProductDetails() {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.9 }}
                   onClick={handleShare}
-                  className="relative overflow-hidden flex items-center justify-center min-w-[56px] h-[56px] rounded-[1.25rem] bg-white border border-[#1A2E1A]/10 text-[#4B5945] shadow-[0_4px_15px_rgba(26,46,26,0.04)] active:bg-[#F4F5F0] transition-all group"
+                  className="relative overflow-hidden flex items-center justify-center min-w-[56px] h-[56px] rounded-[1.25rem] bg-white border border-[#1A2E1A]/10 text-[#4B5945] shadow-[0_4px_15px_rgba(26,46,26,0.04)] active:bg-[#EAE9E0] transition-all group"
                 >
                   <span className="absolute inset-0 w-full h-full bg-gradient-to-tr from-transparent via-white/60 to-transparent -translate-x-[150%] active:translate-x-[150%] transition-transform duration-500 ease-in-out"></span>
                   <FiShare2 className="text-[22px] group-hover:text-[#1A2E1A] group-active:-rotate-12 group-active:-translate-y-0.5 transition-all duration-300 relative z-10" />
@@ -546,7 +556,7 @@ function ProductDetails() {
                   onClick={handleCustomize}
                   className={`flex-1 relative overflow-hidden flex items-center justify-center font-bold px-4 py-4 rounded-[1.25rem] transition-all
                   ${product?.sizes && product.sizes.length > 0 && !selectedSize
-                      ? 'bg-[#F4F5F0] text-gray-400 cursor-not-allowed border border-[#1A2E1A]/5'
+                      ? 'bg-[#EAE9E0] text-gray-400 cursor-not-allowed border border-[#1A2E1A]/5'
                       : 'bg-[#1A2E1A] text-white hover:-translate-y-0.5 shadow-[0_8px_25px_rgba(26,46,26,0.2)]'
                     }`}
                 >

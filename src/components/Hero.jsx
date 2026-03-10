@@ -5,7 +5,7 @@ import collageImg from "../assets/Hero.png";
 
 const Hero = () => {
     return (
-        <section className="relative w-full bg-[#F4F5F0] overflow-hidden pt-36 pb-16 lg:pt-36 lg:pb-24">
+        <section className="relative w-full bg-[#EAE9E0] overflow-hidden pt-36 pb-16 lg:pt-36 lg:pb-24">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-12">
 
