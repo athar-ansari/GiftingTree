@@ -33,7 +33,7 @@ const guideCategories = [
 
 export default function GiftingGuide() {
     return (
-        <section className="w-full bg-[#F4F5F0] py-24 lg:py-32 overflow-hidden border-t border-[#E8EFE5]/50">
+        <section className="w-full bg-[#EAE9E0] py-24 lg:py-32 overflow-hidden border-t border-[#E8EFE5]/50">
             <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
 
                 {/* Minimalist Section Header */}
