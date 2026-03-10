@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FiArrowLeft, FiChevronDown, FiChevronUp } from 'react-icons/fi';
+import { FiArrowLeft, FiChevronDown, FiChevronUp, FiShare2 } from 'react-icons/fi';
 import { FaWhatsapp } from 'react-icons/fa';
 import { Helmet } from 'react-helmet-async';
 import toast from 'react-hot-toast';
@@ -37,15 +37,19 @@ const faqs = [
 const FaqItem = ({ q, a }) => {
   const [isOpen, setIsOpen] = useState(false);
   return (
-    <div className="border-b border-[#1A2E1A]/10 py-5">
-      <button onClick={() => setIsOpen(!isOpen)} className="w-full flex justify-between items-center text-left focus:outline-none group">
-        <span className="font-bold text-[#1A2E1A] transition-colors group-hover:text-[#4B5945] font-notoSerif text-lg">{q}</span>
-        <span className="text-[#1A2E1A]/40 transition-transform duration-500 group-hover:text-[#1A2E1A]">{isOpen ? <FiChevronUp className="text-xl" /> : <FiChevronDown className="text-xl" />}</span>
+    <div className="border-b border-[#1A2E1A]/10 py-5 group last:border-b-0">
+      <button onClick={() => setIsOpen(!isOpen)} className="w-full flex justify-between items-center text-left focus:outline-none">
+        <span className={`font-bold transition-colors duration-400 font-sans text-sm md:text-base tracking-wide ${isOpen ? 'text-[#4B5945]' : 'text-[#1A2E1A] group-hover:text-[#4B5945]'}`}>
+          {q}
+        </span>
+        <span className={`flex items-center justify-center w-8 h-8 rounded-full transition-all duration-400 shrink-0 ${isOpen ? 'bg-[#1A2E1A] text-white rotate-180' : 'bg-transparent text-[#1A2E1A]/40 group-hover:bg-[#F4F5F0] group-hover:text-[#1A2E1A]'}`}>
+          <FiChevronDown className="text-lg" />
+        </span>
       </button>
       <AnimatePresence>
         {isOpen && (
-          <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1, transition: { duration: 0.3, ease: "easeOut" } }} exit={{ height: 0, opacity: 0, transition: { duration: 0.2 } }} className="overflow-hidden">
-            <p className="pt-4 text-[#1A2E1A]/70 text-sm md:text-base font-medium leading-relaxed font-sans">{a}</p>
+          <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1, transition: { duration: 0.4, ease: [0.04, 0.62, 0.23, 0.98] } }} exit={{ height: 0, opacity: 0, transition: { duration: 0.3, ease: "easeIn" } }} className="overflow-hidden">
+            <p className="pt-5 pb-2 text-[#1A2E1A]/60 text-sm md:text-[15px] font-medium leading-[1.8] font-sans pr-10">{a}</p>
           </motion.div>
         )}
       </AnimatePresence>
@@ -152,6 +156,49 @@ function ProductDetails() {
     openWhatsApp();
   };
 
+  const handleShare = async () => {
+    // Both Desktop & Mobile: Copy link to clipboard and show toast
+    try {
+      await navigator.clipboard.writeText(window.location.href);
+      toast.success('Link copied to clipboard ✨', {
+        duration: 3000,
+        style: {
+          border: '1px solid rgba(26,46,26,0.1)',
+          padding: '12px 20px',
+          color: '#1A2E1A',
+          fontWeight: '600',
+          fontSize: '14px',
+          borderRadius: '100px',
+          background: '#ffffff',
+          boxShadow: '0 8px 30px rgba(0,0,0,0.06)'
+        },
+        iconTheme: {
+          primary: '#1A2E1A',
+          secondary: '#ffffff',
+        },
+      });
+    } catch (err) {
+      console.error('Failed to copy link:', err);
+      toast.error('Failed to copy link 😔');
+    }
+
+    // Immediately trigger native share if mobile (setTimeout blocks navigator.share as it requires user gesture)
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    if (isMobile && navigator.share) {
+      try {
+        await navigator.share({
+          title: `${product.name} | Gifting Tree`,
+          text: `Check out this amazing ${product.name} on Gifting Tree!`,
+          url: window.location.href,
+        });
+      } catch (err) {
+        if (err.name !== 'AbortError') {
+          console.error('Error sharing:', err);
+        }
+      }
+    }
+  };
+
   return (
     <>
       {product && (
@@ -254,16 +301,32 @@ function ProductDetails() {
           className="min-h-screen bg-[#F4F5F0] py-12 md:py-20 font-sans selection:bg-[#1A2E1A] selection:text-[#F4F5F0]"
         >
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            {/* Back Button */}
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={() => navigate(-1)}
-              className="mb-8 md:mb-12 inline-flex items-center text-[#1A2E1A]/60 bg-white border border-[#1A2E1A]/10 px-5 py-2.5 rounded-full shadow-sm text-sm font-bold uppercase tracking-widest hover:text-[#1A2E1A] hover:border-[#1A2E1A]/30 hover:shadow-md transition-all duration-300 group"
-            >
-              <FiArrowLeft className="mr-2.5 text-lg group-hover:-translate-x-1 transition-transform" />
-              Back to Gallery
-            </motion.button>
+            <div className="flex justify-between items-center mb-8 md:mb-10 relative z-20">
+              <motion.button
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                onClick={() => navigate(-1)}
+                className="inline-flex items-center text-[#1A2E1A]/70 bg-transparent hover:bg-white border border-transparent hover:border-[#1A2E1A]/10 px-3 md:px-4 py-2 md:py-2.5 rounded-full hover:shadow-[0_4px_20px_rgba(26,46,26,0.05)] text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] transition-all duration-300 group"
+              >
+                <div className="bg-white group-hover:bg-[#F4F5F0] border border-[#1A2E1A]/10 shadow-sm rounded-full p-2 mr-3 transition-colors duration-300">
+                  <FiArrowLeft className="text-sm text-[#1A2E1A] group-hover:-translate-x-0.5 transition-transform" />
+                </div>
+                Back to Gallery
+              </motion.button>
+
+              <motion.button
+                whileHover={{ scale: 1.02, y: -2 }}
+                whileTap={{ scale: 0.98 }}
+                onClick={handleShare}
+                className="relative overflow-hidden inline-flex items-center gap-2 md:gap-3 text-[#1A2E1A] bg-white px-5 md:px-6 py-2.5 md:py-3 rounded-full text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] shadow-[0_4px_15px_rgba(26,46,26,0.06)] hover:shadow-[0_10px_30px_rgba(26,46,26,0.12)] border border-[#1A2E1A]/10 hover:border-[#1A2E1A]/30 transition-all duration-400 group focus:outline-none"
+              >
+                {/* Shiny overlay effect */}
+                <span className="absolute inset-0 w-full h-full bg-gradient-to-tr from-transparent via-white/40 to-transparent -translate-x-[150%] group-hover:translate-x-[150%] transition-transform duration-700 ease-in-out"></span>
+                <FiShare2 className="text-base relative z-10 text-[#4B5945] group-hover:text-[#1A2E1A] group-hover:-translate-y-0.5 group-hover:rotate-12 transition-all duration-300" />
+                <span className="hidden sm:inline relative z-10 text-[#1A2E1A]/70 group-hover:text-[#1A2E1A] transition-colors duration-300">Share Product</span>
+                <span className="sm:hidden relative z-10 text-[#1A2E1A]/70 group-hover:text-[#1A2E1A] transition-colors duration-300">Share</span>
+              </motion.button>
+            </div>
 
             <div className="flex flex-col lg:flex-row gap-10 lg:gap-20">
               {/* Image Gallery - Sticky on Desktop */}
@@ -279,7 +342,7 @@ function ProductDetails() {
                 <motion.h1
                   initial={{ y: 20, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
-                  className="text-4xl md:text-5xl lg:text-5xl font-bold font-notoSerif text-[#1A2E1A] tracking-tight leading-tight mb-4"
+                  className="text-4xl md:text-5xl lg:text-[3.5rem] font-bold font-notoSerif text-[#1A2E1A] tracking-tighter leading-[1.1] mb-5 md:mb-6"
                 >
                   {product.name}
                 </motion.h1>
@@ -289,15 +352,15 @@ function ProductDetails() {
                   initial={{ y: 20, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ delay: 0.1 }}
-                  className="text-[#1A2E1A]/70 text-base md:text-lg mb-6 leading-relaxed font-medium"
+                  className="text-[#1A2E1A]/70 text-base md:text-[1.1rem] mb-8 leading-[1.8] font-medium max-w-[95%]"
                 >
                   {product.description}
                 </motion.p>
 
                 {/* Categories */}
-                <div className="flex flex-wrap gap-3 mb-10">
+                <div className="flex flex-wrap gap-2.5 mb-12">
                   {product.category && product.category.length > 0 && product.category.map((cat, index) => (
-                    <span key={index} className="inline-flex items-center gap-x-2 py-2 px-4 rounded-full text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] bg-white border border-[#1A2E1A]/10 text-[#1A2E1A] shadow-sm">
+                    <span key={index} className="inline-flex items-center gap-x-2 py-1.5 px-4 rounded-full text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] bg-white border border-[#1A2E1A]/10 text-[#1A2E1A] shadow-sm hover:shadow-md hover:border-[#1A2E1A]/20 transition-all cursor-default">
                       <span className="w-1.5 h-1.5 inline-block rounded-full bg-[#4B5945]"></span>
                       {categoryMapping[cat] || cat}
                     </span>
@@ -309,18 +372,22 @@ function ProductDetails() {
                     initial={{ y: 20, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     transition={{ delay: 0.2 }}
-                    className="mb-10"
+                    className="mb-12 bg-white rounded-[2rem] p-6 sm:p-8 border border-[#1A2E1A]/5 shadow-[0_4px_20px_rgba(26,46,26,0.03)]"
                   >
-                    <h3 className="text-lg font-semibold mb-3">Specifications : </h3>
-                    <ul className="list-disc list-inside space-y-2 ">
+                    <h3 className="text-sm font-bold uppercase tracking-[0.2em] text-[#1A2E1A]/60 mb-5 relative inline-block">
+                      Specifications
+                      <span className="absolute -bottom-2 left-0 w-8 h-[2px] bg-[#4B5945]/40"></span>
+                    </h3>
+                    <ul className="space-y-3.5">
                       {product.specifications.map((spec, index) => (
                         <motion.li
                           key={index}
                           initial={{ x: -20, opacity: 0 }}
                           animate={{ x: 0, opacity: 1 }}
                           transition={{ delay: 0.2 + index * 0.1 }}
-                          className="text-gray-600"
+                          className="text-[#1A2E1A]/80 font-medium flex items-start gap-3"
                         >
+                          <span className="w-1.5 h-1.5 rounded-full bg-[#1A2E1A]/30 mt-2 shrink-0"></span>
                           {spec}
                         </motion.li>
                       ))}
@@ -334,25 +401,29 @@ function ProductDetails() {
                     initial={{ y: 20, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     transition={{ delay: 0.3 }}
-                    className="mb-8"
+                    className="mb-12"
                   >
-                    <div className="flex justify-between items-baseline mb-4">
-                      <h3 className="text-lg font-bold text-[#1A2E1A] font-notoSerif">Select Dimensions</h3>
-                      {!selectedSize && <span className="text-xs font-bold text-red-500 uppercase tracking-widest bg-red-50 px-3 py-1 rounded-full border border-red-100">Required *</span>}
+                    <div className="flex justify-between items-baseline mb-6">
+                      <h3 className="text-2xl font-bold text-[#1A2E1A] font-notoSerif tracking-tight">Select Dimensions</h3>
+                      {!selectedSize && <span className="text-[10px] font-bold text-red-500 uppercase tracking-widest bg-red-50/80 px-4 py-1.5 rounded-full border border-red-500/20 shadow-sm animate-pulse-slow">Required *</span>}
                     </div>
-                    <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                    <div className="grid grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-4">
                       {product.sizes.map((size, index) => (
                         <motion.button
                           key={size.size}
+                          whileHover={{ y: -2 }}
                           whileTap={{ scale: 0.98 }}
                           onClick={() => setSelectedSize(size)}
-                          className={`p-4 rounded-2xl border transition-all duration-300 flex flex-col items-center justify-center gap-2 group ${selectedSize?.size === size.size
-                            ? 'border-[#1A2E1A] bg-[#1A2E1A] text-white shadow-[0_10px_20px_rgba(26,46,26,0.15)] transform scale-[1.02]'
-                            : 'border-[#1A2E1A]/10 bg-white hover:border-[#1A2E1A]/40 text-[#1A2E1A] hover:bg-[#F4F5F0] hover:shadow-sm'
+                          className={`relative overflow-hidden p-5 rounded-3xl border transition-all duration-400 flex flex-col items-center justify-center gap-2 group ${selectedSize?.size === size.size
+                            ? 'border-[#1A2E1A] bg-[#1A2E1A] text-white shadow-[0_12px_24px_rgba(26,46,26,0.2)] transform scale-[1.02]'
+                            : 'border-[#1A2E1A]/10 bg-white hover:border-[#1A2E1A]/30 text-[#1A2E1A] hover:bg-[#F4F5F0] hover:shadow-[0_8px_20px_rgba(26,46,26,0.06)]'
                             }`}
                         >
-                          <div className={`text-sm font-bold tracking-wide ${selectedSize?.size === size.size ? 'text-white' : 'text-[#1A2E1A]/70 group-hover:text-[#1A2E1A]'}`}>{size.size}</div>
-                          <div className={`text-xl font-black tracking-tight ${selectedSize?.size === size.size ? 'text-[#F4F5F0]' : 'text-[#4B5945]'}`}>₹{size.price}</div>
+                          {selectedSize?.size === size.size && (
+                            <span className="absolute inset-0 w-full h-full bg-gradient-to-tr from-transparent via-white/10 to-transparent -translate-x-[150%] animate-shimmer"></span>
+                          )}
+                          <div className={`text-xs md:text-sm font-bold tracking-widest uppercase z-10 ${selectedSize?.size === size.size ? 'text-white/80' : 'text-[#1A2E1A]/50 group-hover:text-[#1A2E1A]/80'}`}>{size.size}</div>
+                          <div className={`text-xl md:text-2xl font-black tracking-tighter z-10 ${selectedSize?.size === size.size ? 'text-white' : 'text-[#1A2E1A]'}`}>₹{size.price}</div>
                         </motion.button>
                       ))}
                     </div>
@@ -367,9 +438,11 @@ function ProductDetails() {
                   className="mb-8"
                 >
                   {!product.sizes && (
-                    <div className="flex flex-col">
-                      <span className="text-[10px] text-[#1A2E1A]/40 uppercase font-black tracking-[0.2em] mb-1">Total Price</span>
-                      <span className="text-4xl font-bold text-[#4B5945] tracking-tight">₹{product.basePrice}</span>
+                    <div className="flex flex-col mb-12 bg-white rounded-[2rem] p-6 sm:p-8 border border-[#1A2E1A]/5 shadow-[0_4px_20px_rgba(26,46,26,0.03)] items-start">
+                      <span className="text-[10px] text-[#1A2E1A]/50 uppercase font-bold tracking-[0.2em] mb-2 flex items-center gap-2">
+                        Price
+                      </span>
+                      <span className="text-4xl md:text-5xl font-black text-[#1A2E1A] tracking-tighter">₹{product.basePrice}</span>
                     </div>
                   )}
                 </motion.div>
@@ -401,19 +474,19 @@ function ProductDetails() {
                   <motion.button
                     whileTap={product?.sizes && product.sizes.length > 0 && !selectedSize ? {} : { scale: 0.98 }}
                     onClick={handleCustomize}
-                    className={`relative group overflow-hidden w-full flex items-center justify-center font-bold px-8 py-5 rounded-3xl transition-all duration-500
+                    className={`relative group overflow-hidden w-full flex items-center justify-center font-bold px-8 py-5 md:py-6 rounded-3xl transition-all duration-500
                     ${product?.sizes && product.sizes.length > 0 && !selectedSize
-                        ? 'bg-gray-100 text-gray-400 cursor-not-allowed border border-gray-200'
-                        : 'bg-[#1A2E1A] border border-[#1A2E1A]/20 text-white shadow-[0_8px_30px_rgba(26,46,26,0.15)] hover:shadow-[0_15px_40px_rgba(26,46,26,0.25)] hover:bg-[#2C3E20]'
+                        ? 'bg-[#F4F5F0] text-gray-400 cursor-not-allowed border border-[#1A2E1A]/10'
+                        : 'bg-[#1A2E1A] border border-[#1A2E1A]/20 text-white shadow-[0_10px_35px_rgba(26,46,26,0.2)] hover:shadow-[0_20px_50px_rgba(26,46,26,0.3)] hover:-translate-y-1'
                       }`}
                   >
                     {/* Subtle Glow Layer */}
                     {!(product?.sizes && product.sizes.length > 0 && !selectedSize) && (
-                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#25D366]/20 to-transparent translate-x-[-150%] group-hover:translate-x-[150%] transition-transform [transition-duration:] ease-in-out pointer-events-none z-0"></div>
+                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent translate-x-[-150%] group-hover:translate-x-[150%] transition-transform duration-1000 ease-in-out pointer-events-none z-0"></div>
                     )}
 
-                    <span className={`relative z-10 flex items-center text-sm tracking-[0.2em] uppercase font-bold drop-shadow-sm font-sans shrink-0 ${product?.sizes && product.sizes.length > 0 && !selectedSize ? 'text-[#1A2E1A]/40' : 'text-white'}`}>
-                      <FaWhatsapp className={`mr-3 text-2xl group-hover:scale-110 transition-transform duration-300 ${product?.sizes && product.sizes.length > 0 && !selectedSize ? 'text-[#1A2E1A]/40' : 'text-[#25D366]'}`} />
+                    <span className={`relative z-10 flex items-center text-xs md:text-sm tracking-[0.25em] uppercase font-bold drop-shadow-sm font-sans shrink-0 ${product?.sizes && product.sizes.length > 0 && !selectedSize ? 'text-[#1A2E1A]/30' : 'text-white'}`}>
+                      <FaWhatsapp className={`mr-3 md:mr-4 text-2xl md:text-[28px] group-hover:scale-110 transition-transform duration-300 ${product?.sizes && product.sizes.length > 0 && !selectedSize ? 'text-[#1A2E1A]/30' : 'text-[#25D366]'}`} />
                       {product?.sizes && product.sizes.length > 0 && !selectedSize
                         ? 'Select Dimensions First'
                         : 'Customize on WhatsApp'}
@@ -426,12 +499,16 @@ function ProductDetails() {
                   initial={{ y: 20, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ delay: 0.7 }}
-                  className="mt-12 pt-8 border-t border-[#1A2E1A]/10"
+                  className="mt-16 pt-8 border-t border-[#1A2E1A]/10"
                 >
-                  <h3 className="text-2xl font-bold font-notoSerif text-[#1A2E1A] mb-8 tracking-tight">Frequently Asked Questions</h3>
-                  <div className="bg-white rounded-[2rem] p-6 sm:p-8 shadow-sm border border-[#1A2E1A]/5 relative overflow-hidden">
-                    {/* Decorative faint watermark corner */}
-                    <div className="absolute -top-10 -right-10 w-32 h-32 bg-[#F4F5F0] rounded-full blur-2xl opacity-60"></div>
+                  <div className="flex flex-col items-start mb-8 gap-1">
+                    <span className="text-[10px] font-bold tracking-[0.3em] uppercase text-[#1A2E1A]/50">Got Questions?</span>
+                    <h3 className="text-2xl md:text-[2rem] font-bold font-notoSerif text-[#1A2E1A] tracking-tighter">Frequently Asked</h3>
+                  </div>
+
+                  <div className="bg-white rounded-[2rem] p-6 sm:p-8 border border-[#1A2E1A]/5 shadow-[0_4px_20px_rgba(26,46,26,0.03)] relative overflow-hidden">
+                    {/* Decorative faint background element */}
+                    <div className="absolute -top-20 -right-20 w-64 h-64 bg-[#F4F5F0] rounded-full blur-3xl opacity-50 z-0"></div>
                     <div className="relative z-10">
                       {faqs.map((faq, idx) => (
                         <FaqItem key={idx} q={faq.q} a={faq.a} />
@@ -443,11 +520,20 @@ function ProductDetails() {
             </div>
 
             {/* Sticky Mobile Action Bar */}
-            <div className="sm:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-xl border-t border-[#1A2E1A]/10 p-4 pb-6 shadow-[0_-10px_30px_rgba(26,46,26,0.06)] transition-transform duration-300">
-              <div className="flex items-center justify-between w-full max-w-7xl mx-auto gap-3">
-                <div className="flex flex-col min-w-[30%]">
-                  <span className="text-[10px] uppercase font-black tracking-[0.2em] text-[#1A2E1A]/40 mb-1">Total</span>
-                  <span className={selectedSize || !product.sizes || product.sizes.length === 0 ? "text-xl font-bold text-[#4B5945] tracking-tight" : "text-[10px] font-bold text-red-500 uppercase tracking-widest mt-1"}>
+            <div className="sm:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/80 backdrop-blur-2xl border-t border-[#1A2E1A]/5 p-4 pb-6 shadow-[0_-20px_40px_rgba(26,46,26,0.06)] transition-transform duration-300">
+              <div className="flex items-center justify-between w-full max-w-7xl mx-auto gap-4">
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.9 }}
+                  onClick={handleShare}
+                  className="relative overflow-hidden flex items-center justify-center min-w-[56px] h-[56px] rounded-[1.25rem] bg-white border border-[#1A2E1A]/10 text-[#4B5945] shadow-[0_4px_15px_rgba(26,46,26,0.04)] active:bg-[#F4F5F0] transition-all group"
+                >
+                  <span className="absolute inset-0 w-full h-full bg-gradient-to-tr from-transparent via-white/60 to-transparent -translate-x-[150%] active:translate-x-[150%] transition-transform duration-500 ease-in-out"></span>
+                  <FiShare2 className="text-[22px] group-hover:text-[#1A2E1A] group-active:-rotate-12 group-active:-translate-y-0.5 transition-all duration-300 relative z-10" />
+                </motion.button>
+                <div className="flex flex-col min-w-[20%]">
+                  <span className="text-[9px] uppercase font-bold tracking-[0.25em] text-[#1A2E1A]/40 mb-1">Total</span>
+                  <span className={selectedSize || !product.sizes || product.sizes.length === 0 ? "text-[22px] font-black text-[#1A2E1A] tracking-tighter" : "text-[10px] font-bold text-red-500 uppercase tracking-widest mt-1"}>
                     {selectedSize
                       ? `₹${selectedSize.price}`
                       : (!product.sizes || product.sizes.length === 0) && product.basePrice
@@ -458,14 +544,14 @@ function ProductDetails() {
                 <motion.button
                   whileTap={product?.sizes && product.sizes.length > 0 && !selectedSize ? {} : { scale: 0.95 }}
                   onClick={handleCustomize}
-                  className={`flex-1 relative overflow-hidden flex items-center justify-center font-bold px-4 py-4 rounded-2xl transition-all shadow-sm
+                  className={`flex-1 relative overflow-hidden flex items-center justify-center font-bold px-4 py-4 rounded-[1.25rem] transition-all
                   ${product?.sizes && product.sizes.length > 0 && !selectedSize
-                      ? 'bg-gray-100 text-gray-400 cursor-not-allowed border border-gray-200'
-                      : 'bg-[#1A2E1A] text-white hover:bg-[#2C3E20] border border-[#1A2E1A]/20 shadow-[0_4px_15px_rgba(26,46,26,0.2)]'
+                      ? 'bg-[#F4F5F0] text-gray-400 cursor-not-allowed border border-[#1A2E1A]/5'
+                      : 'bg-[#1A2E1A] text-white hover:-translate-y-0.5 shadow-[0_8px_25px_rgba(26,46,26,0.2)]'
                     }`}
                 >
-                  <span className={`relative z-10 flex items-center text-[10px] sm:text-xs tracking-widest uppercase truncate shrink-0 ${product?.sizes && product.sizes.length > 0 && !selectedSize ? 'text-[#1A2E1A]/40' : 'text-white'}`}>
-                    <FaWhatsapp className={`mr-2 text-lg ${product?.sizes && product.sizes.length > 0 && !selectedSize ? 'text-[#1A2E1A]/40' : 'text-[#25D366]'}`} />
+                  <span className={`relative z-10 flex items-center text-[10px] sm:text-xs tracking-[0.2em] uppercase truncate shrink-0 ${product?.sizes && product.sizes.length > 0 && !selectedSize ? 'text-[#1A2E1A]/40' : 'text-white'}`}>
+                    <FaWhatsapp className={`mr-2.5 text-xl ${product?.sizes && product.sizes.length > 0 && !selectedSize ? 'text-[#1A2E1A]/40' : 'text-[#25D366]'}`} />
                     {product?.sizes && product.sizes.length > 0 && !selectedSize
                       ? 'Select Size'
                       : 'Customize'}
