@@ -50,3 +50,10 @@ To get a local copy up and running, follow these steps.
    ```sh
    npm run dev
    ```
+
+## 🚀 Live Link
+
+- https://giftingtree.vercel.app/
+- https://zufeshan.vercel.app/
+- https://ghazia.vercel.app/
+- https://gifting-tree.vercel.app/
