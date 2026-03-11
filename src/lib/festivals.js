@@ -10,7 +10,7 @@ export const festiveConfig = {
       title: "The Signature Selection",
       subtitle:
         "Everyday elegance handcrafted just for you. Discover our signature pieces that add beauty to your home and life, all year round.",
-      heroImage: "/assets/festivals/standard-banner.png",
+      heroImage: "/assets/festivals/standard_banner.webp",
       accentStyle: {
         textHighlight: "text-stone-300",
         bg: "bg-stone-900/40",
@@ -28,7 +28,7 @@ export const festiveConfig = {
       title: "Ramzan Kareem Gifting with Grace",
       subtitle:
         "Thoughtful and elegant handcrafted gifts to celebrate the spirit of Ramzan. Perfect for sharing joy and blessings.",
-      heroImage: "/assets/festivals/ramzan_banner.png",
+      heroImage: "/assets/festivals/ramzan_banner.webp",
       accentStyle: {
         textHighlight: "text-green-300",
         bg: "bg-green-950/40",
@@ -46,7 +46,7 @@ export const festiveConfig = {
       title: "Celebrate Eid with Elegance",
       subtitle:
         "Discover our exclusive curated collection of premium handcrafted gifts, designed to make your Eid celebrations truly memorable.",
-      heroImage: "/assets/festivals/eid-banner.png",
+      heroImage: "/assets/festivals/eid_banner.webp",
       accentStyle: {
         textHighlight: "text-emerald-300",
         bg: "bg-emerald-950/40",
@@ -64,7 +64,7 @@ export const festiveConfig = {
       title: "Valentine Gift Crafted with Love",
       subtitle:
         "Express your love with our bespoke handcrafted collection. Timeless gifts for the moments that matter most.",
-      heroImage: "/assets/festivals/valentine_banner.png",
+      heroImage: "/assets/festivals/valentine_banner.webp",
       accentStyle: {
         textHighlight: "text-rose-300",
         bg: "bg-rose-950/40",
@@ -82,7 +82,7 @@ export const festiveConfig = {
       title: "The Royal Rakhi Edit",
       subtitle:
         "Exquisite handcrafted gifts to cherish the beautiful bond between brothers and sisters. Luxury gifting for Raksha Bandhan.",
-      heroImage: "/assets/festivals/rakhi_banner.png",
+      heroImage: "/assets/festivals/rakhi_banner.webp",
       accentStyle: {
         textHighlight: "text-orange-300",
         bg: "bg-orange-950/40",
@@ -101,7 +101,7 @@ export const festiveConfig = {
       title: "Illuminate Your Diwali",
       subtitle:
         "Premium luxurious gifting options to light up the festive season. Handcrafted elegance for the perfect festive glow.",
-      heroImage: "/assets/festivals/diwali-banner.png",
+      heroImage: "/assets/festivals/diwali_banner.webp",
       accentStyle: {
         textHighlight: "text-amber-300",
         bg: "bg-amber-950/40",

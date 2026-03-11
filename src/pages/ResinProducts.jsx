@@ -51,6 +51,7 @@ function ResinProducts() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [minTimePassed, setMinTimePassed] = useState(false);
+    const [isPaginating, setIsPaginating] = useState(false);
     const itemsPerPage = 15;
 
     useEffect(() => {
@@ -111,8 +112,14 @@ function ResinProducts() {
     const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
 
     const handlePageChange = (page) => {
-        setCurrentPage(page);
+        setIsPaginating(true);
         window.scrollTo({ top: 0, behavior: 'smooth' });
+        
+        // Wait for the smooth scroll to finish before swapping the data out
+        setTimeout(() => {
+            setCurrentPage(page);
+            setIsPaginating(false);
+        }, 600); 
     };
 
     const handlePreviousPage = () => { if (currentPage > 1) handlePageChange(currentPage - 1); };
@@ -141,7 +148,10 @@ function ResinProducts() {
     };
 
     return (
-        <div className="min-h-screen bg-[#EAE9E0] text-[#1A2E1A] font-sans selection:bg-[#1A2E1A] selection:text-[#F4F5F0] pt-32 pb-24">
+        <div className="min-h-screen relative overflow-hidden bg-[#EAE9E0] text-[#1A2E1A] font-sans selection:bg-[#1A2E1A] selection:text-[#F4F5F0] pt-32 pb-24">
+            {/* Ambient Lighting Bloom */}
+            <div className="absolute top-0 left-0 w-[40rem] h-[40rem] bg-[#4B5945]/5 rounded-full blur-[100px] -ml-40 -mt-20 pointer-events-none"></div>
+            <div className="absolute bottom-1/4 right-0 w-[30rem] h-[30rem] bg-[#1A2E1A]/[0.02] rounded-full blur-3xl pointer-events-none transform translate-x-1/3"></div>
             <Helmet>
                 <title>Premium Resin Products & Customized Gifts | Gifting Tree</title>
                 <meta name="description" content="Shop beautiful handcrafted resin masterpieces at Gifting Tree. Explore our collection of custom keychains, preserved varmala frames, bookmarks, and personalized wedding gifts." />
@@ -186,15 +196,15 @@ function ResinProducts() {
                     </div>
 
                     {/* Search Section */}
-                    <div className="mb-10">
+                    <div className="mb-10 relative z-10">
                         <div className="relative max-w-xl mx-auto group">
-                            <FiSearch className="absolute left-6 top-1/2 transform -translate-y-1/2 text-[#1A2E1A]/40 text-lg group-focus-within:text-[#1A2E1A] transition-colors" />
+                            <FiSearch className="absolute left-6 top-1/2 transform -translate-y-1/2 text-[#1A2E1A]/60 z-10 text-xl group-focus-within:text-[#4B5945] transition-colors duration-500" />
                             <input
                                 type="text"
                                 placeholder="Search the collection..."
                                 value={searchTerm}
                                 onChange={(e) => setSearchTerm(e.target.value)}
-                                className="w-full pl-14 pr-6 py-4 rounded-full border border-[#1A2E1A]/10 bg-white shadow-sm hover:shadow-md focus:shadow-md focus:border-[#1A2E1A]/20 focus:outline-none transition-all duration-300 text-[#1A2E1A] placeholder-[#1A2E1A]/40 font-medium"
+                                className="w-full pl-14 pr-6 py-4 rounded-full border border-white/50 bg-white/40 backdrop-blur-md shadow-[0_4px_20px_rgba(26,46,26,0.04)] focus:shadow-[0_8px_32px_rgba(75,89,69,0.12)] focus:border-[#4B5945]/30 focus:bg-white/70 hover:bg-white/60 focus:outline-none transition-all duration-500 text-[#1A2E1A] placeholder-[#1A2E1A]/60 font-medium"
                             />
                         </div>
                     </div>
@@ -208,12 +218,14 @@ function ResinProducts() {
                                     <button
                                         key={category}
                                         onClick={() => setSelectedCategory(category)}
-                                        className={`px-5 py-2.5 text-xs sm:text-sm font-semibold rounded-full transition-all duration-300 ${isActive
-                                            ? 'bg-[#1A2E1A] text-white shadow-md transform scale-105'
-                                            : 'bg-white text-[#1A2E1A]/60 border border-[#1A2E1A]/10 hover:border-[#1A2E1A]/30 hover:text-[#1A2E1A] hover:shadow-sm'
+                                        className={`px-6 py-2.5 text-xs sm:text-sm font-bold tracking-wide rounded-full transition-all duration-500 relative overflow-hidden group ${isActive
+                                            ? 'text-white shadow-[0_8px_25px_rgba(75,89,69,0.3)] transform scale-105 border-transparent'
+                                            : 'bg-white/50 backdrop-blur-sm text-[#1A2E1A]/60 border border-white/60 hover:bg-white/80 hover:text-[#1A2E1A] hover:shadow-[0_4px_15px_rgba(26,46,26,0.05)]'
                                             }`}
                                     >
-                                        {category}
+                                        {isActive && <span className="absolute inset-0 bg-gradient-to-r from-[#1A2E1A] to-[#4B5945] z-0"></span>}
+                                        {isActive && <span className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/10 to-transparent -translate-x-[150%] animate-shimmer z-0" style={{ animationDuration: '2s' }}></span>}
+                                        <span className="relative z-10">{category}</span>
                                     </button>
                                 );
                             })}
@@ -230,7 +242,7 @@ function ResinProducts() {
                             show: { opacity: 1, transition: { staggerChildren: 0.1 } }
                         }}
                     >
-                        {loading ? (
+                        {loading || isPaginating ? (
                             <SkeletonLoader count={6} />
                         ) : currentProducts.length > 0 ? (
                             currentProducts.map((product) => (
@@ -245,14 +257,17 @@ function ResinProducts() {
                                     <Link to={`/product/${product.slug?.current || product._id}`} className="flex flex-col h-full w-full">
 
                                         {/* Gallery Image Container */}
-                                        <div className="w-full aspect-[4/5] overflow-hidden bg-[#1A2E1A] rounded-[2.5rem] mb-6 shadow-[0_20px_50px_rgba(0,0,0,0.5)] border border-white/5 transition-all duration-700 relative group-hover:shadow-[0_30px_60px_-15px_rgba(44,62,32,0.15)] group-hover:-translate-y-4">
+                                        <div className="w-full aspect-[4/5] overflow-hidden bg-[#1A2E1A] rounded-[2.5rem] mb-6 shadow-[0_20px_50px_rgba(0,0,0,0.5)] border border-white/5 transition-all duration-700 relative group-hover:shadow-[0_30px_60px_-15px_rgba(75,89,69,0.3)] group-hover:-translate-y-4">
+                                            {/* Glow Behind the image on Hover */}
+                                            <div className="absolute inset-0 bg-[#4B5945]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none mix-blend-screen z-10 blur-xl"></div>
+                                            
                                             {/* Inner Image Mask */}
                                             <div className="absolute inset-1.5 sm:inset-[0.45rem] rounded-[2.2rem] overflow-hidden bg-[#EAE9E0]/50 z-0">
                                                 {product.frontImage ? (
                                                     <img
                                                         src={urlFor(product.frontImage).url()}
                                                         alt={product.name}
-                                                        className="w-full h-full object-cover transition-transform [transition-duration:] [transition-timing-function:] group-hover:scale-105"
+                                                        className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                                                     />
                                                 ) : (
                                                     <div className="w-full h-full flex items-center justify-center bg-gray-200 text-[#1A2E1A]/40">
@@ -261,8 +276,8 @@ function ResinProducts() {
                                                 )}
                                             </div>
                                             {/* Minimalist Top Badge */}
-                                            <div className="absolute top-5 left-5 z-10 transition-opacity duration-300 group-hover:opacity-0">
-                                                <span className="bg-[#2C3E20]/90 backdrop-blur-md text-white text-[9px] uppercase tracking-[0.2em] font-bold px-4 py-2 rounded-full shadow-md border border-white/10">
+                                            <div className="absolute top-5 left-5 z-20 transition-opacity duration-300 group-hover:opacity-0">
+                                                <span className="bg-white/80 backdrop-blur-md text-[#1A2E1A] text-[9px] uppercase tracking-[0.2em] font-bold px-4 py-2 rounded-full shadow-md border border-white/50">
                                                     {product.category?.[0] || 'Resin'}
                                                 </span>
                                             </div>
@@ -286,7 +301,7 @@ function ResinProducts() {
 
                                                 {/* Premium Call To Action Bottom - Matched to BestSellers */}
                                                 <div className="w-full flex justify-end mt-4">
-                                                    <div className="group/btn relative focus:outline-none rounded-full inline-block transform-gpu transition-transform duration-500 [transition-timing-function:] hover:-translate-y-1">
+                                                    <div className="group/btn relative focus:outline-none rounded-full inline-block transform-gpu transition-transform duration-500 ease-in-out hover:-translate-y-1">
                                                         {/* Base Shadow Layer */}
                                                         <div className="absolute inset-0 rounded-full bg-[#1A2E1A] shadow-[0_4px_15px_rgba(26,46,26,0.15)] transition-opacity duration-500 ease-in-out group-hover/btn:opacity-0 pointer-events-none"></div>
 
@@ -294,10 +309,10 @@ function ResinProducts() {
                                                         <div className="absolute inset-0 rounded-full bg-[#1A2E1A] shadow-[0_8px_25px_rgba(26,46,26,0.25)] ring-1 ring-[#1A2E1A]/30 opacity-0 transition-opacity duration-500 ease-in-out group-hover/btn:opacity-100 pointer-events-none"></div>
 
                                                         {/* Inner Content Layer with Overflow Hidden */}
-                                                        <div className="relative flex items-center overflow-hidden rounded-full w-full h-full p-1.5 transform-gpu">
+                                                        <div className="relative flex items-center overflow-hidden rounded-full w-full h-full p-1.5 transform-gpu bg-[#1A2E1A]">
 
                                                             {/* Subtle Ambient Glow */}
-                                                            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#4B5945]/60 to-transparent translate-x-[-150%] group-hover/btn:translate-x-[150%] transition-transform [transition-duration:] ease-in-out pointer-events-none z-0"></div>
+                                                            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#4B5945]/60 to-transparent translate-x-[-150%] group-hover/btn:translate-x-[150%] transition-transform duration-1000 ease-in-out pointer-events-none z-0"></div>
 
                                                             {/* Text Content */}
                                                             <span className="relative z-10 px-4 sm:px-5 text-white font-semibold text-[10px] sm:text-xs tracking-wide whitespace-nowrap drop-shadow-sm font-sans uppercase">
@@ -305,8 +320,8 @@ function ResinProducts() {
                                                             </span>
 
                                                             {/* Elegant Glass Icon Container */}
-                                                            <div className="relative z-10 w-8 h-8 sm:w-9 sm:h-9 bg-white rounded-full flex items-center justify-center border border-white/20 group-hover/btn:bg-white transition-colors duration-500 [transition-timing-function:] shadow-sm shrink-0">
-                                                                <FiArrowRight className="text-[#1A2E1A] group-hover/btn:-rotate-45 transition-transform duration-500 [transition-timing-function:] w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                                                            <div className="relative z-10 w-8 h-8 sm:w-9 sm:h-9 bg-white rounded-full flex items-center justify-center border border-white/20 group-hover/btn:bg-white transition-colors duration-500 ease-in-out shadow-sm shrink-0">
+                                                                <FiArrowRight className="text-[#1A2E1A] group-hover/btn:-rotate-45 transition-transform duration-500 ease-in-out w-3.5 h-3.5 sm:w-4 sm:h-4" />
                                                             </div>
                                                         </div>
                                                     </div>
@@ -317,17 +332,22 @@ function ResinProducts() {
                                 </motion.div>
                             ))
                         ) : (
-                            <div className="col-span-full flex flex-col items-center justify-center py-24 text-center">
-                                <div className="w-16 h-16 rounded-full bg-white border border-[#1A2E1A]/10 flex items-center justify-center mb-6 shadow-sm">
-                                    <FiSearch className="text-[#1A2E1A]/30 w-6 h-6" />
+                            <div className="col-span-full flex flex-col items-center justify-center py-20 px-4 text-center">
+                                <div className="relative mb-8 group">
+                                    <div className="absolute inset-0 bg-[#4B5945]/10 rounded-full blur-xl animate-pulse"></div>
+                                    <div className="w-24 h-24 rounded-full bg-white/60 backdrop-blur-md border border-white/80 flex items-center justify-center shadow-[0_8px_32px_rgba(26,46,26,0.08)] relative z-10 group-hover:scale-105 transition-transform duration-500">
+                                        <div className="text-4xl">✨</div>
+                                    </div>
                                 </div>
-                                <h3 className="text-2xl font-bold font-notoSerif text-[#1A2E1A] mb-2">No masterpieces found</h3>
-                                <p className="text-[#1A2E1A]/60 mb-6 font-medium">Try searching for something else or adjusting filters.</p>
+                                <h3 className="text-3xl md:text-4xl font-bold font-notoSerif text-[#1A2E1A] mb-4 tracking-tight">Crafting something new...</h3>
+                                <p className="text-[#1A2E1A]/70 mb-8 font-medium max-w-md mx-auto text-sm md:text-base leading-relaxed">
+                                    We haven't added pieces for this collection yet, but our artists are working on bringing these ideas to life very soon.
+                                </p>
                                 <button
                                     onClick={() => { setSearchTerm(''); setSelectedCategory('All'); }}
-                                    className="bg-[#1A2E1A] text-white px-8 py-3 rounded-full font-bold hover:bg-[#4B5945] transition-colors shadow-md"
+                                    className="bg-[#1A2E1A] text-white px-8 py-3.5 rounded-full font-bold tracking-widest uppercase text-xs hover:bg-[#4B5945] transition-colors shadow-[0_8px_20px_rgba(26,46,26,0.2)] hover:shadow-[0_12px_25px_rgba(75,89,69,0.3)] hover:-translate-y-0.5 duration-300"
                                 >
-                                    Clear Filters
+                                    Explore Available Art
                                 </button>
                             </div>
                         )}

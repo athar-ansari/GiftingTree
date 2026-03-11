@@ -22,7 +22,7 @@ function FestivalProducts() {
 
         const timer = setTimeout(() => {
             setMinTimePassed(true);
-        }, 1500);
+        }, 2200);
         return () => clearTimeout(timer);
     }, []);
 
@@ -122,11 +122,11 @@ function FestivalProducts() {
                 </Helmet>
 
                 <AnimatePresence>
-                    {(!minTimePassed || loading) && <Loader key="loader" />}
-                </AnimatePresence>
-
-                {minTimePassed && !loading && activeFestival && (
-                    <div className="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 z-10 relative">
+                    {(loading || !minTimePassed) ? (
+                        <Loader key="loader" />
+                    ) : (
+                        activeFestival && (
+                            <div className="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 z-10 relative">
 
                         {/* Navigation Controls */}
                         <div className="flex justify-between items-center mb-8 md:mb-16 relative z-20">
@@ -162,9 +162,10 @@ function FestivalProducts() {
                             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
                             className="text-center mb-20 md:mb-28 relative flex flex-col items-center"
                         >
-                            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-[#1A2E1A]/10 shadow-[0_2px_10px_rgba(26,46,26,0.03)] mb-8 md:mb-10">
-                                <span className="text-[14px] leading-none">{activeFestival.accentIcon}</span>
-                                <span className="text-[9px] md:text-[10px] uppercase font-bold tracking-[0.3em] text-[#1A2E1A]/60 flex items-center pt-[2px]">Special Collection</span>
+                            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/60 backdrop-blur-sm border border-white shadow-[0_2px_15px_rgba(26,46,26,0.05)] mb-8 md:mb-10 group relative overflow-hidden">
+                                <span className="absolute inset-0 w-full h-full bg-gradient-to-tr from-transparent via-white/40 to-transparent -translate-x-[150%] animate-shimmer" style={{ animationDuration: '3s' }}></span>
+                                <span className="text-[14px] leading-none relative z-10">{activeFestival.accentIcon}</span>
+                                <span className="text-[9px] md:text-[10px] uppercase font-bold tracking-[0.3em] text-[#1A2E1A]/80 flex items-center pt-[2px] relative z-10">Exclusive Collection</span>
                             </div>
 
                             <h1 className="text-4xl md:text-6xl lg:text-[5.5rem] font-bold tracking-tighter leading-[1.1] mb-6 md:mb-8 font-notoSerif text-[#1A2E1A] max-w-5xl mx-auto">
@@ -203,14 +204,17 @@ function FestivalProducts() {
                                         <Link to={`/product/${product.slug?.current || product._id}`} className="flex flex-col h-full w-full">
 
                                             {/* Gallery Image Container */}
-                                            <div className="w-full aspect-[4/5] overflow-hidden bg-[#1A2E1A] rounded-[2.5rem] mb-6 shadow-[0_20px_50px_rgba(0,0,0,0.5)] border border-white/5 transition-all duration-700 relative group-hover:shadow-[0_30px_60px_-15px_rgba(44,62,32,0.15)] group-hover:-translate-y-4">
+                                            <div className="w-full aspect-[4/5] overflow-hidden bg-[#1A2E1A] rounded-[2.5rem] mb-6 shadow-[0_20px_50px_rgba(0,0,0,0.5)] border border-white/5 transition-all duration-700 relative group-hover:shadow-[0_30px_60px_-15px_rgba(75,89,69,0.3)] group-hover:-translate-y-4">
+                                                {/* Glow Behind the image on Hover */}
+                                                <div className="absolute inset-0 bg-[#4B5945]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none mix-blend-screen z-10 blur-xl"></div>
+                                                
                                                 {/* Inner Image Mask */}
                                                 <div className="absolute inset-1.5 sm:inset-[0.45rem] rounded-[2.2rem] overflow-hidden bg-[#EAE9E0]/50 z-0">
                                                     {product.frontImage ? (
                                                         <img
                                                             src={urlFor(product.frontImage).url()}
                                                             alt={product.name}
-                                                            className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
+                                                            className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                                                         />
                                                     ) : (
                                                         <div className="w-full h-full flex items-center justify-center bg-gray-200 text-[#1A2E1A]/40">
@@ -219,8 +223,8 @@ function FestivalProducts() {
                                                     )}
                                                 </div>
                                                 {/* Minimalist Top Badge */}
-                                                <div className="absolute top-5 left-5 z-10 transition-opacity duration-300 group-hover:opacity-0">
-                                                    <span className="bg-[#2C3E20]/90 backdrop-blur-md text-white text-[9px] uppercase tracking-[0.2em] font-bold px-4 py-2 rounded-full shadow-md border border-white/10">
+                                                <div className="absolute top-5 left-5 z-20 transition-opacity duration-300 group-hover:opacity-0">
+                                                    <span className="bg-white/80 backdrop-blur-md text-[#1A2E1A] text-[9px] uppercase tracking-[0.2em] font-bold px-4 py-2 rounded-full shadow-md border border-white/50">
                                                         {activeFestival.name}
                                                     </span>
                                                 </div>
@@ -244,7 +248,7 @@ function FestivalProducts() {
 
                                                     {/* Premium Call To Action Bottom - Matched to ResinProducts */}
                                                     <div className="w-full flex justify-end mt-4">
-                                                        <div className="group/btn relative focus:outline-none rounded-full inline-block transform-gpu transition-transform duration-500 hover:-translate-y-1">
+                                                        <div className="group/btn relative focus:outline-none rounded-full inline-block transform-gpu transition-transform duration-500 ease-in-out hover:-translate-y-1">
                                                             {/* Base Shadow Layer */}
                                                             <div className="absolute inset-0 rounded-full bg-[#1A2E1A] shadow-[0_4px_15px_rgba(26,46,26,0.15)] transition-opacity duration-500 ease-in-out group-hover/btn:opacity-0 pointer-events-none"></div>
 
@@ -252,7 +256,7 @@ function FestivalProducts() {
                                                             <div className="absolute inset-0 rounded-full bg-[#1A2E1A] shadow-[0_8px_25px_rgba(26,46,26,0.25)] ring-1 ring-[#1A2E1A]/30 opacity-0 transition-opacity duration-500 ease-in-out group-hover/btn:opacity-100 pointer-events-none"></div>
 
                                                             {/* Inner Content Layer with Overflow Hidden */}
-                                                            <div className="relative flex items-center overflow-hidden rounded-full w-full h-full p-1.5 transform-gpu">
+                                                            <div className="relative flex items-center overflow-hidden rounded-full w-full h-full p-1.5 transform-gpu bg-[#1A2E1A]">
 
                                                                 {/* Subtle Ambient Glow */}
                                                                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#4B5945]/60 to-transparent translate-x-[-150%] group-hover/btn:translate-x-[150%] transition-transform duration-1000 ease-in-out pointer-events-none z-0"></div>
@@ -263,8 +267,8 @@ function FestivalProducts() {
                                                                 </span>
 
                                                                 {/* Elegant Glass Icon Container */}
-                                                                <div className="relative z-10 w-8 h-8 sm:w-9 sm:h-9 bg-white rounded-full flex items-center justify-center border border-white/20 group-hover/btn:bg-white transition-colors duration-500 shadow-sm shrink-0">
-                                                                    <FiArrowRight className="text-[#1A2E1A] group-hover/btn:-rotate-45 transition-transform duration-500 w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                                                                <div className="relative z-10 w-8 h-8 sm:w-9 sm:h-9 bg-white rounded-full flex items-center justify-center border border-white/20 group-hover/btn:bg-white transition-colors duration-500 ease-in-out shadow-sm shrink-0">
+                                                                    <FiArrowRight className="text-[#1A2E1A] group-hover/btn:-rotate-45 transition-transform duration-500 ease-in-out w-3.5 h-3.5 sm:w-4 sm:h-4" />
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -279,19 +283,22 @@ function FestivalProducts() {
                             <motion.div
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
-                                className="flex flex-col items-center justify-center text-center py-32 px-4 border border-dashed border-[#1A2E1A]/10 bg-white/50 rounded-[3rem] shadow-sm max-w-3xl mx-auto"
+                                className="flex flex-col items-center justify-center text-center py-24 px-4 relative max-w-3xl mx-auto group"
                             >
-                                <div className="w-20 h-20 rounded-full bg-[#EAE9E0] flex items-center justify-center mb-6 shadow-sm border border-[#1A2E1A]/5">
-                                    <FiShoppingBag className="w-8 h-8 text-[#1A2E1A]/30" />
+                                <div className="absolute inset-0 bg-[#4B5945]/5 rounded-[3rem] blur-xl animate-pulse"></div>
+                                <div className="w-24 h-24 rounded-full bg-white/60 backdrop-blur-md border border-white/80 flex items-center justify-center shadow-[0_8px_32px_rgba(26,46,26,0.08)] relative z-10 mb-8 group-hover:scale-105 transition-transform duration-500">
+                                    <span className="text-4xl leading-none">{activeFestival.accentIcon}</span>
                                 </div>
-                                <h2 className="text-3xl font-bold mb-3 font-notoSerif tracking-tight text-[#1A2E1A]">Collection Coming Soon</h2>
-                                <p className="text-[#1A2E1A]/50 font-medium max-w-md mx-auto leading-relaxed">
-                                    We are currently preparing our exclusive {activeFestival.name} masterpieces. Please check back shortly!
+                                <h2 className="text-3xl md:text-4xl font-bold mb-4 font-notoSerif tracking-tight text-[#1A2E1A] z-10 relative">Crafting specifically for {activeFestival.name}...</h2>
+                                <p className="text-[#1A2E1A]/70 font-medium max-w-md mx-auto text-sm md:text-base leading-relaxed z-10 relative">
+                                    Our artists are busy bringing the exclusive {activeFestival.name} masterpieces to life. Please check back very soon!
                                 </p>
                             </motion.div>
                         )}
                     </div>
-                )}
+                        )
+                    )}
+                </AnimatePresence>
             </div>
         </>
     );

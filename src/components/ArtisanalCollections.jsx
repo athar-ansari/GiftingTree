@@ -4,7 +4,7 @@ import { motion, AnimatePresence, useInView, useScroll, useTransform } from 'fra
 import { FiArrowRight } from "react-icons/fi";
 
 // Exchanging the basic resin image for an ultra-premium dark macro photograph
-import LuxuryResin from "../assets/ArtisanalGallery.png";
+import LuxuryResin from "../assets/ArtisanalGallery.webp";
 
 const collections = [
   {

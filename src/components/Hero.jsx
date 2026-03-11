@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { FiArrowRight } from "react-icons/fi";
-import collageImg from "../assets/Hero.png";
+import collageImg from "../assets/Hero.webp";
 
 const Hero = () => {
     return (
@@ -40,7 +40,7 @@ const Hero = () => {
                             <Link
                                 to="/resin-products"
                                 aria-label="Explore our full collection of premium handcrafted resin gifts"
-                                className="group relative focus:outline-none focus:ring-4 focus:ring-[#D4E0CE] rounded-full inline-block transform-gpu transition-transform duration-500 [transition-timing-function:] hover:-translate-y-1.5"
+                                className="group relative focus:outline-none focus:ring-4 focus:ring-[#D4E0CE] rounded-full inline-block transform-gpu transition-transform duration-500 hover:-translate-y-1.5"
                             >
                                 {/* Base Shadow Layer (Active when NOT hovered) */}
                                 <div className="absolute inset-0 rounded-full bg-[#2C3E20] shadow-[0_8px_20px_rgba(44,62,32,0.3)] transition-opacity duration-500 ease-in-out group-hover:opacity-0 pointer-events-none"></div>
@@ -52,7 +52,7 @@ const Hero = () => {
                                 <div className="relative flex items-center overflow-hidden rounded-full w-full h-full px-2 py-2 transform-gpu">
 
                                     {/* Subtle Ambient Glow */}
-                                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#4B5945]/60 to-transparent translate-x-[-150%] group-hover:translate-x-[150%] transition-transform [transition-duration:] ease-in-out pointer-events-none z-0"></div>
+                                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#4B5945]/60 to-transparent translate-x-[-150%] group-hover:translate-x-[150%] transition-transform ease-in-out pointer-events-none z-0"></div>
 
                                     {/* Text Content */}
                                     <span className="relative z-10 px-6 sm:px-8 text-white font-semibold text-sm sm:text-base tracking-wide whitespace-nowrap drop-shadow-sm">
@@ -61,7 +61,7 @@ const Hero = () => {
 
                                     {/* Elegant Icon Container */}
                                     <div className="relative w-10 h-10 sm:w-12 sm:h-12 bg-[#F4F5F0] rounded-full flex items-center justify-center shrink-0 z-10 shadow-inner">
-                                        <FiArrowRight className="text-[#1A2E1A] w-4 h-4 sm:w-5 sm:h-5 transition-transform duration-500 [transition-timing-function:] group-hover:-rotate-45" />
+                                        <FiArrowRight className="text-[#1A2E1A] w-4 h-4 sm:w-5 sm:h-5 transition-transform duration-500 group-hover:-rotate-45" />
                                     </div>
 
                                 </div>
@@ -130,7 +130,7 @@ const Hero = () => {
                                 <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
                                     <div className="w-[42px] h-[42px] sm:w-[50px] sm:h-[50px] rounded-full flex items-center justify-center bg-[#F4F5F0] shadow-[0_4px_10px_rgba(0,0,0,0.1)] relative z-10">
                                         {/* Elegant 4-Point Star (Sparkle) that elegantly rotates on hover */}
-                                        <svg className="w-5 h-5 sm:w-6 sm:h-6 text-[#1A2E1A] group-hover/seal:rotate-[135deg] transition-transform [transition-duration:] [transition-timing-function:]" viewBox="0 0 24 24" fill="currentColor">
+                                        <svg className="w-5 h-5 sm:w-6 sm:h-6 text-[#1A2E1A] group-hover/seal:rotate-[135deg] transition-transform" viewBox="0 0 24 24" fill="currentColor">
                                             <path d="M12 2C12.3333 7 17 11.6667 22 12C17 12.3333 12.3333 17 12 22C11.6667 17 7 12.3333 2 12C7 11.6667 11.6667 7 12 2Z" />
                                         </svg>
                                     </div>

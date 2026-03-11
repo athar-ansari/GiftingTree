@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { FiArrowRight } from 'react-icons/fi';
-import bespokeImg from '../assets/bespokeImg.png';
+import bespokeImg from '../assets/bespokeImg.webp';
 
 export default function BespokeCommission() {
   return (

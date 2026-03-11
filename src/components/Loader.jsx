@@ -37,7 +37,7 @@ const Loader = () => {
     <motion.div
       initial={{ y: "0%" }}
       exit={{ y: "-100%", transition: { duration: 0.9, ease: premiumEase } }}
-      className="fixed inset-0 z-[9999] flex flex-col justify-between bg-[#111A11] text-[#F4F5F0] overflow-hidden px-6 py-10 md:px-12 md:py-16 font-notoSerif shadow-2xl"
+      className="fixed inset-0 z-[9999] flex flex-col justify-between bg-[#111A11] text-[#F4F5F0] overflow-hidden px-6 py-10 md:px-12 md:py-16 font-notoSerif shadow-2xl transform-gpu will-change-transform"
     >
       {/* Texture Grain Overlay */}
       <div className="absolute inset-0 opacity-[0.03] bg-[url('https://grainy-gradients.vercel.app/noise.svg')] pointer-events-none mix-blend-overlay"></div>
