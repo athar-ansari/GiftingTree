@@ -23,14 +23,14 @@ function Home() {
     // Start minimum time timer for the cinematic loader
     const timer = setTimeout(() => {
       setMinTimePassed(true);
-    }, 2200);
+    }, 2500);
 
     return () => clearTimeout(timer);
   }, []);
 
   return (
     <>
-      <AnimatePresence onExitComplete={() => { document.body.style.overflow = "unset"; }}>
+      <AnimatePresence>
         {!minTimePassed && <Loader key="loader" />}
       </AnimatePresence>
       <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white font-notoSerif">

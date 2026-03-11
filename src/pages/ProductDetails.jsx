@@ -328,13 +328,12 @@ function ProductDetails() {
                 whileHover={{ scale: 1.02, y: -2 }}
                 whileTap={{ scale: 0.98 }}
                 onClick={handleShare}
-                className="relative overflow-hidden inline-flex items-center gap-2 md:gap-3 text-[#1A2E1A] bg-white px-5 md:px-6 py-2.5 md:py-3 rounded-full text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] shadow-[0_4px_15px_rgba(26,46,26,0.06)] hover:shadow-[0_10px_30px_rgba(26,46,26,0.12)] border border-[#1A2E1A]/10 hover:border-[#1A2E1A]/30 transition-all duration-400 group focus:outline-none"
+                className="hidden sm:inline-flex relative overflow-hidden items-center gap-2 md:gap-3 text-[#1A2E1A] bg-white px-5 md:px-6 py-2.5 md:py-3 rounded-full text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] shadow-[0_4px_15px_rgba(26,46,26,0.06)] hover:shadow-[0_10px_30px_rgba(26,46,26,0.12)] border border-[#1A2E1A]/10 hover:border-[#1A2E1A]/30 transition-all duration-400 group focus:outline-none"
               >
                 {/* Shiny overlay effect */}
                 <span className="absolute inset-0 w-full h-full bg-gradient-to-tr from-transparent via-white/40 to-transparent -translate-x-[150%] group-hover:translate-x-[150%] transition-transform duration-700 ease-in-out"></span>
                 <FiShare2 className="text-base relative z-10 text-[#4B5945] group-hover:text-[#1A2E1A] group-hover:-translate-y-0.5 group-hover:rotate-12 transition-all duration-300" />
-                <span className="hidden sm:inline relative z-10 text-[#1A2E1A]/70 group-hover:text-[#1A2E1A] transition-colors duration-300">Share Product</span>
-                <span className="sm:hidden relative z-10 text-[#1A2E1A]/70 group-hover:text-[#1A2E1A] transition-colors duration-300">Share</span>
+                <span className="relative z-10 text-[#1A2E1A]/70 group-hover:text-[#1A2E1A] transition-colors duration-300">Share Product</span>
               </motion.button>
             </div>
 
@@ -349,6 +348,7 @@ function ProductDetails() {
               {/* Product Details */}
               <div className="w-full lg:w-7/12 flex flex-col justify-start pb-24 lg:pb-0">
                 {/* Product Title */}
+
                 <motion.h1
                   initial={{ y: 20, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
@@ -382,12 +382,14 @@ function ProductDetails() {
                     initial={{ y: 20, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     transition={{ delay: 0.2 }}
-                    className="mb-12 bg-white rounded-[2rem] p-6 sm:p-8 border border-[#1A2E1A]/5 shadow-[0_4px_20px_rgba(26,46,26,0.03)]"
+                    className="mb-12 bg-white/60 backdrop-blur-xl rounded-[2rem] p-6 sm:p-8 border border-white/50 shadow-[0_8px_32px_rgba(26,46,26,0.06)] relative overflow-hidden group"
                   >
-                    <h3 className="text-sm font-bold uppercase tracking-[0.2em] text-[#1A2E1A]/60 mb-5 relative inline-block">
-                      Specifications
-                      <span className="absolute -bottom-2 left-0 w-8 h-[2px] bg-[#4B5945]/40"></span>
-                    </h3>
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-[#4B5945]/5 rounded-full blur-3xl -mr-10 -mt-10 pointer-events-none"></div>
+                    <div className="flex items-center gap-4 mb-6 relative z-10">
+                      <div className="h-[2px] w-8 bg-[#4B5945]/40 rounded-full"></div>
+                      <h3 className="text-base md:text-lg font-bold italic font-notoSerif tracking-wider text-[#1A2E1A]/90">Specifications</h3>
+                      <div className="h-[1px] flex-grow bg-gradient-to-r from-[#1A2E1A]/10 to-transparent"></div>
+                    </div>
                     <ul className="space-y-3.5">
                       {product.specifications.map((spec, index) => (
                         <motion.li
@@ -425,15 +427,31 @@ function ProductDetails() {
                           whileTap={{ scale: 0.98 }}
                           onClick={() => setSelectedSize(size)}
                           className={`relative overflow-hidden p-5 rounded-3xl border transition-all duration-400 flex flex-col items-center justify-center gap-2 group ${selectedSize?.size === size.size
-                            ? 'border-[#1A2E1A] bg-[#1A2E1A] text-white shadow-[0_12px_24px_rgba(26,46,26,0.2)] transform scale-[1.02]'
-                            : 'border-[#1A2E1A]/10 bg-white hover:border-[#1A2E1A]/30 text-[#1A2E1A] hover:bg-[#EAE9E0] hover:shadow-[0_8px_20px_rgba(26,46,26,0.06)]'
+                            ? 'border-[#4B5945] bg-[#1A2E1A] text-white shadow-[0_0_20px_rgba(75,89,69,0.3)] transform scale-[1.02]'
+                            : 'border-[#1A2E1A]/10 bg-white/60 backdrop-blur-md hover:border-[#1A2E1A]/30 text-[#1A2E1A] hover:bg-white hover:shadow-[0_8px_20px_rgba(26,46,26,0.06)]'
                             }`}
                         >
                           {selectedSize?.size === size.size && (
                             <span className="absolute inset-0 w-full h-full bg-gradient-to-tr from-transparent via-white/10 to-transparent -translate-x-[150%] animate-shimmer"></span>
                           )}
-                          <div className={`text-xs md:text-sm font-bold tracking-widest uppercase z-10 ${selectedSize?.size === size.size ? 'text-white/80' : 'text-[#1A2E1A]/50 group-hover:text-[#1A2E1A]/80'}`}>{size.size}</div>
-                          <div className={`text-xl md:text-2xl font-black tracking-tighter z-10 ${selectedSize?.size === size.size ? 'text-white' : 'text-[#1A2E1A]'}`}>₹{size.price}</div>
+                          <div className={`text-xs md:text-sm font-bold tracking-widest uppercase z-10 ${selectedSize?.size === size.size ? 'text-white/90' : 'text-[#1A2E1A]/50 group-hover:text-[#1A2E1A]/80'}`}>{size.size}</div>
+                          <div className={`text-xl md:text-2xl font-black tracking-tighter z-10 ${selectedSize?.size === size.size ? 'text-white' : 'text-[#1A2E1A]'}`}>
+                            ₹{size.price}
+                          </div>
+                          <AnimatePresence>
+                            {selectedSize?.size === size.size && (
+                              <motion.div
+                                initial={{ scale: 0, opacity: 0 }}
+                                animate={{ scale: 1, opacity: 1 }}
+                                exit={{ scale: 0, opacity: 0 }}
+                                className="absolute top-3 right-3 bg-[#4B5945] text-white rounded-full p-1 shadow-md"
+                              >
+                                <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3" viewBox="0 0 20 20" fill="currentColor">
+                                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                                </svg>
+                              </motion.div>
+                            )}
+                          </AnimatePresence>
                         </motion.button>
                       ))}
                     </div>
@@ -462,10 +480,14 @@ function ProductDetails() {
                   initial={{ y: 20, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ delay: 0.5 }}
-                  className="bg-white border border-[#1A2E1A]/10 rounded-[1.5rem] p-6 text-[#1A2E1A]/80 shadow-sm relative overflow-hidden mb-8"
+                  className="bg-white/50 backdrop-blur-xl border border-white/60 rounded-[1.5rem] p-6 text-[#1A2E1A]/80 shadow-[0_8px_32px_rgba(26,46,26,0.04)] relative overflow-hidden mb-8 group"
                 >
-                  <div className="absolute top-0 left-0 w-1.5 h-full bg-[#1A2E1A]/20"></div>
-                  <h4 className="font-bold text-[#1A2E1A] mb-2 uppercase tracking-widest text-xs">Important Note</h4>
+                  <div className="absolute top-0 left-0 w-1.5 h-full bg-gradient-to-b from-[#4B5945] to-[#1A2E1A]/30"></div>
+                  <div className="absolute -bottom-10 -right-10 w-32 h-32 bg-[#4B5945]/5 rounded-full blur-2xl group-hover:bg-[#4B5945]/10 transition-colors pointer-events-none"></div>
+                  <div className="flex items-center gap-3 mb-3 relative z-10">
+                    <h4 className="font-semibold text-[#1A2E1A] italic font-notoSerif tracking-wider text-sm md:text-base">Important Note</h4>
+                    <div className="h-[1px] flex-grow bg-[#1A2E1A]/10"></div>
+                  </div>
                   <p className="font-medium text-sm leading-relaxed text-[#1A2E1A]/70">
                     Customized items are crafted strictly for you and cannot be returned or exchanged. Please verify all details before confirming. <br className="hidden md:block" />
                     <span className="text-[#1A2E1A] font-bold mt-2 inline-flex items-center gap-2">
@@ -490,6 +512,11 @@ function ProductDetails() {
                         : 'bg-[#1A2E1A] border border-[#1A2E1A]/20 text-white shadow-[0_10px_35px_rgba(26,46,26,0.2)] hover:shadow-[0_20px_50px_rgba(26,46,26,0.3)] hover:-translate-y-1'
                       }`}
                   >
+                    {/* Pulsing ring Effect */}
+                    {!(product?.sizes && product.sizes.length > 0 && !selectedSize) && (
+                      <span className="absolute w-full h-full rounded-3xl border-2 border-[#4B5945]/30 animate-ping opacity-20 hidden md:block" style={{ animationDuration: '3s' }}></span>
+                    )}
+
                     {/* Subtle Glow Layer */}
                     {!(product?.sizes && product.sizes.length > 0 && !selectedSize) && (
                       <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent translate-x-[-150%] group-hover:translate-x-[150%] transition-transform duration-1000 ease-in-out pointer-events-none z-0"></div>
@@ -560,6 +587,10 @@ function ProductDetails() {
                       : 'bg-[#1A2E1A] text-white hover:-translate-y-0.5 shadow-[0_8px_25px_rgba(26,46,26,0.2)]'
                     }`}
                 >
+                  {/* Subtle pulsing background on active */}
+                  {!(product?.sizes && product.sizes.length > 0 && !selectedSize) && (
+                     <div className="absolute inset-0 bg-[#4B5945]/20 animate-pulse pointer-events-none" style={{ animationDuration: '2.5s' }}></div>
+                  )}
                   <span className={`relative z-10 flex items-center text-[10px] sm:text-xs tracking-[0.2em] uppercase truncate shrink-0 ${product?.sizes && product.sizes.length > 0 && !selectedSize ? 'text-[#1A2E1A]/40' : 'text-white'}`}>
                     <FaWhatsapp className={`mr-2.5 text-xl ${product?.sizes && product.sizes.length > 0 && !selectedSize ? 'text-[#1A2E1A]/40' : 'text-[#25D366]'}`} />
                     {product?.sizes && product.sizes.length > 0 && !selectedSize

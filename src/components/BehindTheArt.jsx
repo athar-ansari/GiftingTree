@@ -1,7 +1,7 @@
 import React, { useRef, useLayoutEffect, useEffect, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import pouringImg from '../assets/pouring.png';
+import pouringImg from '../assets/pouring.webp';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -11,6 +11,7 @@ export default function BehindTheArt() {
 
     const maskRef = useRef(null);
     const imageRef = useRef(null);
+    const overlayRef = useRef(null);
     const topTextRef = useRef(null);
     const bottomTextRef = useRef(null);
     const subtitleRef = useRef(null);
@@ -144,10 +145,16 @@ export default function BehindTheArt() {
 
             tl.fromTo(imageRef.current, {
                 scale: isMobile ? 1.5 : 1.3,
-                filter: "brightness(0.2) grayscale(100%)"
             }, {
                 scale: 1,
-                filter: "brightness(0.9) grayscale(10%)",
+                duration: 2.2,
+                ease: "power2.inOut"
+            }, "open");
+
+            tl.fromTo(overlayRef.current, {
+                opacity: 0.8
+            }, {
+                opacity: 0.1,
                 duration: 2.2,
                 ease: "power2.inOut"
             }, "open");
@@ -261,7 +268,8 @@ export default function BehindTheArt() {
                         style={{ backgroundImage: `url(${pouringImg})` }}
                     />
 
-                    <div className="absolute inset-0 bg-black/20 -z-10" />
+                    {/* Dark Overlay instead of animating CSS filters on the image itself */}
+                    <div ref={overlayRef} className="absolute inset-0 bg-black -z-10" />
 
 
 

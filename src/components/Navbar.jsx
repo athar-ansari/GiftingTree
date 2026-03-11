@@ -3,7 +3,7 @@ import { motion, useScroll, useMotionValueEvent } from 'framer-motion';
 import { useState } from 'react';
 
 // Image
-import logo from "../assets/logo.jpg";
+import logo from "../assets/logo.webp";
 
 function Navbar() {
   const { scrollY } = useScroll();
