@@ -1,0 +1,55 @@
+import { Helmet } from 'react-helmet-async';
+
+const SEO = ({ 
+  title, 
+  description, 
+  image, 
+  url, 
+  type = 'website',
+  keywords,
+  author = 'Gifting Tree'
+}) => {
+  const siteTitle = 'Gifting Tree | Premium Handmade Masterpieces';
+  const defaultDescription = 'Discover premium handcrafted resin products, customized gifts, and beautiful art pieces at Gifting Tree.';
+  const siteUrl = 'https://gifting-tree.vercel.app';
+  // Using og-preview.png as the default personal image if no image is provided
+  const defaultImage = `${siteUrl}/og-preview.png`;
+
+  const metaTitle = title ? `${title} | Gifting Tree` : siteTitle;
+  const metaDescription = description || defaultDescription;
+  
+  // Ensure the image URL is absolute
+  let metaImage = image || defaultImage;
+  if (metaImage && metaImage.startsWith('/')) {
+    metaImage = `${siteUrl}${metaImage}`;
+  }
+  const metaUrl = url ? `${siteUrl}${url}` : siteUrl;
+
+  return (
+    <Helmet>
+      {/* Base SEO Meta Tags */}
+      <title>{metaTitle}</title>
+      <meta name="description" content={metaDescription} />
+      {keywords && <meta name="keywords" content={keywords} />}
+      <meta name="author" content={author} />
+      <link rel="canonical" href={metaUrl} />
+
+      {/* Open Graph / Social Media */}
+      <meta property="og:type" content={type} />
+      <meta property="og:title" content={metaTitle} />
+      <meta property="og:description" content={metaDescription} />
+      <meta property="og:image" content={metaImage} />
+      <meta property="og:url" content={metaUrl} />
+      <meta property="og:site_name" content="Gifting Tree" />
+      <meta property="og:locale" content="en_IN" />
+
+      {/* Twitter Meta Tags */}
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content={metaTitle} />
+      <meta name="twitter:description" content={metaDescription} />
+      <meta name="twitter:image" content={metaImage} />
+    </Helmet>
+  );
+};
+
+export default SEO;

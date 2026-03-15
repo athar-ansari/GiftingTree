@@ -7,6 +7,7 @@ import Info from "../components/Info.jsx";
 import CraftProcess from "../components/CraftProcess.jsx";
 import ArtisanalCollections from "../components/ArtisanalCollections.jsx";
 
+import SEO from "../components/SEO.jsx";
 // Phase 4: New Premium Sections
 import FestiveCollection from "../components/FestiveCollection.jsx";
 import GiftingGuide from "../components/GiftingGuide.jsx";
@@ -15,6 +16,7 @@ import BehindTheArt from "../components/BehindTheArt.jsx";
 import Loader from "../components/Loader.jsx";
 import { useState, useEffect } from "react";
 import { AnimatePresence } from "framer-motion";
+import { Helmet } from "react-helmet-async";
 
 function Home() {
   const [minTimePassed, setMinTimePassed] = useState(false);
@@ -34,25 +36,12 @@ function Home() {
         {!minTimePassed && <Loader key="loader" />}
       </AnimatePresence>
       <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white font-notoSerif">
+        <SEO 
+          title="Premium Handmade Masterpieces"
+          description="Discover premium handcrafted resin products, customized gifts, and beautiful art pieces at Gifting Tree."
+          keywords="resin art, customized gifts, handmade products, wedding accessories, varmala preservation, resin frame, epoxy resin, custom keychain, gifting tree, India"
+        />
         <Helmet>
-          <title>Gifting Tree | Premium Handmade Masterpieces</title>
-          <meta name="description" content="Discover premium handcrafted resin products, customized gifts, and beautiful art pieces at Gifting Tree." />
-          <link rel="canonical" href="https://gifting-tree.vercel.app/" />
-          <meta name="keywords" content="resin art, customized gifts, handmade products, wedding accessories, varmala preservation, resin frame, epoxy resin, custom keychain, gifting tree, India" />
-          <meta property="og:type" content="website" />
-          <meta property="og:title" content="Gifting Tree | Premium Handmade Masterpieces" />
-          <meta property="og:description" content="Discover premium handcrafted resin products, customized gifts, and beautiful art pieces at Gifting Tree." />
-          <meta property="og:url" content="https://gifting-tree.vercel.app/" />
-          <meta property="og:image" content="https://gifting-tree.vercel.app/android-chrome-512x512.png" />
-          <meta property="og:image:width" content="512" />
-          <meta property="og:image:height" content="512" />
-          <meta property="og:image:type" content="image/png" />
-          <meta property="og:locale" content="en_IN" />
-          <meta property="og:site_name" content="Gifting Tree" />
-          <meta name="twitter:card" content="summary_large_image" />
-          <meta name="twitter:title" content="Gifting Tree | Premium Handmade Masterpieces" />
-          <meta name="twitter:description" content="Discover premium handcrafted resin products, customized gifts, and beautiful art pieces at Gifting Tree." />
-          <meta name="twitter:image" content="https://gifting-tree.vercel.app/android-chrome-512x512.png" />
           <script type="application/ld+json">
             {JSON.stringify({
               "@context": "https://schema.org",
@@ -69,7 +58,7 @@ function Home() {
               "@context": "https://schema.org",
               "@type": "LocalBusiness",
               "name": "Gifting Tree",
-              "image": "https://gifting-tree.vercel.app/android-chrome-512x512.png",
+              "image": "https://gifting-tree.vercel.app/og-preview.png",
               "@id": "https://gifting-tree.vercel.app/",
               "url": "https://gifting-tree.vercel.app/",
               "telephone": "+917001967279",

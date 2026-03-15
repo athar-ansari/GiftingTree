@@ -9,6 +9,7 @@ import ImageGallery from '../components/ImageGallery';
 import RelatedProducts from '../components/RelatedProducts';
 import { client, urlFor } from '../lib/sanityClient';
 import Footer from '../components/Footer';
+import SEO from '../components/SEO';
 
 const categoryMapping = {
   'best-seller': 'Best Seller',
@@ -212,65 +213,58 @@ function ProductDetails() {
   return (
     <>
       {product && (
-        <Helmet>
-          <title>{product.name} | Gifting Tree</title>
-          <meta name="description" content={product.description || `Buy ${product.name} at Gifting Tree. Explore our handcrafted collection.`} />
-          <link rel="canonical" href={`https://gifting-tree.vercel.app/product/${product.slug?.current || product._id}`} />
-          <meta name="keywords" content={`${product.name}, Gifting Tree, resin art, handmade, customized gift`} />
-          <meta property="og:title" content={`${product.name} | Gifting Tree`} />
-          <meta property="og:description" content={product.description || `Buy ${product.name} at Gifting Tree. Explore our handcrafted collection.`} />
-          <meta property="og:image" content={urlFor(product.frontImage).width(800).height(800).url()} />
-          <meta property="og:image:width" content="800" />
-          <meta property="og:image:height" content="800" />
-          <meta property="og:url" content={`https://gifting-tree.vercel.app/product/${product.slug?.current || product._id}`} />
-          <meta property="og:locale" content="en_IN" />
-          <meta property="og:site_name" content="Gifting Tree" />
-          <meta property="og:type" content="product" />
-          <meta name="twitter:card" content="summary_large_image" />
-          <meta name="twitter:title" content={`${product.name} | Gifting Tree`} />
-          <meta name="twitter:description" content={product.description || `Buy ${product.name} at Gifting Tree. Explore our handcrafted collection.`} />
-          <meta name="twitter:image" content={urlFor(product.frontImage).width(800).height(800).url()} />
-          <script type="application/ld+json">
-            {JSON.stringify({
-              "@context": "https://schema.org/",
-              "@type": "Product",
-              "name": product.name,
-              "image": urlFor(product.frontImage).url(),
-              "description": product.description || `Buy ${product.name} at Gifting Tree. Explore our handcrafted collection.`,
-              "brand": { "@type": "Brand", "name": "Gifting Tree" },
-              "offers": {
-                "@type": "Offer",
-                "url": "https://gifting-tree.vercel.app/product/" + (product.slug?.current || product._id),
-                "priceCurrency": "INR",
-                "price": product.basePrice || (product.sizes && product.sizes[0]?.price) || "0",
-                "availability": "https://schema.org/InStock",
-                "seller": { "@type": "Organization", "name": "Gifting Tree" }
-              }
-            })}
-          </script>
-          <script type="application/ld+json">
-            {JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "FAQPage",
-              "mainEntity": faqs.map(({ q, a }) => ({
-                "@type": "Question",
-                "name": q,
-                "acceptedAnswer": { "@type": "Answer", "text": a }
-              }))
-            })}
-          </script>
-          <script type="application/ld+json">
-            {JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "BreadcrumbList",
-              "itemListElement": [
-                { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://gifting-tree.vercel.app/" },
-                { "@type": "ListItem", "position": 2, "name": "Products", "item": "https://gifting-tree.vercel.app/resin-products" },
-                { "@type": "ListItem", "position": 3, "name": product.name, "item": "https://gifting-tree.vercel.app/product/" + (product.slug?.current || product._id) }
-              ]
-            })}
-          </script>
-        </Helmet>
+        <>
+          <SEO 
+            title={product.name}
+            description={product.description || `Buy ${product.name} at Gifting Tree. Explore our handcrafted collection.`}
+            image={urlFor(product.frontImage).width(1200).height(630).url()}
+            url={`/product/${product.slug?.current || product._id}`}
+            type="product"
+            keywords={`${product.name}, Gifting Tree, resin art, handmade, customized gift`}
+          />
+          <Helmet>
+            <script type="application/ld+json">
+              {JSON.stringify({
+                "@context": "https://schema.org/",
+                "@type": "Product",
+                "name": product.name,
+                "image": urlFor(product.frontImage).url(),
+                "description": product.description || `Buy ${product.name} at Gifting Tree. Explore our handcrafted collection.`,
+                "brand": { "@type": "Brand", "name": "Gifting Tree" },
+                "offers": {
+                  "@type": "Offer",
+                  "url": "https://gifting-tree.vercel.app/product/" + (product.slug?.current || product._id),
+                  "priceCurrency": "INR",
+                  "price": product.basePrice || (product.sizes && product.sizes[0]?.price) || "0",
+                  "availability": "https://schema.org/InStock",
+                  "seller": { "@type": "Organization", "name": "Gifting Tree" }
+                }
+              })}
+            </script>
+            <script type="application/ld+json">
+              {JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "FAQPage",
+                "mainEntity": faqs.map(({ q, a }) => ({
+                  "@type": "Question",
+                  "name": q,
+                  "acceptedAnswer": { "@type": "Answer", "text": a }
+                }))
+              })}
+            </script>
+            <script type="application/ld+json">
+              {JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "BreadcrumbList",
+                "itemListElement": [
+                  { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://gifting-tree.vercel.app/" },
+                  { "@type": "ListItem", "position": 2, "name": "Products", "item": "https://gifting-tree.vercel.app/resin-products" },
+                  { "@type": "ListItem", "position": 3, "name": product.name, "item": "https://gifting-tree.vercel.app/product/" + (product.slug?.current || product._id) }
+                ]
+              })}
+            </script>
+          </Helmet>
+        </>
       )}
 
       {loading && (
