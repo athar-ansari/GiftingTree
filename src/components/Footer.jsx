@@ -30,7 +30,7 @@ function Footer() {
 
           {/* Contact Col */}
           <div className="md:col-span-4">
-            <h2 className="text-xs uppercase tracking-[0.3em] font-sans font-bold text-white/40 mb-8 border-b border-white/10 pb-4 inline-block">Direct Inquiries</h2>
+            <h3 className="text-xs uppercase tracking-[0.3em] font-sans font-bold text-white/40 mb-8 border-b border-white/10 pb-4 inline-block">Direct Inquiries</h3>
             <div className="flex flex-col space-y-5">
               <a href="tel:+917001967279" aria-label="Call Gifting Tree at +91 7001967279" className="group flex flex-col hover:text-white transition-colors">
                 <span className="text-white/40 text-xs font-sans uppercase tracking-wider mb-1">Phone</span>
@@ -49,7 +49,7 @@ function Footer() {
 
           {/* Socials Col */}
           <div className="md:col-span-3">
-            <h2 className="text-xs uppercase tracking-[0.3em] font-sans font-bold text-white/40 mb-8 border-b border-white/10 pb-4 inline-block">Social Gallery</h2>
+            <h3 className="text-xs uppercase tracking-[0.3em] font-sans font-bold text-white/40 mb-8 border-b border-white/10 pb-4 inline-block">Social Gallery</h3>
             <div className="flex flex-col space-y-4">
               <a
                 href="https://www.instagram.com/_.gifting_tree_/"

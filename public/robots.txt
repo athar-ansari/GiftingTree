@@ -2,3 +2,6 @@ User-agent: *
 Allow: /
 
 Sitemap: https://gifting-tree.vercel.app/sitemap.xml
+Sitemap: https://giftingtree.vercel.app/sitemap.xml
+Sitemap: https://zufeshan.vercel.app/sitemap.xml
+Sitemap: https://ghazia.vercel.app/sitemap.xml

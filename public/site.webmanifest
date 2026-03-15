@@ -1,6 +1,8 @@
 {
-    "name": "",
-    "short_name": "",
+    "name": "Gifting Tree | Premium Handmade & Customized Resin Products",
+    "short_name": "Gifting Tree",
+    "description": "Discover premium handcrafted resin products, customized gifts, wedding accessories, and beautiful art pieces at Gifting Tree.",
+    "start_url": "/",
     "icons": [
         {
             "src": "/android-chrome-192x192.png",
@@ -13,7 +15,7 @@
             "type": "image/png"
         }
     ],
-    "theme_color": "#ffffff",
-    "background_color": "#ffffff",
+    "theme_color": "#1A2E1A",
+    "background_color": "#EAE9E0",
     "display": "standalone"
 }

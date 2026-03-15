@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="canonical" href="https://gifting-tree.vercel.app/" />
+    <link rel="canonical" href="https://giftingtree.vercel.app/" />
     <meta name="theme-color" content="#1A2E1A" />
     <link rel="preconnect" href="https://cdn.sanity.io" crossorigin />
     <link rel="dns-prefetch" href="https://cdn.sanity.io" />
@@ -40,9 +40,9 @@
     <!-- Absolute URL is required for platforms like WhatsApp and Facebook -->
     <meta
       property="og:image"
-      content="https://gifting-tree.vercel.app/og-preview.png"
+      content="https://giftingtree.vercel.app/og-preview.png"
     />
-    <meta property="og:url" content="https://gifting-tree.vercel.app/" />
+    <meta property="og:url" content="https://giftingtree.vercel.app/" />
     <meta property="og:site_name" content="Gifting Tree" />
     <meta property="og:locale" content="en_IN" />
 
@@ -58,9 +58,46 @@
     />
     <meta
       name="twitter:image"
-      content="https://gifting-tree.vercel.app/og-preview.png"
+      content="https://giftingtree.vercel.app/og-preview.png"
     />
     <meta name="twitter:creator" content="@giftingtree" />
+
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+      {
+        "@context": "http://schema.org",
+        "@type": "Organization",
+        "name": "Gifting Tree",
+        "url": "https://giftingtree.vercel.app/",
+        "logo": "https://giftingtree.vercel.app/android-chrome-512x512.png",
+        "description": "Premium handcrafted resin products, customized gifts, wedding accessories, and personalized art pieces.",
+        "address": {
+          "@type": "PostalAddress",
+          "addressCountry": "India"
+        },
+        "knowsAbout": [
+          "Resin Art",
+          "Customized Gifts",
+          "Wedding Accessories",
+          "Varmala Preservation",
+          "Epoxy Resin",
+          "Handmade Products"
+        ]
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "http://schema.org",
+        "@type": "WebSite",
+        "name": "Gifting Tree",
+        "url": "https://giftingtree.vercel.app/",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://giftingtree.vercel.app/resin-products?category={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>
