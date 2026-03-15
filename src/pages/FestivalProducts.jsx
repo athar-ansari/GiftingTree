@@ -7,6 +7,7 @@ import { Helmet } from 'react-helmet-async';
 import { client, urlFor } from '../lib/sanityClient';
 import Loader from '../components/Loader';
 import { festiveConfig } from '../lib/festivals';
+import SEO from '../components/SEO';
 
 function FestivalProducts() {
     const navigate = useNavigate();
@@ -117,9 +118,12 @@ function FestivalProducts() {
                 <div className="absolute top-0 right-0 w-[50vw] h-[50vw] bg-[#4B5945]/5 rounded-full blur-[120px] -z-10 translate-x-1/3 -translate-y-1/3 pointer-events-none"></div>
                 <div className="absolute bottom-0 left-0 w-[50vw] h-[50vw] bg-[#1A2E1A]/5 rounded-full blur-[120px] -z-10 -translate-x-1/3 translate-y-1/3 pointer-events-none"></div>
 
-                <Helmet>
-                    <title>{activeFestival ? `${activeFestival.name} Collection` : 'Festival Collection'} | Gifting Tree</title>
-                </Helmet>
+                <SEO 
+                    title={activeFestival ? `${activeFestival.name} Collection` : 'Festival Collection'}
+                    description={activeFestival?.subtitle || 'Explore our exclusive festival collection at Gifting Tree.'}
+                    image={activeFestival?.heroImage}
+                    url="/festival"
+                />
 
                 <AnimatePresence>
                     {(loading || !minTimePassed) ? (

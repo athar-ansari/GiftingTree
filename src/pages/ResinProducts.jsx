@@ -7,6 +7,7 @@ import { client, urlFor } from '../lib/sanityClient';
 import SkeletonLoader from '../components/SkeletonLoader';
 import Loader from '../components/Loader';
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
+import SEO from '../components/SEO';
 
 // Categories list
 const categories = [
@@ -114,12 +115,12 @@ function ResinProducts() {
     const handlePageChange = (page) => {
         setIsPaginating(true);
         window.scrollTo({ top: 0, behavior: 'smooth' });
-        
+
         // Wait for the smooth scroll to finish before swapping the data out
         setTimeout(() => {
             setCurrentPage(page);
             setIsPaginating(false);
-        }, 600); 
+        }, 600);
     };
 
     const handlePreviousPage = () => { if (currentPage > 1) handlePageChange(currentPage - 1); };
@@ -152,26 +153,13 @@ function ResinProducts() {
             {/* Ambient Lighting Bloom */}
             <div className="absolute top-0 left-0 w-[40rem] h-[40rem] bg-[#4B5945]/5 rounded-full blur-[100px] -ml-40 -mt-20 pointer-events-none"></div>
             <div className="absolute bottom-1/4 right-0 w-[30rem] h-[30rem] bg-[#1A2E1A]/[0.02] rounded-full blur-3xl pointer-events-none transform translate-x-1/3"></div>
-            <Helmet>
-                <title>Premium Resin Products & Customized Gifts | Gifting Tree</title>
-                <meta name="description" content="Shop beautiful handcrafted resin masterpieces at Gifting Tree. Explore our collection of custom keychains, preserved varmala frames, bookmarks, and personalized wedding gifts." />
-                <link rel="canonical" href="https://gifting-tree.vercel.app/resin-products" />
-                <meta name="keywords" content="resin products, customized gifts, varmala preservation, resin keychains, custom bookmarks, wedding gifts, handmade art" />
-                <meta property="og:type" content="website" />
-                <meta property="og:title" content="Premium Resin Products & Customized Gifts | Gifting Tree" />
-                <meta property="og:description" content="Shop beautiful handcrafted resin masterpieces at Gifting Tree. Explore our collection of custom keychains, preserved varmala frames, bookmarks, and personalized wedding gifts." />
-                <meta property="og:url" content="https://gifting-tree.vercel.app/resin-products" />
-                <meta property="og:image" content="https://gifting-tree.vercel.app/android-chrome-512x512.png" />
-                <meta property="og:image:width" content="512" />
-                <meta property="og:image:height" content="512" />
-                <meta property="og:image:type" content="image/png" />
-                <meta property="og:locale" content="en_IN" />
-                <meta property="og:site_name" content="Gifting Tree" />
-                <meta name="twitter:card" content="summary_large_image" />
-                <meta name="twitter:title" content="Premium Resin Products & Customized Gifts | Gifting Tree" />
-                <meta name="twitter:description" content="Shop beautiful handcrafted resin masterpieces at Gifting Tree. Explore our collection of custom keychains, preserved varmala frames, bookmarks, and personalized wedding gifts." />
-                <meta name="twitter:image" content="https://gifting-tree.vercel.app/android-chrome-512x512.png" />
-            </Helmet>
+            <SEO
+                title="Premium Resin Products & Customized Gifts"
+                description="Shop beautiful handcrafted resin masterpieces at Gifting Tree. Explore our collection of custom keychains, preserved varmala frames, bookmarks, and personalized wedding gifts."
+                image="/og-preview-resin-products.png"
+                keywords="resin products, customized gifts, varmala preservation, resin keychains, custom bookmarks, wedding gifts, handmade art"
+                url="/resin-products"
+            />
 
             <AnimatePresence>
                 {!minTimePassed && <Loader key="loader" />}
@@ -260,7 +248,7 @@ function ResinProducts() {
                                         <div className="w-full aspect-[4/5] overflow-hidden bg-[#1A2E1A] rounded-[2.5rem] mb-6 shadow-[0_20px_50px_rgba(0,0,0,0.5)] border border-white/5 transition-all duration-700 relative group-hover:shadow-[0_30px_60px_-15px_rgba(75,89,69,0.3)] group-hover:-translate-y-4">
                                             {/* Glow Behind the image on Hover */}
                                             <div className="absolute inset-0 bg-[#4B5945]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none mix-blend-screen z-10 blur-xl"></div>
-                                            
+
                                             {/* Inner Image Mask */}
                                             <div className="absolute inset-1.5 sm:inset-[0.45rem] rounded-[2.2rem] overflow-hidden bg-[#EAE9E0]/50 z-0">
                                                 {product.frontImage ? (
