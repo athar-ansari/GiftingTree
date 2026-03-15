@@ -5,6 +5,50 @@
             "destination": "/api/sitemap"
         },
         {
+            "source": "/(index.html)?",
+            "has": [
+                {
+                    "type": "header",
+                    "key": "user-agent",
+                    "value": "(.*googlebot|.*bingbot|.*facebookexternalhit|.*whatsapp|.*linkedinbot|.*twitterbot.*)"
+                }
+            ],
+            "destination": "/api/seo?path=/"
+        },
+        {
+            "source": "/product/:slug",
+            "has": [
+                {
+                    "type": "header",
+                    "key": "user-agent",
+                    "value": "(.*googlebot|.*bingbot|.*facebookexternalhit|.*whatsapp|.*linkedinbot|.*twitterbot.*)"
+                }
+            ],
+            "destination": "/api/seo?path=/product/:slug"
+        },
+        {
+            "source": "/resin-products",
+            "has": [
+                {
+                    "type": "header",
+                    "key": "user-agent",
+                    "value": "(.*googlebot|.*bingbot|.*facebookexternalhit|.*whatsapp|.*linkedinbot|.*twitterbot.*)"
+                }
+            ],
+            "destination": "/api/seo?path=/resin-products"
+        },
+        {
+            "source": "/festival",
+            "has": [
+                {
+                    "type": "header",
+                    "key": "user-agent",
+                    "value": "(.*googlebot|.*bingbot|.*facebookexternalhit|.*whatsapp|.*linkedinbot|.*twitterbot.*)"
+                }
+            ],
+            "destination": "/api/seo?path=/festival"
+        },
+        {
             "source": "/(.*)",
             "destination": "/"
         }
