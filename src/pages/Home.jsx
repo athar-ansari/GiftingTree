@@ -16,7 +16,6 @@ import BehindTheArt from "../components/BehindTheArt.jsx";
 import Loader from "../components/Loader.jsx";
 import { useState, useEffect } from "react";
 import { AnimatePresence } from "framer-motion";
-import { Helmet } from "react-helmet-async";
 
 function Home() {
   const [minTimePassed, setMinTimePassed] = useState(false);
