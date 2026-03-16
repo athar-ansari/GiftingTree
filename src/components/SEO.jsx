@@ -9,8 +9,8 @@ const SEO = ({
   keywords,
   author = 'Gifting Tree'
 }) => {
-  const siteTitle = 'Gifting Tree | Premium Handmade Masterpieces';
-  const defaultDescription = 'Discover premium handcrafted resin products, customized gifts, and beautiful art pieces at Gifting Tree.';
+  const siteTitle = 'Gifting Tree | Premium Handcrafted Resin Art & Unique Gifts';
+  const defaultDescription = 'Discover premium handcrafted resin products, customized gifts, and beautiful art pieces at Gifting Tree. Shop unique, high-quality artisanal gifts for every special occasion.';
   const siteUrl = typeof window !== 'undefined' ? window.location.origin : 'https://giftingtree.vercel.app';
   // Using og-preview.png as the default personal image if no image is provided
   const defaultImage = `${siteUrl}/og-preview.png`;
