@@ -15,10 +15,10 @@ export default function InstagramLiveFeed() {
   return (
     <section className="py-20 md:py-32 bg-[#EAE9E0] relative overflow-hidden">
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
+
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 md:mb-16">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -33,9 +33,9 @@ export default function InstagramLiveFeed() {
             </h2>
           </motion.div>
 
-          <motion.a 
-            href="https://instagram.com/gifting_tree" 
-            target="_blank" 
+          <motion.a
+            href="https://instagram.com/gifting_tree"
+            target="_blank"
             rel="noopener noreferrer"
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -63,13 +63,13 @@ export default function InstagramLiveFeed() {
               transition={{ duration: 0.6, delay: i * 0.1 }}
               className="group relative aspect-square overflow-hidden rounded-[2rem] bg-[#1A2E1A] shadow-[0_10px_30px_rgba(26,46,26,0.1)] block"
             >
-              <img 
-                src={post.image} 
-                alt="Instagram post from Gifting Tree" 
+              <img
+                src={post.image}
+                alt="Instagram post from Gifting Tree"
                 loading="lazy"
                 className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
               />
-              
+
               {/* Overlay */}
               <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 backdrop-blur-[2px] flex items-center justify-center gap-6">
                 <div className="flex items-center gap-2 text-white font-medium translate-y-4 group-hover:translate-y-0 transition-transform duration-300">

@@ -36,7 +36,7 @@ function ImageGallery({ images = [] }) {
       <div className="relative w-full aspect-[4/5] sm:h-[500px] max-w-lg mx-auto mt-2 bg-[#1A2E1A] rounded-[2.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.5)] border border-white/5">
 
         {/* Inner Image Mask Container for the dark border effect */}
-        <div className="absolute inset-1.5 sm:inset-[0.45rem] rounded-[2.2rem] overflow-hidden bg-[#F4F5F0]/50 z-0">
+        <div className="absolute inset-1.5 sm:inset-[0.45rem] rounded-[2.2rem] overflow-hidden bg-[#1A2E1A]/10 z-0">
           {/* Swipeable Main Carousel */}
           <div
             ref={scrollRef}
