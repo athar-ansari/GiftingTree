@@ -61,17 +61,12 @@ function ResinProducts() {
     const [currentPage, setCurrentPage] = useState(1);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const [minTimePassed, setMinTimePassed] = useState(false);
     const [isPaginating, setIsPaginating] = useState(false);
     const itemsPerPage = 15;
 
     useEffect(() => {
-        // Start minimum time timer for the cinematic loader
-        const timer = setTimeout(() => {
-            setMinTimePassed(true);
-        }, 2200);
-
-        return () => clearTimeout(timer);
+        // Force scroll to top on every mount
+        window.scrollTo(0, 0);
     }, []);
 
     useEffect(() => {
@@ -171,16 +166,12 @@ function ResinProducts() {
                 url="/resin-products"
             />
 
-            <AnimatePresence>
-                {!minTimePassed && <Loader key="loader" />}
-            </AnimatePresence>
-
-            {error && minTimePassed ? (
+            {error ? (
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-20 flex flex-col items-center justify-center">
                     <p className="text-xl font-bold text-red-500">{error}</p>
                     <button onClick={() => window.location.reload()} className="mt-6 px-8 py-3 bg-[#1A2E1A] text-white rounded-full font-bold hover:bg-[#4B5945] transition-colors duration-300">Try Again</button>
                 </div>
-            ) : minTimePassed && (
+            ) : (
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
                     {/* Premium Header */}
@@ -260,12 +251,11 @@ function ResinProducts() {
                                             <div className="absolute inset-0 bg-[#4B5945]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none mix-blend-screen z-10 blur-xl"></div>
 
                                             {/* Inner Image Mask */}
-                                            <div className="absolute inset-1.5 sm:inset-[0.45rem] rounded-[2.2rem] overflow-hidden bg-[#EAE9E0]/50 z-0">
+                                            <div className="absolute inset-1.5 sm:inset-[0.45rem] rounded-[2.2rem] overflow-hidden bg-[#1A2E1A]/10 z-0">
                                                 {product.frontImage ? (
                                                     <img
-                                                        src={urlFor(product.frontImage).width(600).height(750).quality(80).url()}
+                                                        src={urlFor(product.frontImage).url()}
                                                         alt={product.name}
-                                                        loading="lazy"
                                                         className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                                                     />
                                                 ) : (

@@ -15,16 +15,10 @@ function FestivalProducts() {
     const [activeFestival, setActiveFestival] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const [minTimePassed, setMinTimePassed] = useState(false);
 
     useEffect(() => {
         // Force scroll to top on every mount (direct link, back button, or navigation)
         window.scrollTo(0, 0);
-
-        const timer = setTimeout(() => {
-            setMinTimePassed(true);
-        }, 2200);
-        return () => clearTimeout(timer);
     }, []);
 
     useEffect(() => {
@@ -54,7 +48,7 @@ function FestivalProducts() {
         fetchFestivalAndProducts();
     }, []);
 
-    if (error && minTimePassed) {
+    if (error) {
         return (
             <div className="min-h-screen bg-[#EAE9E0] text-[#1A2E1A] flex flex-col items-center justify-center p-4">
                 <p className="text-xl font-bold text-red-500">{error}</p>
@@ -126,8 +120,10 @@ function FestivalProducts() {
                 />
 
                 <AnimatePresence>
-                    {(loading || !minTimePassed) ? (
-                        <Loader key="loader" />
+                    {loading ? (
+                        <div className="w-full h-[60vh] flex items-center justify-center">
+                           <div className="w-12 h-12 rounded-full border-[3px] border-[#1A2E1A]/10 border-t-[#4B5945] animate-spin"></div>
+                        </div>
                     ) : (
                         activeFestival && (
                             <div className="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 z-10 relative">
@@ -213,12 +209,11 @@ function FestivalProducts() {
                                                 <div className="absolute inset-0 bg-[#4B5945]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none mix-blend-screen z-10 blur-xl"></div>
                                                 
                                                 {/* Inner Image Mask */}
-                                                <div className="absolute inset-1.5 sm:inset-[0.45rem] rounded-[2.2rem] overflow-hidden bg-[#EAE9E0]/50 z-0">
+                                                <div className="absolute inset-1.5 sm:inset-[0.45rem] rounded-[2.2rem] overflow-hidden bg-[#1A2E1A]/10 animate-pulse z-0">
                                                     {product.frontImage ? (
                                                         <img
-                                                            src={urlFor(product.frontImage).width(600).height(750).quality(80).url()}
+                                                            src={urlFor(product.frontImage).url()}
                                                             alt={product.name}
-                                                            loading="lazy"
                                                             className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                                                         />
                                                     ) : (

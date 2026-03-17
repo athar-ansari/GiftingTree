@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 import { motion } from "framer-motion";
 
 const Loader = () => {
@@ -33,11 +34,11 @@ const Loader = () => {
   // Premium cubic-bezier easing commonly used in Awwwards sites
   const premiumEase = [0.76, 0, 0.24, 1];
 
-  return (
+  return createPortal(
     <motion.div
       initial={{ y: "0%" }}
       exit={{ y: "-100%", transition: { duration: 0.9, ease: premiumEase } }}
-      className="fixed inset-0 z-[9999] flex flex-col justify-between bg-[#111A11] text-[#F4F5F0] overflow-hidden px-6 py-10 md:px-12 md:py-16 font-notoSerif shadow-2xl transform-gpu will-change-transform"
+      className="fixed inset-0 z-[99999] flex flex-col justify-between bg-[#111A11] text-[#F4F5F0] overflow-hidden px-6 py-10 md:px-12 md:py-16 font-notoSerif shadow-2xl transform-gpu will-change-transform"
     >
       {/* Texture Grain Overlay */}
       <div className="absolute inset-0 opacity-[0.03] bg-[url('https://grainy-gradients.vercel.app/noise.svg')] pointer-events-none mix-blend-overlay"></div>
@@ -103,7 +104,8 @@ const Loader = () => {
         transition={{ duration: 2.1, ease: "linear" }}
         className="absolute bottom-0 left-0 h-[2px] bg-gradient-to-r from-[#D4E0CE] to-[#8A9A83]"
       />
-    </motion.div>
+    </motion.div>,
+    document.body
   );
 };
 

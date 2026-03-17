@@ -5,11 +5,11 @@ import Navbar from './components/Navbar';
 import FloatingWhatsApp from './components/FloatingWhatsApp';
 import { Toaster } from 'react-hot-toast';
 import ScrollToTop from './components/ScrollToTop';
-import Loader from './components/Loader';
+import SuspenseLoader from './components/SuspenseLoader';
+import Home from './pages/Home';
 import PageTransition from "./components/PageTransition";
 
 // Lazy Loaded Pages
-const Home = lazy(() => import('./pages/Home'));
 const ProductDetails = lazy(() => import('./pages/ProductDetails'));
 const ResinProducts = lazy(() => import('./pages/ResinProducts'));
 const FestivalProducts = lazy(() => import('./pages/FestivalProducts'));
@@ -45,7 +45,7 @@ const AppContent = () => {
       {!hideControls && <Navbar />}
       {!hideControls && <FloatingWhatsApp />}
       <AnimatePresence mode="wait">
-        <Suspense fallback={<Loader />}>
+        <Suspense fallback={<SuspenseLoader />}>
           <Routes location={location} key={location.pathname}>
             <Route path="/" element={<PageTransition><Home /></PageTransition>} />
             <Route path="/resin-products" element={<PageTransition><ResinProducts /></PageTransition>} />
