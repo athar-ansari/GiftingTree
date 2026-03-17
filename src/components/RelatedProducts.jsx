@@ -76,7 +76,7 @@ function RelatedProducts({ currentProduct }) {
                 {/* Inner Image Mask */}
                 <div className="absolute inset-1.5 sm:inset-[0.45rem] rounded-[2.2rem] overflow-hidden bg-[#F4F5F0]/50 z-0">
                   <img
-                    src={urlFor(product.frontImage).url()}
+                    src={urlFor(product.frontImage).width(600).height(750).quality(80).url()}
                     alt={product.name}
                     className="w-full h-full object-cover transition-transform [transition-duration:] [transition-timing-function:] group-hover:scale-105"
                     loading="lazy"

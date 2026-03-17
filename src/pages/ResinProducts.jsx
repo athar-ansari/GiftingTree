@@ -26,6 +26,16 @@ const categories = [
     "Varmala",
     "Clock",
     "Resin Frame",
+    "Bouquet",
+    "Thumb frame",
+    "Eidi card",
+    "Trousseau packing",
+    "Frame",
+    "Resin Block",
+    "Wedding card",
+    "Return Favours",
+    "Board",
+    "Cash box",
     "Other Products",
 ];
 // Build allowed category slugs from the above list (excluding "All")
@@ -253,8 +263,9 @@ function ResinProducts() {
                                             <div className="absolute inset-1.5 sm:inset-[0.45rem] rounded-[2.2rem] overflow-hidden bg-[#EAE9E0]/50 z-0">
                                                 {product.frontImage ? (
                                                     <img
-                                                        src={urlFor(product.frontImage).url()}
+                                                        src={urlFor(product.frontImage).width(600).height(750).quality(80).url()}
                                                         alt={product.name}
+                                                        loading="lazy"
                                                         className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                                                     />
                                                 ) : (

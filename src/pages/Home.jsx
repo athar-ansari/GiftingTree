@@ -1,21 +1,22 @@
+import React, { useState, useEffect, Suspense, lazy } from "react";
 import Footer from "../components/Footer.jsx";
 import { Helmet } from 'react-helmet-async';
-import { Testimonials } from "../components/Testimonials.jsx";
-import BestSellers from "../components/BestSellers.jsx";
 import Hero from "../components/Hero.jsx";
-import Info from "../components/Info.jsx";
-import CraftProcess from "../components/CraftProcess.jsx";
-import ArtisanalCollections from "../components/ArtisanalCollections.jsx";
-
 import SEO from "../components/SEO.jsx";
-// Phase 4: New Premium Sections
 import FestiveCollection from "../components/FestiveCollection.jsx";
-import GiftingGuide from "../components/GiftingGuide.jsx";
-import BespokeCommission from "../components/BespokeCommission.jsx";
-import BehindTheArt from "../components/BehindTheArt.jsx";
 import Loader from "../components/Loader.jsx";
-import { useState, useEffect } from "react";
 import { AnimatePresence } from "framer-motion";
+
+// Lazy Loaded Components (Below the fold)
+const GiftingGuide = lazy(() => import("../components/GiftingGuide.jsx"));
+const ArtisanalCollections = lazy(() => import("../components/ArtisanalCollections.jsx"));
+const BespokeCommission = lazy(() => import("../components/BespokeCommission.jsx"));
+const BestSellers = lazy(() => import("../components/BestSellers.jsx"));
+const BehindTheArt = lazy(() => import("../components/BehindTheArt.jsx"));
+const CraftProcess = lazy(() => import("../components/CraftProcess.jsx"));
+const Testimonials = lazy(() => import("../components/Testimonials.jsx"));
+const InstagramLiveFeed = lazy(() => import("../components/InstagramLiveFeed.jsx"));
+const Info = lazy(() => import("../components/Info.jsx"));
 
 function Home() {
   const [minTimePassed, setMinTimePassed] = useState(false);
@@ -84,32 +85,37 @@ function Home() {
         {/* Dynamic Festive Collection */}
         <FestiveCollection />
 
-        {/* Gifting Concierge Section */}
-        <GiftingGuide />
+        <Suspense fallback={<div className="min-h-screen flex items-center justify-center bg-gray-50"><div className="w-8 h-8 rounded-full border-4 border-[#1A2E1A]/20 border-t-[#1A2E1A] animate-spin"></div></div>}>
+          {/* Gifting Concierge Section */}
+          <GiftingGuide />
 
-        {/* ArtisanalCollections Section */}
-        <ArtisanalCollections />
+          {/* ArtisanalCollections Section */}
+          <ArtisanalCollections />
 
-        {/* The Bespoke Experience Section */}
-        <BespokeCommission />
+          {/* The Bespoke Experience Section */}
+          <BespokeCommission />
 
-        {/* Best Sellers Section */}
-        <BestSellers />
+          {/* Best Sellers Section */}
+          <BestSellers />
 
-        {/* Behind The Art Parallax Banner */}
-        <BehindTheArt />
+          {/* Behind The Art Parallax Banner */}
+          <BehindTheArt />
 
-        {/* CraftProcess Section */}
-        <CraftProcess />
+          {/* CraftProcess Section */}
+          <CraftProcess />
 
-        {/* Testimonials Section */}
-        <Testimonials />
+          {/* Testimonials Section */}
+          <Testimonials />
 
-        {/* Info Section */}
-        <Info />
+          {/* Instagram Post Showcase / Widget */}
+          <InstagramLiveFeed />
 
-        {/* Footer Section */}
-        <Footer />
+          {/* Info Section */}
+          <Info />
+
+          {/* Footer Section */}
+          <Footer />
+        </Suspense>
 
       </div>
     </>

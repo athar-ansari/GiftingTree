@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { createAvatar } from "@dicebear/core";
 import { adventurer } from "@dicebear/collection";
 
-export const Testimonials = () => {
+const Testimonials = () => {
   const testimonials = [
     {
       id: 1,
@@ -154,3 +154,5 @@ export const Testimonials = () => {
     </div>
   );
 };
+
+export default Testimonials;
