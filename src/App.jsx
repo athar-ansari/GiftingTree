@@ -1,14 +1,18 @@
-import React, { useEffect } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import React, { useEffect, Suspense, lazy } from "react";
+import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
+import { AnimatePresence } from 'framer-motion';
 import Navbar from './components/Navbar';
-import Home from './pages/Home';
-import ProductDetails from './pages/ProductDetails';
-import ResinProducts from './pages/ResinProducts';
-import FestivalProducts from './pages/FestivalProducts';
 import FloatingWhatsApp from './components/FloatingWhatsApp';
 import { Toaster } from 'react-hot-toast';
 import ScrollToTop from './components/ScrollToTop';
-import { useLocation } from 'react-router-dom';
+import Loader from './components/Loader';
+import PageTransition from "./components/PageTransition";
+
+// Lazy Loaded Pages
+const Home = lazy(() => import('./pages/Home'));
+const ProductDetails = lazy(() => import('./pages/ProductDetails'));
+const ResinProducts = lazy(() => import('./pages/ResinProducts'));
+const FestivalProducts = lazy(() => import('./pages/FestivalProducts'));
 
 const AppContent = () => {
   const location = useLocation();
@@ -40,12 +44,16 @@ const AppContent = () => {
       <Toaster position="top-center" />
       {!hideControls && <Navbar />}
       {!hideControls && <FloatingWhatsApp />}
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/resin-products" element={<ResinProducts />} />
-        <Route path="/festival" element={<FestivalProducts />} />
-        <Route path="/product/:id" element={<ProductDetails />} />
-      </Routes>
+      <AnimatePresence mode="wait">
+        <Suspense fallback={<Loader />}>
+          <Routes location={location} key={location.pathname}>
+            <Route path="/" element={<PageTransition><Home /></PageTransition>} />
+            <Route path="/resin-products" element={<PageTransition><ResinProducts /></PageTransition>} />
+            <Route path="/festival" element={<PageTransition><FestivalProducts /></PageTransition>} />
+            <Route path="/product/:id" element={<PageTransition><ProductDetails /></PageTransition>} />
+          </Routes>
+        </Suspense>
+      </AnimatePresence>
     </>
   );
 };

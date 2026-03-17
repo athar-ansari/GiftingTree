@@ -90,6 +90,9 @@ export default async function handler(req, res) {
     html = replaceTag(html, '<meta[^>]*?property="og:url"[^>]*?>', `<meta property="og:url" content="${seo.url}" />`);
     html = replaceTag(html, '<link[^>]*?rel="canonical"[^>]*?>', `<link rel="canonical" href="${seo.url}" />`);
 
+    // Set Cache Headers to dramatically improve bot response time
+    res.setHeader('Cache-Control', 's-maxage=86400, stale-while-revalidate');
+
     // Set Response as HTML
     res.setHeader('Content-Type', 'text/html');
     res.status(200).send(html);

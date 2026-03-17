@@ -26,6 +26,16 @@ const categoryMapping = {
   'varmala': 'Varmala',
   'clock': 'Clock',
   'resin-frame': 'Resin Frame',
+  'bouquet': 'Bouquet',
+  'thumb-frame': 'Thumb frame',
+  'eidi-card': 'Eidi card',
+  'trousseau-packing': 'Trousseau packing',
+  'frame': 'Frame',
+  'resin-block': 'Resin Block',
+  'wedding-card': 'Wedding card',
+  'return-favours': 'Return Favours',
+  'board': 'Board',
+  'cash-box': 'Cash box',
   'other-products': 'Other Products',
 };
 
@@ -214,7 +224,7 @@ function ProductDetails() {
     <>
       {product && (
         <>
-          <SEO 
+          <SEO
             title={product.name}
             description={product.description || `Buy ${product.name} at Gifting Tree. Explore our handcrafted collection.`}
             image={urlFor(product.frontImage).width(1200).height(630).url()}
@@ -583,7 +593,7 @@ function ProductDetails() {
                 >
                   {/* Subtle pulsing background on active */}
                   {!(product?.sizes && product.sizes.length > 0 && !selectedSize) && (
-                     <div className="absolute inset-0 bg-[#4B5945]/20 animate-pulse pointer-events-none" style={{ animationDuration: '2.5s' }}></div>
+                    <div className="absolute inset-0 bg-[#4B5945]/20 animate-pulse pointer-events-none" style={{ animationDuration: '2.5s' }}></div>
                   )}
                   <span className={`relative z-10 flex items-center text-[10px] sm:text-xs tracking-[0.2em] uppercase truncate shrink-0 ${product?.sizes && product.sizes.length > 0 && !selectedSize ? 'text-[#1A2E1A]/40' : 'text-white'}`}>
                     <FaWhatsapp className={`mr-2.5 text-xl ${product?.sizes && product.sizes.length > 0 && !selectedSize ? 'text-[#1A2E1A]/40' : 'text-[#25D366]'}`} />

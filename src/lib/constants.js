@@ -14,6 +14,16 @@ export const CATEGORIES = [
   { title: "Varmala", value: "varmala" },
   { title: "Clock", value: "clock" },
   { title: "Resin Frame", value: "resin-frame" },
+  { title: "Bouquet", value: "bouquet" },
+  { title: "Thumb frame", value: "thumb-frame" },
+  { title: "Eidi card", value: "eidi-card" },
+  { title: "Trousseau packing", value: "trousseau-packing" },
+  { title: "Frame", value: "frame" },
+  { title: "Resin Block", value: "resin-block" },
+  { title: "Wedding card", value: "wedding-card" },
+  { title: "Return Favours", value: "return-favours" },
+  { title: "Board", value: "board" },
+  { title: "Cash box", value: "cash-box" },
   { title: "Other Products", value: "other-products" },
 ];
 

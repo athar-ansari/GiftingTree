@@ -14,7 +14,8 @@ const collections = [
     image: LuxuryResin,
     categories: [
       "Varmala", "Key Chains", "Jewellery", "Car Accessories", "Clock", "Resin Frame", "Bookmarks", "Puja Thali", "Wall Art",
-      "Book Holder", "Flower Preservation", "Other Products"
+      "Book Holder", "Flower Preservation", "Bouquet", "Thumb frame", "Eidi card",
+      "Trousseau packing", "Frame", "Resin Block", "Wedding card", "Return Favours", "Board", "Cash box", "Other Products"
     ]
   }
 ];
