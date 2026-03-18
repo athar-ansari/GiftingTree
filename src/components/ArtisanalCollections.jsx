@@ -1,195 +1,162 @@
-import { useState, useRef } from 'react';
+import { useRef } from 'react';
 import { Link } from "react-router-dom";
-import { motion, AnimatePresence, useInView, useScroll, useTransform } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { FiArrowRight } from "react-icons/fi";
 
-// Exchanging the basic resin image for an ultra-premium dark macro photograph
-import LuxuryResin from "../assets/ArtisanalGallery.webp";
-
-const collections = [
-  {
-    id: "artisanal-gallery",
-    title: "The Artisanal Gallery",
-    description: "Meticulously handcrafted resin masterpieces, elevating your most cherished memories into eternal art.",
-    image: LuxuryResin,
-    categories: [
-      "Varmala", "Key Chains", "Jewellery", "Car Accessories", "Clock", "Resin Frame", "Bookmarks", "Puja Thali", "Wall Art",
-      "Book Holder", "Flower Preservation", "Bouquet", "Thumb frame", "Eidi card",
-      "Trousseau packing", "Frame", "Resin Block", "Wedding card", "Return Favours", "Board", "Cash box", "Other Products"
-    ]
+const categoriesData = [
+  { 
+    name: "Jewellery", 
+    desc: "Wearable Handcrafted Art", 
+    img: "https://images.unsplash.com/photo-1599643478524-fb66f7fcf028?q=80&w=800&auto=format&fit=crop" 
+  },
+  { 
+    name: "Flower Preservation", 
+    desc: "Memories Frozen In Time", 
+    img: "https://images.unsplash.com/photo-1563241527-3004b7be0ffd?q=80&w=800&auto=format&fit=crop" 
+  },
+  { 
+    name: "Bouquet", 
+    desc: "The Eternal Blooms", 
+    img: "https://images.unsplash.com/photo-1582794543139-8ac9cb0f7b11?q=80&w=800&auto=format&fit=crop" 
+  },
+  { 
+    name: "Trousseau Packing", 
+    desc: "Luxury Royal Gifting", 
+    img: "https://images.unsplash.com/photo-1549465220-1a8b9238cd48?q=80&w=800&auto=format&fit=crop" 
+  },
+  { 
+    name: "Frame", 
+    desc: "Custom Wall Masterpieces", 
+    img: "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?q=80&w=800&auto=format&fit=crop" 
+  },
+  { 
+    name: "Return Favours", 
+    desc: "Elegant Memorable Tokens", 
+    img: "https://images.unsplash.com/photo-1606836591695-4d58a73eba1e?q=80&w=800&auto=format&fit=crop" 
   }
 ];
 
 export default function ArtisanalCollections() {
-  const [activeCollection] = useState(collections[0].id);
   const containerRef = useRef(null);
-  const isInView = useInView(containerRef, { once: true, amount: 0.1 });
-
+  
   return (
-    <section
-      ref={containerRef}
-      className="py-16 md:py-32 bg-[#EAE9E0] relative overflow-hidden"
+    <section 
+      className="py-24 md:py-40 bg-[#EAE9E0] relative overflow-hidden"
     >
-      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-
-        {/* Soft, Breathable Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 30, filter: "blur(10px)" }}
-          animate={isInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
-          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-          className="text-center mb-12 md:mb-20"
-        >
-          <div className="flex items-center justify-center gap-4 mb-5">
-            <span className="w-16 h-[1px] bg-gradient-to-r from-transparent to-[#8A9A83]"></span>
-            <span className="text-[#8A9A83] text-[10px] sm:text-xs uppercase tracking-[0.4em] font-semibold font-sans">
-              Signature Masterpieces
-            </span>
-            <span className="w-16 h-[1px] bg-gradient-to-l from-transparent to-[#8A9A83]"></span>
-          </div>
-
-          <h2 className="text-4xl md:text-5xl lg:text-7xl font-bold text-[#1A2E1A] font-notoSerif tracking-tight leading-[1.1] mb-5">
-            Curated <span className="italic font-light text-[#4B5945]">Collections.</span>
-          </h2>
-
-          <p className="text-[#5C6B55] max-w-2xl mx-auto text-base md:text-xl font-light leading-relaxed">
-            Step into an exclusive exhibition where tradition seamlessly blends with modern luxury.
-          </p>
-        </motion.div>
-
-        {/* The Main Showcase Container */}
-        <div className="relative w-full mx-auto">
-          <AnimatePresence mode="wait">
-            {collections.map((collection) => (
-              collection.id === activeCollection && (
-                <CollectionShowcase key={collection.id} collection={collection} />
-              )
-            ))}
-          </AnimatePresence>
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+        
+        {/* Editorial Header */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-10 mb-20 md:mb-32">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            className="flex-1"
+          >
+            <div className="flex items-center gap-4 mb-6">
+              <span className="w-12 h-[1px] bg-[#8A9A83]"></span>
+              <span className="text-[#8A9A83] text-[10px] md:text-xs uppercase tracking-[0.4em] font-bold">
+                Signature Masterpieces
+              </span>
+            </div>
+            <h2 className="text-5xl md:text-7xl lg:text-8xl font-bold font-notoSerif tracking-tight leading-[0.95] text-[#1A2E1A]">
+              Curated <br />
+              <span className="italic font-light text-[#4B5945]">Collections.</span>
+            </h2>
+          </motion.div>
+          
+          <motion.div 
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1, delay: 0.2 }}
+            className="max-w-md"
+          >
+            <p className="text-[#1A2E1A]/60 text-base md:text-lg font-medium leading-relaxed mb-8">
+              Explore our meticulously handcrafted divisions where every piece tells a story of preservation and artisanal excellence.
+            </p>
+            <Link 
+              to="/resin-products" 
+              className="group inline-flex items-center gap-4 text-[#1A2E1A] font-bold text-sm tracking-widest uppercase border-b-2 border-transparent hover:border-[#4B5945] transition-all duration-300 pb-1"
+            >
+              View Full Gallery <FiArrowRight className="group-hover:translate-x-2 transition-transform duration-300" />
+            </Link>
+          </motion.div>
         </div>
+
+        {/* Horizontal Editorial Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-20 gap-x-12">
+          {categoriesData.map((category, index) => (
+            <CollectionCard key={category.name} category={category} index={index} />
+          ))}
+        </div>
+
       </div>
     </section>
   );
 }
 
-function CollectionShowcase({ collection }) {
+function CollectionCard({ category, index }) {
   const cardRef = useRef(null);
+  
+  // Subtle parallax for the images
   const { scrollYProgress } = useScroll({
     target: cardRef,
     offset: ["start end", "end start"]
   });
-
-  // Parallax background: shifts downwards as you scroll down
-  const y = useTransform(scrollYProgress, [0, 1], ["-10%", "10%"]);
+  
+  const y = useTransform(scrollYProgress, [0, 1], ["0%", "15%"]);
 
   return (
     <motion.div
       ref={cardRef}
-      initial={{ opacity: 0, scale: 0.95, y: 50 }}
-      whileInView={{ opacity: 1, scale: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.1 }}
-      transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-      className="relative w-full rounded-[2.5rem] lg:rounded-[3rem] overflow-hidden shadow-2xl border-[6px] border-white ring-1 ring-[#E8EFE5] bg-[#0A0A0A]"
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-50px" }}
+      transition={{ duration: 0.8, delay: (index % 3) * 0.15, ease: [0.16, 1, 0.3, 1] }}
+      className="group flex flex-col"
     >
-      {/* Deep Background Canvas with Parallax */}
-      <motion.div style={{ y }} className="absolute inset-0 w-full h-[120%] origin-center">
-        {/* Subtle continuous ambient movement instead of interactive card zoom */}
-        <img
-          src={collection.image}
-          alt={`Exclusive Handcrafted ${collection.title} - Premium Resin Art`}
-          className="w-full h-full object-cover opacity-70 animate-[pulse_10s_ease-in-out_infinite] scale-105"
-        />
-
-        {/* Multi-layered Vignette and Gradient Meshes */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/40 to-[#0A0A0A] pointer-events-none" />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0A0A0A]/80 via-transparent to-[#0A0A0A]/40 pointer-events-none" />
-      </motion.div>
-
-      {/* Ambient Floating Light Orbs for depth */}
-      <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-[#D4E0CE]/10 rounded-full blur-[120px] pointer-events-none mix-blend-screen opacity-50 group-hover:opacity-100 transition-opacity [transition-duration:]"></div>
-      <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-[#8A9A83]/10 rounded-full blur-[100px] pointer-events-none mix-blend-screen opacity-40"></div>
-
-      {/* Foreground Content Stack */}
-      <div className="relative z-10 w-full h-full min-h-[75vh] md:min-h-[85vh] flex flex-col justify-end p-6 md:p-12 lg:p-16">
-
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-12 w-full">
-
-          {/* Text Block */}
-          <motion.div
-            initial={{ opacity: 0, x: -40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1, delay: 0.4, ease: "easeOut" }}
-            className="max-w-2xl lg:pb-4"
-          >
-            <div className="inline-flex items-center gap-3 px-5 py-2 rounded-full bg-white/5 backdrop-blur-xl border border-white/20 mb-8 shadow-2xl">
-              <span className="w-2 h-2 rounded-full bg-[#D4E0CE] animate-pulse"></span>
-              <span className="text-white text-[10px] font-bold tracking-widest uppercase">The Artifact Gallery</span>
-            </div>
-
-            <h3 className="text-4xl md:text-6xl lg:text-[5rem] font-bold text-white font-notoSerif tracking-tight leading-[1] mb-6 drop-shadow-2xl">
-              {collection.title}
-            </h3>
-
-            <p className="text-lg md:text-xl text-gray-300 font-light leading-relaxed drop-shadow-lg max-w-xl">
-              {collection.description}
-            </p>
+      <Link 
+        to={`/resin-products?category=${encodeURIComponent(category.name.toLowerCase().replace(/ /g, '-'))}`}
+        className="block"
+      >
+        {/* Editorial Image Wrapper */}
+        <div className="relative aspect-[4/5] overflow-hidden rounded-2xl md:rounded-[2.5rem] bg-[#1A2E1A]/5 shadow-[0_30px_60px_rgba(26,46,26,0.05)] transition-all duration-700 group-hover:shadow-[0_40px_80px_rgba(26,46,26,0.12)] mb-8">
+          <motion.div style={{ y }} className="absolute inset-0 h-[115%] w-full">
+            <img 
+              src={category.img} 
+              alt={category.name} 
+              className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" 
+            />
           </motion.div>
+          
+          {/* Refined Glass Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+             <div className="absolute inset-0 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-all duration-700"></div>
+          </div>
 
-          {/* Glassmorphic Category Grid */}
-          <div className="w-full lg:w-7/12 grid grid-cols-2 xl:grid-cols-3 gap-3 md:gap-4">
-            {collection.categories.map((category, index) => (
-              <motion.div
-                key={category}
-                initial={{ opacity: 0, x: 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.5 + index * 0.05, ease: "easeOut" }}
-              >
-                <CategoryButton category={category} />
-              </motion.div>
-            ))}
+          <div className="absolute bottom-8 right-8 z-10 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
+             <div className="w-12 h-12 rounded-full bg-white text-[#1A2E1A] flex items-center justify-center shadow-2xl">
+                <FiArrowRight className="-rotate-45 w-5 h-5" />
+             </div>
           </div>
         </div>
 
-      </div>
-    </motion.div>
-  );
-}
-
-function CategoryButton({ category }) {
-  return (
-    <Link
-      to={`/resin-products?category=${encodeURIComponent(category.toLowerCase().replace(/ /g, '-'))}`}
-      aria-label={`Shop premium resin ${category}`}
-      className="block focus:outline-none focus:ring-2 focus:ring-[#D4E0CE] rounded-xl h-full"
-    >
-      <div
-        className="
-                relative overflow-hidden w-full h-full text-left py-3 px-4 md:py-4 md:px-5 lg:px-3 rounded-xl
-                bg-white/10 backdrop-blur-md border border-white/20
-                text-white text-xs sm:text-sm md:text-base lg:text-[13px] xl:text-[15px] font-medium tracking-wide
-                transition-all duration-300 ease-out cursor-pointer
-                hover:bg-white/20 hover:-translate-y-1 hover:shadow-[0_8px_20px_-6px_rgba(0,0,0,0.5)]
-                hover:border-white/40
-                group flex items-center justify-between
-            "
-      >
-        {/* Subtle Inner Glow on Hover */}
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
-
-        {/* Text Title with high contrast */}
-        <span className="relative z-10 leading-tight drop-shadow-md text-white/90 group-hover:text-white transition-colors duration-300">
-          {category}
-        </span>
-
-        {/* Premium Interactive Icon */}
-        <div className="relative z-10 w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/10 flex items-center justify-center border border-white/20 group-hover:bg-white transition-all duration-300 shadow-sm ml-2 shrink-0">
-          <FiArrowRight className="text-white w-3 h-3 sm:w-4 sm:h-4 group-hover:text-[#1A2E1A] group-hover:-rotate-45 transition-transform duration-300" />
+        {/* Text Metadata */}
+        <div className="px-4">
+          <div className="flex items-center gap-3 mb-2">
+            <span className="text-[10px] font-bold tracking-[0.3em] uppercase text-[#8A9A83]">0{index + 1}</span>
+            <span className="w-8 h-[1px] bg-[#8A9A83]/30"></span>
+          </div>
+          <h3 className="text-2xl md:text-3xl font-bold font-notoSerif text-[#1A2E1A] mb-2 group-hover:text-[#4B5945] transition-colors duration-300">
+            {category.name}
+          </h3>
+          <p className="text-[#1A2E1A]/50 text-xs md:text-sm font-medium tracking-tight uppercase">
+            {category.desc}
+          </p>
         </div>
-
-        {/* Elegant Hover Sweep Gradient */}
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-[150%] group-hover:translate-x-[150%] transition-transform duration-700 ease-in-out pointer-events-none"></div>
-      </div>
-    </Link>
+      </Link>
+    </motion.div>
   );
 }
