@@ -109,8 +109,8 @@ const BestSellers = () => {
                     className="block relative w-full aspect-[3/4] sm:aspect-[4/5] overflow-hidden rounded-[2.5rem] bg-[#1A2E1A] mb-8 border   shadow-[0_20px_50px_rgba(0,0,0,0.5)]  border-white/5 transition-all duration-700 [transition-timing-function:] group-hover:-translate-y-4 group-hover:shadow-[0_30px_60px_-15px_rgba(44,62,32,0.15)] cursor-pointer"
                   >
 
-                    {/* Inner Image Mask (creates the floating glass rim effect) */}
-                    <div className="absolute inset-1.5 sm:inset-[0.45rem] rounded-[2.2rem] overflow-hidden bg-[#1A2E1A]/10 animate-pulse">
+                    {/* Inner Image Mask */}
+                    <div className="absolute inset-1.5 sm:inset-[0.45rem] rounded-[2.2rem] overflow-hidden bg-white/50">
                       {product.frontImage ? (
                         <img
                           src={urlFor(product.frontImage).url()}
