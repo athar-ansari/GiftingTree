@@ -3,9 +3,9 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { FiArrowRight, FiArrowUpRight } from 'react-icons/fi';
 
-import weddingImg   from '../assets/wedding.webp';
-import nameplateImg from '../assets/nameplateImg.webp';
-import flatlayImg   from '../assets/flatlayImg.webp';
+import weddingImg   from '../assets/weddingGuide.webp';
+import nameplateImg from '../assets/nameplateCorporate.webp';
+import flatlayImg   from '../assets/homeLivingGuide.webp';
 
 const guideCategories = [
   {
